@@ -28,7 +28,7 @@
   h1 { font-family:'Source Serif 4',serif; font-size:40px; line-height:1.16; font-weight:700; letter-spacing:-0.01em; margin-bottom:18px; max-width:20ch; }
   .lede { font-size:18px; color:var(--ink-soft); max-width:54ch; margin-bottom:20px; }
   .frame { font-size:14px; color:var(--ink-mute); max-width:54ch; margin-bottom:46px; }
-  .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:20px; }
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:20px; }
   .stat { background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:22px 18px; border-top:3px solid var(--accent); }
   .stat .num { font-family:'Source Serif 4',serif; font-size:30px; font-weight:700; line-height:1; margin-bottom:8px; color:var(--accent); }
   .stat .desc { font-size:13px; line-height:1.45; color:var(--ink-soft); }
@@ -37,13 +37,14 @@
   .label, .section-label { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:12px; }
   .demo-card h2 { font-family:'Source Serif 4',serif; font-size:23px; font-weight:700; margin-bottom:8px; }
   .demo-card p { font-size:15px; color:var(--ink-soft); margin-bottom:18px; max-width:52ch; }
-  .demo-link { display:inline-flex; align-items:center; gap:7px; font-size:15px; font-weight:500; color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent); padding-bottom:2px; }
-  .demo-link:hover { opacity:.65; }
+  .demo-link { display:inline-flex; align-items:center; gap:8px; font-size:15px; font-weight:600; color:#fff; background:var(--accent); text-decoration:none; padding:11px 20px; border-radius:8px; transition:background .15s; }
+  .demo-link:hover { background:var(--accent-deep); }
   .demo-link svg { width:15px; height:15px; }
-  .demo-link-2 { display:inline-flex; align-items:center; gap:6px; font-size:13px; color:var(--ink-mute); text-decoration:none; margin-top:14px; }
-  .demo-link-2:hover { color:var(--ink-soft); }
-  .demo-link-2 svg { width:13px; height:13px; }
-  .demo-links { display:flex; flex-direction:column; align-items:flex-start; }
+  .demo-link-2 { display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:500; color:var(--accent-deep); background:var(--surface); border:1.5px solid var(--accent); text-decoration:none; padding:10px 18px; border-radius:8px; transition:background .15s; }
+  .demo-link-2:hover { background:var(--accent-soft); }
+  .demo-link-2 svg { width:14px; height:14px; }
+  .demo-links { display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+  @media (max-width:600px){ .demo-links{ flex-direction:column; align-items:stretch } .demo-link, .demo-link-2 { justify-content:center } }
   .fw-intro { font-size:15px; color:var(--ink-soft); max-width:54ch; margin-bottom:18px; }
   .fw-list { border:1px solid var(--line); border-radius:12px; background:var(--surface); margin-bottom:60px; overflow:hidden; }
   .fw-item { display:flex; align-items:center; gap:16px; padding:17px 22px; border-bottom:1px solid var(--line-soft); font-size:15px; text-decoration:none; color:var(--ink); transition:background .15s; }
@@ -64,7 +65,7 @@
   .foot a svg { width:14px; height:14px; }
   .foot .contact { font-size:13px; color:var(--ink-mute); margin-left:auto; }
   .foot .contact a { display:inline; color:var(--ink-mute); }
-  @media (max-width:600px){ .wrap{padding:56px 22px} h1{font-size:30px} .stats{grid-template-columns:1fr} .rule{display:none} .foot .contact{margin-left:0;width:100%} }
+  @media (max-width:600px){ .wrap{padding:56px 22px} h1{font-size:30px} .stats{grid-template-columns:1fr 1fr; gap:10px} .rule{display:none} .foot .contact{margin-left:0;width:100%} }
 </style>
 </head>
 <body>
@@ -78,15 +79,15 @@
     <div class="stat"><div class="num">~5M</div><div class="desc">customers migrated, zero disruption</div></div>
     <div class="stat"><div class="num">~$75M</div><div class="desc">revenue, attrition under ~1.2%</div></div>
     <div class="stat"><div class="num">~$13M</div><div class="desc">operational savings</div></div>
+    <div class="stat"><div class="num">~12 hrs/wk</div><div class="desc">freed per user by AI program ops I built &mdash; in production</div></div>
   </div>
-  <p class="ai-line">Including an AI-enabled program operations capability I designed and deployed in production &mdash; explore it below.</p>
+  <p class="ai-line">The AI program-ops result above comes from a capability I designed and deployed in production &mdash; planning, risk, dependencies, and executive reporting unified into one shared operating system. The demo below shows the method behind it.</p>
   <div class="demo-card">
     <p class="label">See it work</p>
     <h2>The Operating Picture</h2>
-    <p>The same operating model behind the results above &mdash; shown here as an interactive you can explore. Pick a messy workflow and watch it resolve into a single governed operating picture, with humans in control at every decision.</p>
+    <p>The operating model behind the AI program-ops capability above &mdash; shown as an interactive you can explore. Pick a messy workflow and watch it resolve into a single governed operating picture, with humans in control at every decision.</p>
     <div class="demo-links">
-      <a class="demo-link" href="workflowdemo.html">See the method working <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
-      <a class="demo-link-2" href="ebay.html">Or see it on a marketplace leader's workflows <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      <a class="demo-link" href="workflowdemo.html">Launch the interactive demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
     </div>
   </div>
   <p class="section-label">Frameworks</p>

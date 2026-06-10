@@ -59,6 +59,7 @@ body{
 }
 .pill:hover{border-color:var(--accent);color:var(--accent)}
 .pill.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.pdiv{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);font-weight:600;padding:0 4px 0 10px;border-left:1px solid var(--line-2);margin-left:4px}
 .custom{display:flex;align-items:center;gap:0;border:1px solid var(--line-2);border-radius:30px;overflow:hidden;background:var(--panel)}
 .custom input{border:none;outline:none;font-family:'Inter',sans-serif;font-size:14px;padding:10px 16px;width:170px;background:transparent;color:var(--ink)}
 .custom button{border:none;background:var(--accent-soft);color:var(--accent);font-weight:600;font-size:13px;padding:10px 16px;cursor:pointer}
@@ -168,6 +169,10 @@ body{
       <button class="pill" data-k="hiring">Hiring</button>
       <button class="pill" data-k="incident">Incident Response</button>
       <button class="pill" data-k="vendor">Vendor Onboarding</button>
+      <span class="pdiv">Marketplace&nbsp;·&nbsp;eBay-scale</span>
+      <button class="pill" data-k="seller">Seller Onboarding</button>
+      <button class="pill" data-k="listing">Listing Quality</button>
+      <button class="pill" data-k="disputes">Returns &amp; Disputes</button>
       <span class="custom"><input id="customIn" type="text" placeholder="…or name your own" maxlength="34"><button id="customGo">Resolve</button></span>
     </div>
   </div>
@@ -227,7 +232,25 @@ const DATA={
     signals:[["contract","signed"],["security_review","50%"],["docs_complete","65%"],["payment_setup","no"],["access","30%"],["compliance","70%"],["days_in_process","21"],["owner","yes"]],
     agents:[["Are they cleared?","Compliance"],["Risk assessed?","Security"],["Ready to transact?","Setup"],["Are we stalling?","Speed"]],
     problem:["Security review half-done; payment unset after 21 days.","security_review 50% · payment_setup no"],
-    rec:"Escalate security; parallelize finance setup."}
+    rec:"Escalate security; parallelize finance setup."},
+  seller:{name:"Seller Onboarding",
+    sources:["Seller Hub","KYC","Payments","Email","Catalog","Risk"],
+    signals:[["identity_verified","72%"],["first_listing","48%"],["payout_setup","55%"],["policy_ack","80%"],["fraud_score","0.18"],["time_to_active","6d"],["listings_live","120"],["sentiment","0.66"]],
+    agents:[["Are sellers cleared to sell?","Verification"],["Are they actually listing?","Activation"],["Can they get paid?","Payments"],["Any risk signals?","Trust & Safety"]],
+    problem:["Half of verified sellers haven't set up payouts; activation is stalling.","payout_setup 55% · first_listing 48%"],
+    rec:"Auto-prompt payout setup at verification; nudge the first listing."},
+  listing:{name:"Listing Quality",
+    sources:["Catalog","Image AI","Search","Policy","Seller Hub"],
+    signals:[["title_quality","68%"],["image_pass","74%"],["item_specifics","52%"],["policy_flags","9"],["search_impr","-6%"],["duplicate_rate","11%"],["mispriced","23"],["sentiment","0.70"]],
+    agents:[["Are listings complete?","Completeness"],["Do they meet policy?","Compliance"],["Are they findable?","Discoverability"],["Priced right?","Pricing"]],
+    problem:["Item specifics missing on half of new listings; search impressions slipping.","item_specifics 52% · search_impr −6%"],
+    rec:"Auto-suggest item specifics at listing; flag the 23 mispriced."},
+  disputes:{name:"Returns & Disputes",
+    sources:["Resolution Ctr","Payments","Email","Chat","Policy"],
+    signals:[["open_cases","340"],["avg_resolution","4.2d"],["sla_breach","28"],["escalation","12%"],["seller_fault","41%"],["refund_pending","90"],["repeat_disputes","17"],["sentiment","0.38"]],
+    agents:[["Are we within SLA?","Throughput"],["Who is at fault?","Adjudication"],["Are buyers frustrated?","Experience"],["Any repeat offenders?","Pattern"]],
+    problem:["28 cases past SLA; buyer sentiment dropping on repeat disputes.","sla_breach 28 · sentiment 0.38"],
+    rec:"Auto-resolve clear seller-fault cases; escalate repeat offenders."}
 };
 function universal(name){
   return {name:name,
