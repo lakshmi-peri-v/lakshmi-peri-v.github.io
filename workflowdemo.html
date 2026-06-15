@@ -6,20 +6,20 @@
 <title>The Operating Picture</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#fcfcfd;
-  --ink:#16181c;
-  --soft:#54585f;
-  --mute:#9a9ea6;
-  --line:#e8e9ec;
-  --line-2:#dcdee2;
-  --panel:#ffffff;
-  --accent:#16181c;
-  --accent-soft:#f0f1f3;
-  --ok:#1a8f5f;
-  --ok-soft:#e7f4ee;
+  --bg:#f5f2eb;
+  --ink:#11203a;
+  --soft:#4a5468;
+  --mute:#8b91a3;
+  --line:#e4ddcd;
+  --line-2:#d8cfbb;
+  --panel:#fffdf7;
+  --accent:#1e4e8c;
+  --accent-soft:#e3ebf5;
+  --ok:#1a7d57;
+  --ok-soft:#e3f1ea;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -42,10 +42,10 @@ body{
 /* hero */
 .hero{padding:90px 0 30px;max-width:760px}
 .hero h1{
-  font-family:'Newsreader',serif;font-weight:400;font-size:clamp(30px,5vw,52px);
-  line-height:1.16;letter-spacing:-.01em;color:var(--ink);
+  font-family:'Inter',sans-serif;font-weight:800;font-size:clamp(30px,5vw,52px);
+  line-height:1.1;letter-spacing:-.025em;color:var(--ink);
 }
-.hero h1 em{font-style:italic;color:var(--accent)}
+.hero h1 em{font-style:normal;color:var(--accent)}
 .hero p{margin-top:22px;font-size:17px;color:var(--soft);max-width:540px}
 
 /* selector */
@@ -68,7 +68,7 @@ body{
 /* stage */
 .stage{position:relative;margin:18px 0 40px;min-height:120px;overflow:hidden}
 .stage.empty .layer,.stage.empty .conn{display:none}
-.hint{color:var(--mute);font-size:14px;padding:30px 0;font-style:italic;font-family:'Newsreader',serif}
+.hint{color:var(--mute);font-size:14px;padding:30px 0;font-style:italic;font-family:'Inter',sans-serif}
 .stage.empty .hint{display:block}
 .stage:not(.empty) .hint{display:none}
 
@@ -102,7 +102,7 @@ body{
 .agrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 @media(max-width:760px){.agrid{grid-template-columns:1fr 1fr}}
 .agcard{border:1px solid var(--line-2);border-radius:12px;padding:18px 16px;background:var(--panel);text-align:left}
-.agcard .agq{font-family:'Newsreader',serif;font-size:16px;line-height:1.25;color:var(--ink)}
+.agcard .agq{font-family:'Inter',sans-serif;font-weight:700;font-size:16px;line-height:1.25;color:var(--ink)}
 .agcard .agt{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-top:12px;font-weight:600}
 
 .briefcard{max-width:560px;margin:0 auto;border:1px solid var(--line-2);border-radius:14px;overflow:hidden;background:var(--panel)}
@@ -121,8 +121,8 @@ body{
 /* caption / settle */
 .settle{opacity:0;transform:translateY(10px);transition:.8s ease;text-align:center;margin-top:34px}
 .settle.in{opacity:1;transform:none}
-.settle .line{font-family:'Newsreader',serif;font-size:clamp(18px,2.4vw,24px);color:var(--ink);max-width:600px;margin:0 auto;line-height:1.4}
-.settle .line b{color:var(--accent);font-weight:500}
+.settle .line{font-family:'Inter',sans-serif;font-weight:700;font-size:clamp(18px,2.4vw,24px);color:var(--ink);max-width:600px;margin:0 auto;line-height:1.4}
+.settle .line b{color:var(--accent);font-weight:700}
 .settle .replay{margin-top:18px;display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--mute);background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif}
 .settle .replay:hover{color:var(--ink)}
 .settle .replay svg{width:13px;height:13px}
@@ -132,14 +132,14 @@ body{
 .eyebrow::before{content:"";width:26px;height:1px;background:var(--accent)}
 .frame{margin-top:8px;font-size:15px;color:var(--soft);max-width:600px;line-height:1.55}
 .about{border-top:1px solid var(--line);margin-top:64px;padding-top:34px;max-width:700px}
-.about h4{font-family:'Newsreader',serif;font-size:21px;font-weight:500;margin-bottom:16px;color:var(--ink)}
+.about h4{font-family:'Inter',sans-serif;font-weight:700;font-size:21px;font-weight:500;margin-bottom:16px;color:var(--ink)}
 .about p{font-size:14.5px;color:var(--soft);margin-bottom:12px;line-height:1.65}
 .about p b{color:var(--ink);font-weight:600}
 
 /* footer */
 .foot{border-top:1px solid var(--line);margin-top:70px;padding:40px 0 60px;text-align:center}
-.foot .q{font-family:'Newsreader',serif;font-size:clamp(20px,3vw,30px);line-height:1.3;max-width:680px;margin:0 auto;color:var(--ink)}
-.foot .q em{font-style:italic;color:var(--accent)}
+.foot .q{font-family:'Inter',sans-serif;font-weight:700;font-size:clamp(20px,3vw,30px);line-height:1.3;max-width:680px;margin:0 auto;color:var(--ink)}
+.foot .q em{font-style:normal;color:var(--accent)}
 .foot .sig-by{margin-top:24px;font-size:13px;color:var(--mute)}
 .foot .sig-by b{color:var(--soft);font-weight:600}
 </style>
@@ -156,7 +156,7 @@ body{
   </div>
 
   <div class="hero">
-    <h1>Most teams don't have a workflow problem. They have a <em>coordination</em> problem wearing a workflow costume.</h1>
+    <h1>Watch a messy workflow resolve into a <em>governed operating picture</em>.</h1>
     <p>Name a workflow you know is messy. Watch it resolve — from scattered signals into a single, governed operating picture.</p>
   </div>
 
