@@ -65,6 +65,10 @@
   .card h3 svg{width:16px;height:16px;color:var(--accent);transition:transform .2s}
   a.card:hover h3 svg{transform:translate(3px,-3px)}
   .card p{font-size:14px;color:var(--ink-soft);max-width:56ch}
+  .card .cta{display:inline-flex;align-items:center;gap:8px;margin-top:16px;background:var(--accent);color:#fff;font-weight:600;font-size:14px;padding:11px 20px;border-radius:9px;transition:background .18s,transform .15s}
+  .card .cta svg{width:15px;height:15px;transition:transform .18s}
+  a.card:hover .cta{background:var(--accent-deep)}
+  a.card:hover .cta svg{transform:translateX(3px)}
 
   /* frameworks */
   .fw{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel)}
@@ -156,9 +160,10 @@
       <div class="s-label">The Operating Picture</div>
       <p class="kicker">See it work</p>
       <a class="card" href="workflowdemo.html">
-        <div class="k">Interactive</div>
-        <h3>The Operating Picture <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></h3>
+        <div class="k">Interactive demo</div>
+        <h3>The Operating Picture</h3>
         <p>The operating model behind the AI program-ops capability above — shown as an interactive you can explore. Pick a messy workflow and watch it resolve into a single governed operating picture, with humans in control at every decision.</p>
+        <span class="cta">Launch the interactive demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
     </section>
 
