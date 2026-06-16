@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Not Every Workflow Is Ready for AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f2eb;
+    --surface: #fffdf7;
+    --ink: #11203a;
+    --ink-soft: #4a5468;
+    --ink-mute: #8b91a3;
+    --line: #e4ddcd;
+    --line-soft: #efe9dc;
+    --accent: #1e4e8c;
+    --accent-deep: #15396a;
+    --accent-soft: #e3ebf5;
+    --red: #a8432f;     --red-bg: #f6e8e3;
+    --amber: #9a6b1f;   --amber-bg: #f4ecd9;
+    --green: #1a7d57;   --green-bg: #e3f1ea;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { -webkit-font-smoothing:antialiased; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--ink); line-height:1.6; font-size:16px; }
+  .rule { position:fixed; top:0; bottom:0; left:max(12px, calc(50% - 470px)); width:2px; background:linear-gradient(var(--accent), rgba(14,107,92,.12)); }
+  .wrap { max-width:840px; margin:0 auto; padding:72px 32px 80px; }
+
+  .eyebrow { font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:500; display:flex; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:14px; }
+  .eyebrow a { color:var(--ink-mute); text-decoration:none; }
+  .eyebrow a:hover { color:var(--accent); }
+  h1 { font-family:'Inter',sans-serif; font-size:clamp(30px,5vw,42px); line-height:1.1; font-weight:800; letter-spacing:-.02em; margin:34px 0 10px; max-width:22ch; }
+  .thesis { font-family:'Inter',sans-serif; font-style:italic; font-size:clamp(19px,2.4vw,24px); color:var(--ink); margin:24px 0 0; padding-left:20px; border-left:3px solid var(--accent); max-width:30em; }
+  .thesis strong { font-style:normal; font-weight:700; color:var(--accent-deep); }
+  .sub { color:var(--ink-soft); font-size:15.5px; margin-top:16px; max-width:60ch; }
+
+  .reframe { margin:46px 0; display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--surface); }
+  .reframe > div { padding:22px 24px; }
+  .reframe > div:first-child { border-right:1px solid var(--line); background:var(--red-bg); }
+  .reframe .q { font-family:'Inter',sans-serif; font-style:italic; font-size:18px; margin-bottom:6px; }
+  .reframe > div:first-child .q { color:var(--red); }
+  .reframe > div:last-child .q { color:var(--accent-deep); }
+  .reframe p { font-size:13.5px; color:var(--ink-soft); }
+  .reframe .tag { font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-mute); display:block; margin-bottom:8px; }
+
+  h2.sec { font-family:'Inter',sans-serif; font-size:25px; font-weight:700; border-bottom:2px solid var(--ink); padding-bottom:10px; margin-bottom:6px; }
+  .sec-sub { font-size:14px; color:var(--ink-mute); margin-bottom:22px; }
+
+  .tests { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+  .test { background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:20px 22px 16px; border-top:3px solid var(--accent); }
+  .test-top { display:flex; align-items:baseline; gap:12px; margin-bottom:6px; }
+  .test-num { font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; color:var(--accent); }
+  .test-name { font-family:'Inter',sans-serif; font-weight:700; font-size:19px; }
+  .test-q { font-family:'Inter',sans-serif; font-style:italic; font-size:15px; color:var(--accent-deep); margin-bottom:10px; }
+  .test ul { font-size:13.5px; color:var(--ink-soft); margin:0 0 4px 16px; }
+  .test li { margin-bottom:5px; }
+  .test .fail { font-size:12.5px; color:var(--red); border-top:1px dashed var(--line); padding-top:8px; margin-top:8px; }
+  .test .fail b { font-weight:600; }
+
+  .insight { margin:36px 0 52px; background:var(--ink); color:#fff; border-radius:10px; padding:26px 30px; }
+  .insight p { font-family:'Inter',sans-serif; font-size:19px; line-height:1.5; }
+  .insight em { color:#9ec3ee; font-style:italic; }
+
+  .spectrum { margin-bottom:8px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+  .band { border-radius:10px; padding:20px 20px 16px; border:1px solid var(--line); }
+  .band.red { background:var(--red-bg); border-top:4px solid var(--red); }
+  .band.amber { background:var(--amber-bg); border-top:4px solid var(--amber); }
+  .band.green { background:var(--green-bg); border-top:4px solid var(--green); }
+  .band .lbl { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.13em; text-transform:uppercase; font-weight:600; margin-bottom:4px; }
+  .band.red .lbl { color:var(--red); }
+  .band.amber .lbl { color:var(--amber); }
+  .band.green .lbl { color:var(--green); }
+  .band .crit { font-family:'Inter',sans-serif; font-size:16.5px; font-weight:700; margin-bottom:8px; }
+  .band p { font-size:13px; color:var(--ink-soft); margin-bottom:10px; }
+  .band .verdict { font-size:12.5px; font-weight:600; border-top:1px dashed rgba(0,0,0,.15); padding-top:8px; }
+  .band.red .verdict { color:var(--red); }
+  .band.amber .verdict { color:var(--amber); }
+  .band.green .verdict { color:var(--green); }
+  .spectrum-note { font-family:'Inter',sans-serif; font-style:italic; font-size:15px; text-align:center; color:var(--ink-soft); margin:14px 0 52px; }
+
+  .steps-head { font-family:'Inter',sans-serif; font-size:25px; font-weight:700; border-bottom:2px solid var(--ink); padding-bottom:10px; margin-bottom:22px; }
+  .steps { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  .step { background:var(--surface); padding:18px 16px; }
+  .step .num { font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--accent); font-weight:600; }
+  .step h3 { font-family:'Inter',sans-serif; font-size:16px; font-weight:700; margin:6px 0; }
+  .step p { font-size:12.5px; color:var(--ink-mute); line-height:1.5; }
+
+  footer { margin-top:56px; border-top:1px solid var(--line); padding-top:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:13px; color:var(--ink-mute); }
+  footer .next { font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--accent); }
+
+  @media (max-width:640px){
+    .wrap{ padding:52px 22px 60px }
+    .rule{ display:none }
+    .reframe{ grid-template-columns:1fr }
+    .reframe > div:first-child{ border-right:none; border-bottom:1px solid var(--line) }
+    .tests{ grid-template-columns:1fr }
+    .spectrum{ grid-template-columns:1fr }
+    .steps{ grid-template-columns:1fr 1fr }
+  }
+</style>
+</head>
+<body>
+<div class="rule"></div>
+<div class="wrap">
+
+  <div class="eyebrow"><span>AI Transformation Series · 02</span><a href="../index.html">← Lakshmi Peri</a></div>
+
+  <h1>Not Every Workflow Is Ready for AI</h1>
+
+  <p class="thesis">Readiness is a property of the <strong>workflow</strong>, not the model. The model will keep improving. Your workflow won't, until someone fixes it.</p>
+
+  <p class="sub">When an AI initiative stalls, teams blame the model: not accurate enough, hallucinated, didn't understand our business. Then a better model arrives and the initiative stalls again. The workflow it was dropped into was never ready to receive it.</p>
+
+  <div class="reframe">
+    <div>
+      <span class="tag">The question teams ask</span>
+      <p class="q">"Is the AI good enough?"</p>
+      <p>Leads to benchmark debates and waiting for the next release. Nothing about your operation changes.</p>
+    </div>
+    <div>
+      <span class="tag">The question that matters</span>
+      <p class="q">"Is the workflow ready?"</p>
+      <p>Leads to six testable properties of the work itself. Each one is fixable without waiting for anyone's roadmap.</p>
+    </div>
+  </div>
+
+  <h2 class="sec">The Six Readiness Tests</h2>
+  <p class="sec-sub">A workflow is AI-ready when it passes all six. Each test takes minutes to run and points directly at what to fix.</p>
+
+  <div class="tests">
+    <div class="test">
+      <div class="test-top"><span class="test-num">TEST 1</span><span class="test-name">Defined</span></div>
+      <p class="test-q">Can anyone describe this workflow end-to-end?</p>
+      <ul>
+        <li>Inputs, steps, decisions, and outputs are nameable</li>
+        <li>Two people describe it roughly the same way</li>
+        <li>Exceptions are known, not discovered</li>
+      </ul>
+      <p class="fail"><b>Fails when:</b> the process lives in one person's head, or every case is "it depends."</p>
+    </div>
+    <div class="test">
+      <div class="test-top"><span class="test-num">TEST 2</span><span class="test-name">Digitized</span></div>
+      <p class="test-q">Do the inputs and outputs exist in systems?</p>
+      <ul>
+        <li>The work arrives as data, documents, or tickets</li>
+        <li>Source systems are accessible</li>
+        <li>History exists to learn from</li>
+      </ul>
+      <p class="fail"><b>Fails when:</b> the real workflow actually runs over calls and tribal knowledge.</p>
+    </div>
+    <div class="test">
+      <div class="test-top"><span class="test-num">TEST 3</span><span class="test-name">Verifiable</span></div>
+      <p class="test-q">Can a human check the output faster than producing it?</p>
+      <ul>
+        <li>Quality is judgeable at a glance or with a quick check</li>
+        <li>Review takes minutes; production takes hours</li>
+        <li>"Good" has criteria, not vibes</li>
+      </ul>
+      <p class="fail"><b>Fails when:</b> verifying the AI's answer takes as long as doing the work.</p>
+    </div>
+    <div class="test">
+      <div class="test-top"><span class="test-num">TEST 4</span><span class="test-name">Recoverable</span></div>
+      <p class="test-q">When the AI is wrong, can you catch and undo it?</p>
+      <ul>
+        <li>Errors surface before they reach a customer or a regulator</li>
+        <li>A wrong output is an edit, not an incident</li>
+        <li>A human checkpoint exists where stakes are high</li>
+      </ul>
+      <p class="fail"><b>Fails when:</b> a single bad output is irreversible or compliance-critical with no review step.</p>
+    </div>
+    <div class="test">
+      <div class="test-top"><span class="test-num">TEST 5</span><span class="test-name">Owned</span></div>
+      <p class="test-q">Does one accountable person have authority to change this workflow?</p>
+      <ul>
+        <li>A single person can alter the process without convening a committee</li>
+        <li>That owner wants the change</li>
+        <li>The people doing the work report into a decision path</li>
+      </ul>
+      <p class="fail"><b>Fails when:</b> the workflow crosses three teams and belongs to none of them.</p>
+    </div>
+    <div class="test">
+      <div class="test-top"><span class="test-num">TEST 6</span><span class="test-name">Repeatable</span></div>
+      <p class="test-q">Does this work happen often enough to matter?</p>
+      <ul>
+        <li>Volume or frequency justifies the build and the change cost</li>
+        <li>Cases share structure &mdash; not 500 one-offs</li>
+        <li>Demand will exist next year</li>
+      </ul>
+      <p class="fail"><b>Fails when:</b> it's a quarterly task someone does in an afternoon.</p>
+    </div>
+  </div>
+
+  <div class="insight">
+    <p>In practice, most workflows fail the same two tests: <em>Verifiable</em> and <em>Owned</em>. Teams obsess over data quality. What actually kills AI initiatives after launch is output nobody can check and a process nobody owns.</p>
+  </div>
+
+  <h2 class="sec">The Readiness Spectrum</h2>
+  <p class="sec-sub">Score the six tests and every workflow lands in one of three bands &mdash; each with a different correct move.</p>
+
+  <div class="spectrum">
+    <div class="band red">
+      <p class="lbl">Not Ready</p>
+      <p class="crit">Fails Defined, Digitized, or Owned</p>
+      <p>The workflow itself is broken or invisible. Bolt AI onto it and you automate the chaos: faster wrong answers, at scale.</p>
+      <p class="verdict">Move: fix the process first. This is a process project, not an AI project.</p>
+    </div>
+    <div class="band amber">
+      <p class="lbl">Ready With Work</p>
+      <p class="crit">Passes structure, fails Verifiable or Recoverable</p>
+      <p>The workflow is sound but unsafe to augment. Errors would slip through, or couldn't be undone.</p>
+      <p class="verdict">Move: design the review checkpoint and rollback path, then proceed. This usually takes weeks.</p>
+    </div>
+    <div class="band green">
+      <p class="lbl">Ready</p>
+      <p class="crit">Passes all six</p>
+      <p>Defined, digitized, checkable, recoverable, owned, and frequent. AI lands on solid ground here.</p>
+      <p class="verdict">Move: proceed, with the baseline written down first (see Framework 01).</p>
+    </div>
+  </div>
+  <p class="spectrum-note">Amber is not a rejection, it's a short to-do list. Most of what gets called an AI failure was an amber workflow treated as green.</p>
+
+  <h2 class="steps-head">How to Use This</h2>
+  <div class="steps">
+    <div class="step"><div class="num">STEP 1</div><h3>Pick the workflow</h3><p>One workflow at a time. A department is too big to test.</p></div>
+    <div class="step"><div class="num">STEP 2</div><h3>Run the six tests</h3><p>With the people who do the work. Managers describe the process as designed, not as it runs.</p></div>
+    <div class="step"><div class="num">STEP 3</div><h3>Band it</h3><p>Red, amber, or green. A "probably" on any test is a fail.</p></div>
+    <div class="step"><div class="num">STEP 4</div><h3>Fix what failed</h3><p>Each failed test names its own remediation. Re-test, then build.</p></div>
+  </div>
+
+  <footer>
+    <span>Lakshmi Peri · AI Transformation · Operating Models · Measurable Outcomes</span>
+    <span class="next">NEXT IN SERIES → You Can't Fund Everything: Ranking AI Bets</span>
+  </footer>
+
+</div>
+</body>
+</html>
