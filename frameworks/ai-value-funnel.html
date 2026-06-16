@@ -6,20 +6,20 @@
 <title>Before You Fund Another AI Pilot</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #faf9f6;
-    --surface: #ffffff;
-    --ink: #161616;
-    --ink-soft: #474743;
-    --ink-mute: #8b8a84;
-    --line: #e7e5df;
-    --line-soft: #f0efe9;
-    --accent: #0e6b5c;
-    --accent-deep: #0a4f44;
-    --accent-soft: #e3efec;
-    --kill: #9c4a3c;
+    --bg: #f5f2eb;
+    --surface: #fffdf7;
+    --ink: #11203a;
+    --ink-soft: #4a5468;
+    --ink-mute: #8b91a3;
+    --line: #e4ddcd;
+    --line-soft: #efe9dc;
+    --accent: #1e4e8c;
+    --accent-deep: #15396a;
+    --accent-soft: #e3ebf5;
+    --kill: #a8432f;
   }
   * { box-sizing:border-box; margin:0; padding:0; }
   html { -webkit-font-smoothing:antialiased; }
@@ -31,8 +31,8 @@
   .eyebrow { font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:500; display:flex; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:14px; }
   .eyebrow a { color:var(--ink-mute); text-decoration:none; }
   .eyebrow a:hover { color:var(--accent); }
-  h1 { font-family:'Source Serif 4',serif; font-size:clamp(32px,5vw,46px); line-height:1.12; font-weight:700; margin:34px 0 10px; max-width:22ch; }
-  .thesis { font-family:'Source Serif 4',serif; font-style:italic; font-size:clamp(19px,2.4vw,24px); color:var(--ink); margin:24px 0 0; padding-left:20px; border-left:3px solid var(--accent); max-width:30em; }
+  h1 { font-family:'Inter',sans-serif; font-size:clamp(30px,5vw,42px); line-height:1.1; font-weight:800; letter-spacing:-.02em; margin:34px 0 10px; max-width:22ch; }
+  .thesis { font-family:'Inter',sans-serif; font-style:italic; font-size:clamp(19px,2.4vw,24px); color:var(--ink); margin:24px 0 0; padding-left:20px; border-left:3px solid var(--accent); max-width:30em; }
   .thesis strong { font-style:normal; font-weight:700; color:var(--accent-deep); }
   .sub { color:var(--ink-soft); font-size:15.5px; margin-top:16px; max-width:60ch; }
 
@@ -42,7 +42,7 @@
   .formula .note { font-size:13px; color:var(--ink-mute); margin-top:8px; }
 
   .funnel-head { display:flex; justify-content:space-between; align-items:baseline; border-bottom:2px solid var(--ink); padding-bottom:10px; margin-bottom:6px; }
-  .funnel-head h2 { font-family:'Source Serif 4',serif; font-size:25px; font-weight:700; }
+  .funnel-head h2 { font-family:'Inter',sans-serif; font-size:25px; font-weight:700; }
   .funnel-head .tally { font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--ink-mute); }
   .enter { font-family:'IBM Plex Mono',monospace; font-size:14px; text-align:center; padding:14px 0; color:var(--ink-mute); }
   .enter b { color:var(--ink); font-size:17px; }
@@ -57,8 +57,8 @@
 
   .gate-top { display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; }
   .gate-code { font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:12px; background:var(--accent); color:#fff; padding:3px 9px; border-radius:4px; }
-  .gate-name { font-family:'Source Serif 4',serif; font-weight:700; font-size:20px; }
-  .gate-q { font-family:'Source Serif 4',serif; font-style:italic; font-size:15.5px; color:var(--accent-deep); margin-left:auto; }
+  .gate-name { font-family:'Inter',sans-serif; font-weight:700; font-size:20px; }
+  .gate-q { font-family:'Inter',sans-serif; font-style:italic; font-size:15.5px; color:var(--accent-deep); margin-left:auto; }
   .gate-questions { columns:2; column-gap:34px; margin:13px 0 11px; font-size:14px; color:var(--ink-soft); }
   .gate-questions li { margin:0 0 7px 16px; break-inside:avoid; }
   .gate-purpose { font-size:13px; color:var(--ink-mute); border-top:1px dashed var(--line); padding-top:9px; }
@@ -69,24 +69,24 @@
   .kill b { color:var(--ink); }
 
   .survivors { margin:10px 15% 0; background:var(--accent); color:#fff; padding:24px 28px; text-align:center; border-radius:10px; }
-  .survivors .n { font-family:'Source Serif 4',serif; font-size:42px; font-weight:700; line-height:1; }
+  .survivors .n { font-family:'Inter',sans-serif; font-size:42px; font-weight:700; line-height:1; }
   .survivors .lbl { font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; margin-top:6px; opacity:.92; }
   .survivors .req { font-size:13.5px; margin-top:10px; opacity:.92; }
 
   .ratio { margin:46px 0 14px; display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--surface); }
   .ratio > div { padding:22px; text-align:center; }
   .ratio > div:first-child { border-right:1px solid var(--line); }
-  .ratio .big { font-family:'Source Serif 4',serif; font-size:34px; font-weight:700; }
+  .ratio .big { font-family:'Inter',sans-serif; font-size:34px; font-weight:700; }
   .ratio .red { color:var(--kill); }
   .ratio .green { color:var(--accent); }
   .ratio p { font-size:13px; color:var(--ink-mute); margin-top:4px; }
-  .ratio-note { font-family:'Source Serif 4',serif; font-style:italic; font-size:15px; text-align:center; color:var(--ink-soft); margin-bottom:48px; }
+  .ratio-note { font-family:'Inter',sans-serif; font-style:italic; font-size:15px; text-align:center; color:var(--ink-soft); margin-bottom:48px; }
 
-  .steps-head { font-family:'Source Serif 4',serif; font-size:25px; font-weight:700; border-bottom:2px solid var(--ink); padding-bottom:10px; margin-bottom:22px; }
+  .steps-head { font-family:'Inter',sans-serif; font-size:25px; font-weight:700; border-bottom:2px solid var(--ink); padding-bottom:10px; margin-bottom:22px; }
   .steps { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:10px; overflow:hidden; }
   .step { background:var(--surface); padding:18px 16px; }
   .step .num { font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--accent); font-weight:600; }
-  .step h3 { font-family:'Source Serif 4',serif; font-size:16px; font-weight:700; margin:6px 0; }
+  .step h3 { font-family:'Inter',sans-serif; font-size:16px; font-weight:700; margin:6px 0; }
   .step p { font-size:12.5px; color:var(--ink-mute); line-height:1.5; }
 
   footer { margin-top:56px; border-top:1px solid var(--line); padding-top:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:13px; color:var(--ink-mute); }
