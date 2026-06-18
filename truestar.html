@@ -3,54 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TRUE STAR · Signal Engine</title>
+<title>TRUE STAR · A Governed Operating System for GTM · Lakshmi Peri</title>
+<meta name="description" content="TRUE STAR: an AI-powered program-operations system that unifies planning, risk, dependencies, and executive reporting into one governed operating picture — agents propose, humans decide, every decision audited. By Lakshmi Peri.">
+<meta name="author" content="Lakshmi Peri">
+<link rel="canonical" href="https://lakshmi-peri-v.github.io/truestar.html">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TRUE STAR · A Governed Operating System for GTM">
+<meta property="og:description" content="An AI-powered program-operations system: signals to agents to governed decisions, humans in control at every step.">
+<meta property="og:url" content="https://lakshmi-peri-v.github.io/truestar.html">
+<meta property="og:site_name" content="Lakshmi Peri">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TRUE STAR · A Governed Operating System for GTM">
+<meta name="twitter:description" content="AI program operations, governed at scale. By Lakshmi Peri.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "TRUE STAR — A Governed Operating System for GTM",
+  "description": "An AI-powered program-operations system that unifies planning, risk, dependencies, and executive reporting into one governed operating picture, with human-in-the-loop decisions.",
+  "url": "https://lakshmi-peri-v.github.io/truestar.html",
+  "creator": { "@type": "Person", "name": "Lakshmi Peri", "url": "https://lakshmi-peri-v.github.io/", "sameAs": ["https://www.linkedin.com/in/lakshmiperi/"] }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#ffffff;
-  --bg-2:#f7f8fa;
-  --ink:#101114;
-  --panel:#ffffff;
-  --panel-2:#f5f6f8;
-  --line:#e6e8ec;
-  --line-2:#d4d8de;
-  --mute:#8b9099;
-  --mute-2:#5c626b;
-  --text:#101114;
-  --text-soft:#444a52;
-  --accent:#2563eb;       /* primary blue */
-  --accent-soft:#dbe7ff;
-  --accent-ink:#1d4ed8;
-  --green:#15a36a;
-  --green-soft:#dcf3e8;
-  --amber:#d08700;
-  --amber-soft:#fbeecb;
-  --red:#dc4b3e;
-  --red-soft:#fbe2de;
-  --teal:#0d9488;
-  --r:14px;
-  --r-sm:10px;
+  --bg:#ffffff;--bg-2:#f7f8fa;--ink:#101114;--panel:#ffffff;--panel-2:#f5f6f8;
+  --line:#e6e8ec;--line-2:#d4d8de;--mute:#8b9099;--mute-2:#5c626b;--text:#101114;--text-soft:#444a52;
+  --accent:#2563eb;--accent-soft:#dbe7ff;--accent-ink:#1d4ed8;--green:#15a36a;--green-soft:#dcf3e8;
+  --amber:#d08700;--amber-soft:#fbeecb;--red:#dc4b3e;--red-soft:#fbe2de;--teal:#0d9488;--r:14px;--r-sm:10px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{
-  font-family:'Inter',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .mono{font-family:'JetBrains Mono',monospace}
-
-/* TOP BAR */
-.topbar{
-  position:fixed;top:0;left:0;right:0;z-index:40;height:58px;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 26px;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--line);
-}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:40;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:11px}
 .star{width:24px;height:24px;flex:none}
 .star path{fill:var(--accent)}
@@ -59,44 +49,31 @@ body{
 .brand-sub{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:1px}
 .topbar-right{display:flex;align-items:center;gap:16px}
 .step-count{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mute)}
-
-/* progress rail */
 .rail{position:fixed;top:58px;left:0;right:0;z-index:39;height:3px;background:var(--line)}
 .rail-fill{height:100%;background:var(--accent);width:0;transition:width .5s ease}
-
-/* STAGE */
 .stage{position:relative;z-index:5;max-width:1120px;margin:0 auto;padding:84px 30px 96px}
 .screen{display:none;animation:in .5s ease both}
 .screen.active{display:block}
 @keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-
 .kicker{display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;font-weight:600}
 .kicker .num{font-family:'JetBrains Mono',monospace;color:var(--mute);border:1px solid var(--line-2);border-radius:20px;padding:3px 9px;font-size:10px}
 h1.title{font-weight:700;font-size:clamp(26px,3.6vw,40px);line-height:1.08;letter-spacing:-.02em;margin-bottom:12px}
 h1.title em{color:var(--accent);font-style:normal}
 .lede{font-size:15.5px;line-height:1.6;color:var(--text-soft);max-width:720px}
-
 .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);position:relative}
 .grid{display:grid;gap:16px}
-
-/* nav */
 .nav{display:flex;align-items:center;justify-content:space-between;margin-top:34px;gap:16px}
-.btn{font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:10px;cursor:pointer;border:none;
-  padding:13px 24px;border-radius:11px;color:#fff;background:var(--accent);transition:.18s}
+.btn{font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:10px;cursor:pointer;border:none;padding:13px 24px;border-radius:11px;color:#fff;background:var(--accent);transition:.18s}
 .btn:hover{background:var(--accent-ink)}
 .btn.ghost{background:transparent;color:var(--text-soft);border:1px solid var(--line-2)}
 .btn.ghost:hover{background:var(--bg-2);color:var(--text)}
 .btn svg{width:16px;height:16px}
-
-/* dot nav */
 .dotnav{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:35;display:flex;flex-direction:column;gap:10px}
 @media(max-width:1080px){.dotnav{display:none}}
 .dotnav button{width:9px;height:9px;border-radius:50%;border:1px solid var(--line-2);background:transparent;cursor:pointer;padding:0;transition:.2s;position:relative}
 .dotnav button.on{background:var(--accent);border-color:var(--accent)}
 .dotnav button .lbl{position:absolute;right:18px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:10.5px;color:#fff;background:var(--ink);padding:4px 9px;border-radius:6px;opacity:0;pointer-events:none;transition:.2s}
 .dotnav button:hover .lbl{opacity:1;right:20px}
-
-/* ===== SLIDE 1 — WHY ===== */
 .two{grid-template-columns:1fr 1fr;margin-top:30px}
 @media(max-width:860px){.two{grid-template-columns:1fr}}
 .pad{padding:28px}
@@ -114,8 +91,6 @@ h1.title em{color:var(--accent);font-style:normal}
 .methodstep:last-child{border:none}
 .methodstep .mn{width:28px;height:28px;border-radius:8px;background:var(--accent-soft);color:var(--accent-ink);display:grid;place-items:center;font-weight:700;font-size:12px;font-family:'JetBrains Mono',monospace;flex:none}
 .methodstep .mt{font-size:14px;font-weight:500;color:var(--text)}
-
-/* ===== SLIDE 2 — DASHBOARD ===== */
 .meta-strip{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;margin-top:26px}
 .meta{padding:14px 20px;border-right:1px solid var(--line);flex:1;min-width:140px}
 .meta:last-child{border-right:none}
@@ -141,8 +116,6 @@ h1.title em{color:var(--accent);font-style:normal}
 .rule .ra{color:var(--mute);font-weight:700}
 .rule .rf{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--amber)}
 .rule .rn{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);background:var(--red-soft);border-radius:14px;padding:3px 9px}
-
-/* ===== SLIDE 3 — SIGNAL ENGINE ===== */
 .stack{margin-top:24px;display:flex;flex-direction:column;gap:0;align-items:center}
 .sources{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:6px}
 .src{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--mute-2);background:var(--bg-2);border:1px solid var(--line);border-radius:7px;padding:6px 11px}
@@ -156,7 +129,6 @@ h1.title em{color:var(--accent);font-style:normal}
 .layer .ln{font-size:11px;color:var(--mute);margin-left:auto}
 .sigtags{display:flex;flex-wrap:wrap;gap:6px}
 .sig{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent-ink);background:#fff;border:1px solid var(--accent-soft);border-radius:6px;padding:5px 9px}
-/* agents row */
 .agents{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;width:100%}
 @media(max-width:900px){.agents{grid-template-columns:repeat(2,1fr)}}
 .agent{border:1px solid var(--line);border-radius:var(--r-sm);padding:14px;background:#fff}
@@ -182,8 +154,6 @@ h1.title em{color:var(--accent);font-style:normal}
 .namestack{margin-top:22px;padding:16px 20px;border-radius:var(--r-sm);background:var(--bg-2);border:1px solid var(--line);font-size:13px;color:var(--text-soft);text-align:center}
 .namestack b{color:var(--accent-ink)}
 .outcome{text-align:center;font-weight:700;font-size:14px;color:var(--green);margin-top:4px}
-
-/* ===== SLIDE 4 — DECISIONS ===== */
 .eboard{grid-template-columns:repeat(3,1fr);margin-top:26px}
 @media(max-width:900px){.eboard{grid-template-columns:1fr}}
 .ecol{display:flex;flex-direction:column;overflow:hidden}
@@ -220,8 +190,6 @@ h1.title em{color:var(--accent);font-style:normal}
 .metric.flash{box-shadow:0 0 0 3px var(--accent-soft)}
 .loopnote{margin-top:18px;text-align:center;font-size:13.5px;color:var(--text-soft)}
 .loopnote b{color:var(--accent-ink)}
-
-/* ===== SLIDE 5 — ECONOMICS ===== */
 .econ-table{margin-top:26px;overflow:hidden;padding:0}
 .etrow{display:grid;grid-template-columns:1.4fr 1fr auto 1fr;align-items:center;gap:16px;padding:16px 26px;border-bottom:1px solid var(--line)}
 .etrow:last-child{border:none}
@@ -237,8 +205,6 @@ h1.title em{color:var(--accent);font-style:normal}
 .ecard .el{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:12px;font-weight:500}
 .ecard .ev{font-weight:700;font-size:38px;line-height:1;color:var(--accent)}
 .ecard.green .ev{color:var(--green)}
-
-/* ===== SLIDE 6 — ARCHITECTURE / SCALE ===== */
 .roadmap{margin-top:26px;display:flex;flex-direction:column;gap:10px}
 .phase{display:grid;grid-template-columns:46px 1fr;gap:16px;align-items:center}
 .phase .pn{width:46px;height:46px;border-radius:12px;background:var(--bg-2);border:1px solid var(--line-2);display:grid;place-items:center;font-weight:700;font-size:18px;color:var(--accent)}
@@ -260,7 +226,6 @@ h1.title em{color:var(--accent);font-style:normal}
 </style>
 </head>
 <body>
-
 <div class="topbar">
   <div class="brand">
     <svg class="star" viewBox="0 0 24 24"><path d="M12 1.5l2.95 6.55L22 9.2l-5 5.05L18.4 22 12 18.3 5.6 22 7 14.25l-5-5.05 7.05-1.15z"/></svg>
@@ -270,15 +235,12 @@ h1.title em{color:var(--accent);font-style:normal}
     </div>
   </div>
   <div class="topbar-right">
-    <div class="step-count" id="stepCount">01 / 06</div>
+    <div class="step-count" id="stepCount">01 / 05</div>
   </div>
 </div>
 <div class="rail"><div class="rail-fill" id="railFill"></div></div>
 <nav class="dotnav" id="dotnav"></nav>
-
 <main class="stage">
-
-  <!-- SLIDE 1 — WHY -->
   <section class="screen active" data-label="Why This Workflow">
     <div class="kicker"><span class="num">01</span> The Method</div>
     <h1 class="title">Why <em>This</em> Workflow?</h1>
@@ -286,10 +248,7 @@ h1.title em{color:var(--accent);font-style:normal}
     <div class="grid two">
       <div class="panel pad">
         <div class="lbl">Selection Criteria</div>
-        <div class="crit">
-          <span class="chip">High Friction</span><span class="chip">High Frequency</span>
-          <span class="chip">Cross-Functional</span><span class="chip">Measurable</span>
-        </div>
+        <div class="crit"><span class="chip">High Friction</span><span class="chip">High Frequency</span><span class="chip">Cross-Functional</span><span class="chip">Measurable</span></div>
         <div class="lbl" style="margin-top:22px">Pain Today</div>
         <ul class="painlist">
           <li><span class="pin"></span> Information scattered across 8 systems</li>
@@ -298,10 +257,7 @@ h1.title em{color:var(--accent);font-style:normal}
           <li><span class="pin"></span> Decisions need multiple meetings</li>
           <li><span class="pin"></span> Status is stale by the time it's reviewed</li>
         </ul>
-        <div class="callout">
-          <div class="l">Result</div>
-          <p>Initiatives move at the speed of coordination, not market opportunity.</p>
-        </div>
+        <div class="callout"><div class="l">Result</div><p>Initiatives move at the speed of coordination, not market opportunity.</p></div>
       </div>
       <div class="panel methodbox">
         <div class="lbl">The Repeatable Method</div>
@@ -313,13 +269,8 @@ h1.title em{color:var(--accent);font-style:normal}
         <div class="methodstep"><span class="mn">6</span><span class="mt">Measure the outcome</span></div>
       </div>
     </div>
-    <div class="nav">
-      <span></span>
-      <button class="btn" onclick="go(1)">The Operating Picture <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    </div>
+    <div class="nav"><span></span><button class="btn" onclick="go(1)">The Operating Picture <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
   </section>
-
-  <!-- SLIDE 2 — OPERATING PICTURE -->
   <section class="screen" data-label="Operating Picture">
     <div class="kicker"><span class="num">02</span> One Operating Picture</div>
     <h1 class="title">The Operating Picture</h1>
@@ -343,7 +294,6 @@ h1.title em{color:var(--accent);font-style:normal}
       <div class="rule"><span class="rg">Conversion Drop</span><span class="rc">&gt; 5%</span><span class="ra">→</span><span class="rf">Escalate</span><span class="rn">now −8%</span></div>
     </div>
     <p class="lede" style="margin-top:18px">This is not reporting. It is the <b>current operating picture</b> — and every breach above produces a decision below.</p>
-
     <div style="margin-top:36px;display:flex;align-items:baseline;gap:12px;border-top:1px solid var(--line);padding-top:26px">
       <div style="font-weight:700;font-size:20px;letter-spacing:-.01em">Decisions Requiring Action</div>
       <div style="font-size:12.5px;color:var(--mute)">each breach above → a prepared brief here</div>
@@ -357,14 +307,7 @@ h1.title em{color:var(--accent);font-style:normal}
           <div class="eowner"><b>Owner A</b> · East go-live<span class="edue">Sept 5</span></div>
           <div class="eowner"><b>Owner B</b> · West certification<span class="edue">Sept 7</span></div>
         </div>
-        <div class="efoot">
-          <span class="ehil">Human-in-the-loop</span>
-          <div class="edecbtns">
-            <button class="edb app" onclick="decide(this,'d1')">Approve</button>
-            <button class="edb rej" onclick="decide(this,'d1')">Reject</button>
-          </div>
-          <div class="econf">Decision recorded · audit logged</div>
-        </div>
+        <div class="efoot"><span class="ehil">Human-in-the-loop</span><div class="edecbtns"><button class="edb app" onclick="decide(this,'d1')">Approve</button><button class="edb rej" onclick="decide(this,'d1')">Reject</button></div><div class="econf">Decision recorded · audit logged</div></div>
       </div>
       <div class="panel ecol">
         <div class="ehead"><span class="ecap">Funnel · −8%</span><div class="eq">Is The Initiative Performing?</div></div>
@@ -374,14 +317,7 @@ h1.title em{color:var(--accent);font-style:normal}
           <div class="erec"><div class="erl">Recommendation</div><div class="erv">Update Positioning</div></div>
           <div class="eowner"><b>Owner C</b> · Pricing narrative<span class="edue">Sept 10</span></div>
         </div>
-        <div class="efoot">
-          <span class="ehil">Human-in-the-loop</span>
-          <div class="edecbtns">
-            <button class="edb app" onclick="decide(this,'d2')">Approve</button>
-            <button class="edb rej" onclick="decide(this,'d2')">Reject</button>
-          </div>
-          <div class="econf">Decision recorded · audit logged</div>
-        </div>
+        <div class="efoot"><span class="ehil">Human-in-the-loop</span><div class="edecbtns"><button class="edb app" onclick="decide(this,'d2')">Approve</button><button class="edb rej" onclick="decide(this,'d2')">Reject</button></div><div class="econf">Decision recorded · audit logged</div></div>
       </div>
       <div class="panel ecol">
         <div class="ehead"><span class="ecap">Audience · 72%</span><div class="eq">Targeting The Right Audience?</div></div>
@@ -390,104 +326,49 @@ h1.title em{color:var(--accent);font-style:normal}
           <div class="erec"><div class="erl">Recommendation</div><div class="erv">Suppress Overlapping Accounts</div></div>
           <div class="eowner"><b>Owner E</b> · Apply suppression list<span class="edue urgent">Today</span></div>
         </div>
-        <div class="efoot">
-          <span class="ehil">Human-in-the-loop</span>
-          <div class="edecbtns">
-            <button class="edb app" onclick="decide(this,'d3')">Approve</button>
-            <button class="edb rej" onclick="decide(this,'d3')">Reject</button>
-          </div>
-          <div class="econf">Decision recorded · audit logged</div>
-        </div>
+        <div class="efoot"><span class="ehil">Human-in-the-loop</span><div class="edecbtns"><button class="edb app" onclick="decide(this,'d3')">Approve</button><button class="edb rej" onclick="decide(this,'d3')">Reject</button></div><div class="econf">Decision recorded · audit logged</div></div>
       </div>
     </div>
     <div class="loopnote">Approve and the metric above <b>re-scores in real time</b> — readiness 78%→85%, the loop closes without a meeting. Agents propose; you decide.</div>
-
-    <div class="nav">
-      <button class="btn ghost" onclick="go(0)">Back</button>
-      <button class="btn" onclick="go(2)">The Signal Engine <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    </div>
+    <div class="nav"><button class="btn ghost" onclick="go(0)">Back</button><button class="btn" onclick="go(2)">The Signal Engine <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
   </section>
-
-  <!-- SLIDE 3 — SIGNAL ENGINE (star) -->
   <section class="screen" data-label="The Signal Engine">
     <div class="kicker"><span class="num">03</span> The Engine Behind It</div>
     <h1 class="title">The <em>Signal Engine</em></h1>
     <p class="lede">Source systems are never replaced. The engine reads them, turns raw facts into typed signals, routes signals to specialized agents, and funnels every verdict through governance. One data shape, all the way through.</p>
-
     <div class="stack">
-      <div class="sources">
-        <span class="src">Drive</span><span class="src">Slack</span><span class="src">Jira</span><span class="src">Zoom</span><span class="src">Email</span><span class="src">Confluence</span><span class="src">Teams</span>
-      </div>
+      <div class="sources"><span class="src">Drive</span><span class="src">Slack</span><span class="src">Jira</span><span class="src">Zoom</span><span class="src">Email</span><span class="src">Confluence</span><span class="src">Teams</span></div>
       <div class="down"><svg viewBox="0 0 14 18" fill="none"><path d="M7 0v13M2 9l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-
       <div class="layer signal">
         <div class="lh"><span class="lnum">0</span><span class="lt">SIGNAL LAYER</span><span class="ln">raw facts → 20 typed signals · /gtm-scan</span></div>
-        <div class="sigtags">
-          <span class="sig">launch_readiness</span><span class="sig">milestones_complete</span><span class="sig">blockers_open</span><span class="sig">days_to_launch</span>
-          <span class="sig">audience_overlap</span><span class="sig">audience_quality</span><span class="sig">accounts_targeted</span><span class="sig">accts_double</span>
-          <span class="sig">field_certification</span><span class="sig">training_complete</span><span class="sig">reps_certified</span>
-          <span class="sig">win_rate</span><span class="sig">trial_signups</span><span class="sig">trial_to_opp</span><span class="sig">opp_to_close</span><span class="sig">pipeline_value</span>
-          <span class="sig">pricing_objections</span><span class="sig">feature_gaps</span><span class="sig">churn_signals</span><span class="sig">sentiment_score</span>
-        </div>
+        <div class="sigtags"><span class="sig">launch_readiness</span><span class="sig">milestones_complete</span><span class="sig">blockers_open</span><span class="sig">days_to_launch</span><span class="sig">audience_overlap</span><span class="sig">audience_quality</span><span class="sig">accounts_targeted</span><span class="sig">accts_double</span><span class="sig">field_certification</span><span class="sig">training_complete</span><span class="sig">reps_certified</span><span class="sig">win_rate</span><span class="sig">trial_signups</span><span class="sig">trial_to_opp</span><span class="sig">opp_to_close</span><span class="sig">pipeline_value</span><span class="sig">pricing_objections</span><span class="sig">feature_gaps</span><span class="sig">churn_signals</span><span class="sig">sentiment_score</span></div>
       </div>
       <div class="down"><svg viewBox="0 0 14 18" fill="none"><path d="M7 0v13M2 9l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-
       <div class="agents">
-        <div class="agent">
-          <div class="an">#1</div><div class="at">Launch Readiness</div>
-          <div class="io"><span class="iol">In</span><span class="in">launch_readiness · milestones · blockers · days_to_launch</span><div class="sep"></div><span class="iol">Out</span><span class="out">readiness_verdict</span></div>
-        </div>
-        <div class="agent">
-          <div class="an">#2</div><div class="at">Audience</div>
-          <div class="io"><span class="iol">In</span><span class="in">audience_overlap · quality · targeted · double</span><div class="sep"></div><span class="iol">Out</span><span class="out">audience_verdict + suppress_rec</span></div>
-        </div>
-        <div class="agent">
-          <div class="an">#3</div><div class="at">Enablement</div>
-          <div class="io"><span class="iol">In</span><span class="in">field_certification · training · reps_certified</span><div class="sep"></div><span class="iol">Out</span><span class="out">cert_verdict + gap_list</span></div>
-        </div>
-        <div class="agent">
-          <div class="an">#4</div><div class="at">Funnel</div>
-          <div class="io"><span class="iol">In</span><span class="in">win_rate · trials · trial_to_opp · opp_to_close · pipeline</span><div class="sep"></div><span class="iol">Out</span><span class="out">funnel_verdict + drop_flag →</span></div>
-        </div>
+        <div class="agent"><div class="an">#1</div><div class="at">Launch Readiness</div><div class="io"><span class="iol">In</span><span class="in">launch_readiness · milestones · blockers · days_to_launch</span><div class="sep"></div><span class="iol">Out</span><span class="out">readiness_verdict</span></div></div>
+        <div class="agent"><div class="an">#2</div><div class="at">Audience</div><div class="io"><span class="iol">In</span><span class="in">audience_overlap · quality · targeted · double</span><div class="sep"></div><span class="iol">Out</span><span class="out">audience_verdict + suppress_rec</span></div></div>
+        <div class="agent"><div class="an">#3</div><div class="at">Enablement</div><div class="io"><span class="iol">In</span><span class="in">field_certification · training · reps_certified</span><div class="sep"></div><span class="iol">Out</span><span class="out">cert_verdict + gap_list</span></div></div>
+        <div class="agent"><div class="an">#4</div><div class="at">Funnel</div><div class="io"><span class="iol">In</span><span class="in">win_rate · trials · trial_to_opp · opp_to_close · pipeline</span><div class="sep"></div><span class="iol">Out</span><span class="out">funnel_verdict + drop_flag →</span></div></div>
       </div>
       <div class="agents" style="margin-top:12px;grid-template-columns:1fr">
-        <div class="agent chain" style="max-width:340px">
-          <div class="an">#5 · triggered by drop_flag</div><div class="at">Customer</div>
-          <div class="io"><span class="iol">In</span><span class="in">pricing_objections · feature_gaps · churn_signals · sentiment_score</span><div class="sep"></div><span class="iol">Out</span><span class="out">root_cause + evidence</span></div>
-        </div>
+        <div class="agent chain" style="max-width:340px"><div class="an">#5 · triggered by drop_flag</div><div class="at">Customer</div><div class="io"><span class="iol">In</span><span class="in">pricing_objections · feature_gaps · churn_signals · sentiment_score</span><div class="sep"></div><span class="iol">Out</span><span class="out">root_cause + evidence</span></div></div>
       </div>
       <div class="merge"><svg viewBox="0 0 14 20" fill="none"><path d="M7 0v15M2 11l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-
       <div class="layer exec">
         <div class="lh"><span class="lnum">6</span><span class="lt">EXECUTIVE INTELLIGENCE</span><span class="ln">synthesizes verdicts</span></div>
-        <div class="iorow">
-          <div><div class="k">In</div><div class="v">readiness_verdict · audience_verdict · cert_verdict · funnel_verdict · root_cause</div></div>
-          <div><div class="k">Out</div><div class="v"><b>decision_brief</b> — problem · recommendation · owners · due dates</div></div>
-        </div>
+        <div class="iorow"><div><div class="k">In</div><div class="v">readiness_verdict · audience_verdict · cert_verdict · funnel_verdict · root_cause</div></div><div><div class="k">Out</div><div class="v"><b>decision_brief</b> — problem · recommendation · owners · due dates</div></div></div>
       </div>
       <div class="merge"><svg viewBox="0 0 14 20" fill="none"><path d="M7 0v15M2 11l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-
       <div class="layer gov">
         <div class="lh"><span class="lnum">G</span><span class="lt">GOVERNANCE LAYER</span><span class="ln">the control plane</span></div>
-        <div class="iorow">
-          <div><div class="k">In</div><div class="v">decision_brief + threshold rules</div></div>
-          <div><div class="k">Out</div><div class="v"><b>escalation_fired</b> → human approve / reject → <b>audit_record</b></div></div>
-        </div>
+        <div class="iorow"><div><div class="k">In</div><div class="v">decision_brief + threshold rules</div></div><div><div class="k">Out</div><div class="v"><b>escalation_fired</b> → human approve / reject → <b>audit_record</b></div></div></div>
       </div>
       <div class="merge"><svg viewBox="0 0 14 20" fill="none"><path d="M7 0v15M2 11l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div class="outcome">DECISION — executed by humans</div>
     </div>
-
-    <div class="namestack">
-      <b>TRUE STAR</b> (operating system) → <b>Signal Engine</b> (runtime) → <b>Intelligence Layer</b> (6 agents) → <b>Governance</b> (control plane)
-    </div>
-    <div class="nav">
-      <button class="btn ghost" onclick="go(1)">Back</button>
-      <button class="btn" onclick="go(3)">The Decision Queue <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    </div>
+    <div class="namestack"><b>TRUE STAR</b> (operating system) → <b>Signal Engine</b> (runtime) → <b>Intelligence Layer</b> (6 agents) → <b>Governance</b> (control plane)</div>
+    <div class="nav"><button class="btn ghost" onclick="go(1)">Back</button><button class="btn" onclick="go(3)">The Economics <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
   </section>
-
-  <!-- SLIDE 4 — ECONOMICS -->
   <section class="screen" data-label="Economics">
     <div class="kicker"><span class="num">04</span> Business Impact</div>
     <h1 class="title">The <em>Economics</em></h1>
@@ -504,13 +385,8 @@ h1.title em{color:var(--accent);font-style:normal}
       <div class="panel ecard"><div class="el">Est. Annual Hours Saved</div><div class="ev">2,000+</div></div>
       <div class="panel ecard"><div class="el">Approx. FTE Impact</div><div class="ev">1+</div></div>
     </div>
-    <div class="nav">
-      <button class="btn ghost" onclick="go(2)">Back</button>
-      <button class="btn" onclick="go(4)">Architecture &amp; Scale <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    </div>
+    <div class="nav"><button class="btn ghost" onclick="go(2)">Back</button><button class="btn" onclick="go(4)">Architecture &amp; Scale <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
   </section>
-
-  <!-- SLIDE 5 — SCALE -->
   <section class="screen" data-label="Architecture & Scale">
     <div class="kicker"><span class="num">05</span> Pilot To Enterprise</div>
     <h1 class="title">Architecture &amp; <em>Scale</em></h1>
@@ -528,95 +404,26 @@ h1.title em{color:var(--accent);font-style:normal}
       <div class="fs">One operating model. One Signal Engine. Governance that matures from foundational to optimized.</div>
       <button class="restart" onclick="go(0)"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12a9 9 0 109-9 9 9 0 00-6.36 2.64L3 8M3 3v5h5" stroke="#5c626b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Restart</button>
     </div>
-    <div class="nav">
-      <button class="btn ghost" onclick="go(3)">Back</button>
-      <span></span>
-    </div>
+    <div class="nav"><button class="btn ghost" onclick="go(3)">Back</button><span></span></div>
   </section>
-
 </main>
-
 <script>
 const screens=[...document.querySelectorAll('.screen')];
 const dotnav=document.getElementById('dotnav');
 const railFill=document.getElementById('railFill');
 const stepCount=document.getElementById('stepCount');
 let cur=0;
-screens.forEach((s,i)=>{
-  const b=document.createElement('button');
-  b.innerHTML='<span class="lbl">'+s.dataset.label+'</span>';
-  b.onclick=()=>go(i);
-  dotnav.appendChild(b);
-});
+screens.forEach((s,i)=>{const b=document.createElement('button');b.innerHTML='<span class="lbl">'+s.dataset.label+'</span>';b.onclick=()=>go(i);dotnav.appendChild(b);});
 const dots=[...dotnav.children];
-function go(i){
-  if(i<0||i>=screens.length)return;
-  screens[cur].classList.remove('active');
-  dots[cur].classList.remove('on');
-  cur=i;
-  screens[cur].classList.add('active');
-  dots[cur].classList.add('on');
-  railFill.style.width=((i+1)/screens.length*100)+'%';
-  stepCount.textContent=String(i+1).padStart(2,'0')+' / '+String(screens.length).padStart(2,'0');
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-// before/after state for each metric tile, keyed by decision
-const M={
-  d1:{
-    approve:[
-      {id:'m-field',cls:'warn',val:'68%',w:'68%',status:'Recovering'},
-      {id:'m-readiness',cls:'ok',val:'85%',w:'85%',status:'On Track'}
-    ],
-    before:[
-      {id:'m-field',cls:'bad',val:'43%',w:'43%',status:'Below Threshold'},
-      {id:'m-readiness',cls:'warn',val:'78%',w:'78%',status:'On Track · Watch'}
-    ]
-  },
-  d2:{
-    approve:[{id:'m-funnel',cls:'ok',val:'Improving',w:'75%',status:'Win rate recovering',fs:'26px'}],
-    before:[{id:'m-funnel',cls:'bad',val:'At Risk',w:'55%',status:'Win rate declining',fs:'26px'}]
-  },
-  d3:{
-    approve:[{id:'m-audience',cls:'ok',val:'90%',w:'90%',status:'Strong'}],
-    before:[{id:'m-audience',cls:'warn',val:'72%',w:'72%',status:'Acceptable'}]
-  }
-};
-function setMetric(u){
-  const el=document.getElementById(u.id);
-  if(!el)return;
-  el.classList.remove('ok','warn','bad');
-  el.classList.add(u.cls);
-  const mv=el.querySelector('.mv');
-  mv.textContent=u.val;
-  if(u.fs)mv.style.fontSize=u.fs;
-  el.querySelector('.mfill').style.width=u.w;
-  el.querySelector('.mstatus').textContent=u.status;
-  el.classList.add('flash');
-  setTimeout(()=>el.classList.remove('flash'),700);
-}
-function decide(btn,key){
-  const foot=btn.closest('.efoot');
-  foot.querySelectorAll('.edb').forEach(b=>b.classList.remove('chosen'));
-  btn.classList.add('chosen');
-  const conf=foot.querySelector('.econf');
-  conf.classList.add('show');
-  const approve=btn.classList.contains('app');
-  const map=M[key]||{};
-  if(approve){
-    conf.classList.remove('rej');
-    conf.textContent='Approved · audit logged · picture re-scored ↑';
-    (map.approve||[]).forEach(setMetric);
-  }else{
-    conf.classList.add('rej');
-    conf.textContent='Rejected · metric stays flagged';
-    (map.before||[]).forEach(setMetric);
-  }
-}
-document.addEventListener('keydown',e=>{
-  if(e.key==='ArrowRight')go(cur+1);
-  if(e.key==='ArrowLeft')go(cur-1);
-});
+function go(i){if(i<0||i>=screens.length)return;screens[cur].classList.remove('active');dots[cur].classList.remove('on');cur=i;screens[cur].classList.add('active');dots[cur].classList.add('on');railFill.style.width=((i+1)/screens.length*100)+'%';stepCount.textContent=String(i+1).padStart(2,'0')+' / '+String(screens.length).padStart(2,'0');window.scrollTo({top:0,behavior:'smooth'});}
+const M={d1:{approve:[{id:'m-field',cls:'warn',val:'68%',w:'68%',status:'Recovering'},{id:'m-readiness',cls:'ok',val:'85%',w:'85%',status:'On Track'}],before:[{id:'m-field',cls:'bad',val:'43%',w:'43%',status:'Below Threshold'},{id:'m-readiness',cls:'warn',val:'78%',w:'78%',status:'On Track · Watch'}]},d2:{approve:[{id:'m-funnel',cls:'ok',val:'Improving',w:'75%',status:'Win rate recovering',fs:'26px'}],before:[{id:'m-funnel',cls:'bad',val:'At Risk',w:'55%',status:'Win rate declining',fs:'26px'}]},d3:{approve:[{id:'m-audience',cls:'ok',val:'90%',w:'90%',status:'Strong'}],before:[{id:'m-audience',cls:'warn',val:'72%',w:'72%',status:'Acceptable'}]}};
+function setMetric(u){const el=document.getElementById(u.id);if(!el)return;el.classList.remove('ok','warn','bad');el.classList.add(u.cls);const mv=el.querySelector('.mv');mv.textContent=u.val;if(u.fs)mv.style.fontSize=u.fs;el.querySelector('.mfill').style.width=u.w;el.querySelector('.mstatus').textContent=u.status;el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),700);}
+function decide(btn,key){const foot=btn.closest('.efoot');foot.querySelectorAll('.edb').forEach(b=>b.classList.remove('chosen'));btn.classList.add('chosen');const conf=foot.querySelector('.econf');conf.classList.add('show');const approve=btn.classList.contains('app');const map=M[key]||{};if(approve){conf.classList.remove('rej');conf.textContent='Approved · audit logged · picture re-scored ↑';(map.approve||[]).forEach(setMetric);}else{conf.classList.add('rej');conf.textContent='Rejected · metric stays flagged';(map.before||[]).forEach(setMetric);}}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1);});
 go(0);
 </script>
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "CLOUDFLARE_TOKEN_HERE"}'></script>
+<!-- End Cloudflare Web Analytics -->
 </body>
 </html>
