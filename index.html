@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lakshmi Peri · Enterprise Transformation & AI Programs</title>
-<meta name="description" content="Lakshmi Peri leads enterprise transformation and AI programs that deliver governed change at scale. 18+ years in fintech, SaaS, and data platforms — migrated 5M customers with zero disruption, drove $75M in revenue, and built an AI-powered program-operations system in production.">
+<meta name="description" content="Lakshmi Peri leads enterprise transformation and AI programs that deliver governed change at scale. 18+ years in fintech, SaaS, and data platforms — migrated 5M customers with zero disruption, drove $75M in revenue, and built AI-powered program-operations systems in production.">
 <meta name="author" content="Lakshmi Peri">
 <link rel="canonical" href="https://lakshmi-peri-v.github.io/">
 <meta name="robots" content="index, follow">
@@ -105,14 +105,20 @@
   .context{font-size:13.5px;color:var(--ink-soft);max-width:60ch;margin-top:16px;padding-left:14px;border-left:2px solid var(--accent)}
   .context b{color:var(--ink)}
 
-  /* demo card */
+  /* demo / case-study card */
   .card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px;transition:transform .15s,border-color .2s}
   a.card:hover{transform:translateY(-2px);border-color:var(--accent)}
+  .card.proof{border-left:3px solid var(--accent)}
   .card .k{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
   .card h3{font-size:21px;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:9px;display:flex;align-items:center;gap:9px}
   .card h3 svg{width:16px;height:16px;color:var(--accent);transition:transform .2s}
   a.card:hover h3 svg{transform:translate(3px,-3px)}
   .card p{font-size:14px;color:var(--ink-soft);max-width:56ch}
+  .card .tagrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .card .pill{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;border-radius:20px;padding:5px 11px}
+  .card .pill.real{background:#e3f1ea;color:#1a7d57}
+  .card .pill.demo{background:var(--bg-soft);color:var(--ink-mute)}
+  .card .pill.concept{background:#dff0ee;color:#0a5c54}
   .card .cta{display:inline-flex;align-items:center;gap:8px;margin-top:16px;background:var(--accent);color:#fff;font-weight:600;font-size:14px;padding:11px 20px;border-radius:9px;transition:background .18s,transform .15s}
   .card .cta svg{width:15px;height:15px;transition:transform .18s}
   a.card:hover .cta{background:var(--accent-deep)}
@@ -136,18 +142,6 @@
   .fw .soon .n{color:var(--ink-mute)} .fw .soon .t{color:var(--ink-mute);font-weight:400}
   .fw .badge{margin-left:auto;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);border:1px solid var(--line);border-radius:4px;padding:3px 8px}
   .fw-intro{font-size:14px;color:var(--ink-soft);margin-bottom:14px;max-width:56ch}
-
-  /* insights */
-  .ins-note{font-size:14px;color:var(--ink-mute);margin-bottom:14px;max-width:56ch}
-  .ins{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel)}
-  .ins a{display:flex;align-items:center;gap:16px;padding:16px 20px;border-bottom:1px solid var(--line);transition:background .15s}
-  .ins a:last-child{border-bottom:none}
-  .ins a:hover{background:var(--bg-soft)}
-  .ins .n{font-family:var(--mono);font-size:13px;color:var(--accent);min-width:22px}
-  .ins .t{color:var(--ink);font-weight:500;font-size:15px}
-  .ins .arr{margin-left:auto;width:14px;height:14px;color:var(--accent);opacity:0;transition:.2s}
-  .ins a:hover .arr{opacity:1;transform:translateX(2px)}
-  .viewall{display:inline-block;margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--accent)}
 
   /* endorsements */
   .endorse{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;padding:22px 24px;margin-bottom:12px}
@@ -185,7 +179,8 @@
     <p class="position">A named method, working software, and senior judgment — delivered in weeks.</p>
     <nav class="railnav"><ul>
       <li><a href="#proof" class="active"><span class="bar"></span>Proof</a></li>
-      <li><a href="#demo"><span class="bar"></span>The Operating Picture</a></li>
+      <li><a href="#casestudy"><span class="bar"></span>Case Study</a></li>
+      <li><a href="#demo"><span class="bar"></span>Interactive Demo</a></li>
       <li><a href="#frameworks"><span class="bar"></span>Frameworks</a></li>
       <li><a href="#endorsements"><span class="bar"></span>Endorsements</a></li>
       <li><a href="#approach"><span class="bar"></span>How I Work</a></li>
@@ -200,18 +195,36 @@
         <div class="stat"><div class="num">~5<span class="u">M</span></div><div class="desc">customers migrated, zero disruption</div></div>
         <div class="stat"><div class="num">~$75<span class="u">M</span></div><div class="desc">revenue, attrition under ~1.2%</div></div>
         <div class="stat"><div class="num">~$13<span class="u">M</span></div><div class="desc">operational savings</div></div>
-        <div class="stat"><div class="num">~12<span class="u">hrs/wk</span></div><div class="desc">freed per user by AI program ops I built — in production</div></div>
+        <div class="stat"><div class="num">~10<span class="u">hrs/wk</span></div><div class="desc">freed on leadership reporting by AI program-ops I built — in production</div></div>
       </div>
-      <p class="ai-line">The AI program-ops result above comes from a capability I designed and deployed in production — <b>planning, risk, dependencies, and executive reporting unified into one shared operating system.</b> The demo below shows the method behind it.</p>
+      <p class="ai-line">The AI program-ops result above comes from capabilities I designed and deployed in production — <b>planning, risk, dependencies, and executive reporting unified into governed operating systems.</b> The case study below breaks down the real numbers; the interactive demo shows the method.</p>
+    </section>
+
+    <section id="casestudy">
+      <div class="s-label">Case Study</div>
+      <p class="kicker">Proof · real &amp; measured</p>
+      <a class="card proof" href="casestudy.html">
+        <div class="k">Case study</div>
+        <h3>AI Transformation in GTM Operations <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></h3>
+        <p>Two production AI systems I designed, deployed, and measured — a multi-agent program-operations system (8 agents) and a PMM reporting governance engine — plus the framework they generalize into. Real, measured results kept clearly separate from concept.</p>
+        <div class="tagrow">
+          <span class="pill real">Real · measured</span>
+          <span class="pill concept">Concept clearly labeled</span>
+        </div>
+        <span class="cta">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
     </section>
 
     <section id="demo">
-      <div class="s-label">The Operating Picture</div>
-      <p class="kicker">See it work</p>
+      <div class="s-label">Interactive Demo</div>
+      <p class="kicker">Interactive demo · illustration</p>
       <a class="card" href="workflowdemo.html">
         <div class="k">Interactive demo</div>
-        <h3>The Operating Picture</h3>
-        <p>The operating model behind the AI program-ops capability above — shown as an interactive you can explore. Pick a messy workflow and watch it resolve into a single governed operating picture, with humans in control at every decision.</p>
+        <h3>The Operating Picture <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></h3>
+        <p>An interactive illustration of the operating model: pick a messy workflow and watch it resolve into one governed operating picture, with humans in control at every decision.</p>
+        <div class="tagrow">
+          <span class="pill demo">Illustration — see case study for real results</span>
+        </div>
         <span class="cta">Launch the interactive demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
     </section>
@@ -262,7 +275,7 @@
   document.querySelectorAll('main section').forEach(s=>obs.observe(s));
 </script>
 <!-- Cloudflare Web Analytics -->
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "CLOUDFLARE_TOKEN_HERE"}'></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "5aeb4677712d430ea0942d5b23c258f0"}'></script>
 <!-- End Cloudflare Web Analytics -->
 </body>
 </html>
