@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Study · AI Transformation in GTM Operations · Lakshmi Peri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff;--bg-2:#f6f8fb;--ink:#0f1420;--line:#e6e8ec;--line-2:#d4d8de;
+  --mute:#8b9099;--mute-2:#5c626b;--text:#101114;--text-soft:#444a52;
+  --accent:#2563eb;--accent-soft:#dbe7ff;--accent-ink:#1d4ed8;--navy:#152449;
+  --green:#15a36a;--green-soft:#dcf3e8;--teal:#0d9488;--teal-soft:#d8f3f0;
+  --amber:#d08700;--amber-soft:#fbeecb;--purple:#7c3aed;--purple-soft:#ede5ff;
+  --r:14px;--r-sm:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.55}
+.wrap{max-width:900px;margin:0 auto;padding:50px 26px 90px}
+a{color:var(--accent-ink)}
+
+.backlink{display:inline-block;font-size:13px;color:var(--mute-2);text-decoration:none;margin-bottom:22px}
+.backlink:hover{color:var(--accent-ink)}
+.kicker{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:800;margin-bottom:10px}
+h1{font-weight:900;font-size:clamp(28px,4.6vw,44px);line-height:1.06;letter-spacing:-.025em;margin-bottom:10px}
+.sub{font-size:16px;color:var(--text-soft);margin-bottom:20px}
+
+/* FORMULA BAND */
+.formula{background:linear-gradient(135deg,var(--navy) 0%,#23408f 55%,#1a5fa0 100%);color:#fff;border-radius:18px;padding:30px 28px;margin:6px 0 14px;text-align:center;position:relative;overflow:hidden}
+.formula::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 25% 40%,rgba(124,58,237,.25),transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(245,166,35,.12),transparent 55%)}
+.formula .eq{position:relative;font-weight:900;font-size:clamp(19px,3vw,27px);letter-spacing:-.01em;line-height:1.25}
+.formula .eq .x{color:#9db8ff;margin:0 6px;font-weight:700}
+.formula .eq .t1{color:#7fd1ff}.formula .eq .t2{color:#ffd27f}.formula .eq .t3{color:#a8f0c8}
+.formula p{position:relative;font-size:14px;color:rgba(255,255,255,.82);max-width:620px;margin:12px auto 0;line-height:1.6}
+.formula p b{color:#fff}
+
+/* FRICTION STRIP */
+.friction{background:var(--bg-2);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:14px 0}
+.friction .fl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:700;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:12.5px;font-weight:700;color:var(--accent-ink);background:var(--accent-soft);border-radius:30px;padding:7px 14px}
+.friction p{font-size:13.5px;color:var(--text-soft);margin-top:12px}
+
+/* USE CASE HEADERS */
+h2{font-weight:900;font-size:25px;color:var(--ink);margin:46px 0 4px;letter-spacing:-.02em}
+h2.teal{color:var(--teal)}
+.uctag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent-soft);border-radius:20px;padding:5px 12px;margin-bottom:6px}
+.badge{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.04em;color:#fff;border-radius:30px;padding:6px 14px;margin:6px 0 2px}
+.badge.green{background:var(--green)}
+.badge.teal{background:var(--teal)}
+h3{font-weight:800;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--mute-2);margin:22px 0 8px}
+p{font-size:15px;color:var(--text-soft);margin:8px 0}
+p b{color:var(--text)}
+ul{margin:8px 0 8px 4px;list-style:none}
+li{font-size:14.5px;color:var(--text-soft);display:flex;gap:10px;margin:7px 0}
+li::before{content:"";width:6px;height:6px;border-radius:2px;background:var(--accent);margin-top:8px;flex:none;transform:rotate(45deg)}
+
+/* BENEFIT CALLOUT */
+.benefit{background:var(--green-soft);border:1px solid #bfe8d4;border-left:5px solid var(--green);border-radius:12px;padding:16px 18px;margin:12px 0;font-size:15.5px;color:var(--text)}
+.benefit b{color:#0d5a37}
+
+/* TECH x PROCESS x ADOPTION SCORECARD */
+.tpa{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}
+@media(max-width:640px){.tpa{grid-template-columns:1fr}}
+.tpa .col{border:1px solid var(--line);border-radius:12px;padding:16px;background:#fff}
+.tpa .col .h{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.tpa .col .dot{width:10px;height:10px;border-radius:50%;flex:none}
+.tpa .col.t1 .h{color:#1769b0}.tpa .col.t1 .dot{background:#1769b0}
+.tpa .col.t2 .h{color:var(--amber)}.tpa .col.t2 .dot{background:var(--amber)}
+.tpa .col.t3 .h{color:var(--green)}.tpa .col.t3 .dot{background:var(--green)}
+.tpa .col p{font-size:13px;color:var(--text-soft);margin:0;line-height:1.5}
+
+/* WORKFLOW FLOW */
+.flow{display:flex;align-items:stretch;flex-wrap:wrap;gap:4px;margin:12px 0 4px}
+.flow .node{flex:1;min-width:118px;background:var(--bg-2);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:12.5px;font-weight:600;color:var(--text);display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3}
+.flow .node.accent{background:var(--accent-soft);border-color:#bcd2fb;color:var(--accent-ink)}
+.flow .node.gov{background:var(--teal-soft);border-color:#bfe6e1;color:var(--teal)}
+.flow .arrow{display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:800;padding:0 4px;font-size:17px}
+@media(max-width:560px){.flow .arrow{transform:rotate(90deg)}.flow .node{min-width:100%}}
+
+/* BIG BEFORE/AFTER */
+.bigba{display:flex;align-items:stretch;gap:12px;margin:16px 0;flex-wrap:wrap}
+.bcell{flex:1;min-width:130px;border-radius:14px;padding:20px;text-align:center}
+.bcell.before{background:#f1f2f4;border:1px solid var(--line)}
+.bcell.after{background:var(--green-soft);border:1px solid #bfe8d4}
+.bcell .bn{font-size:38px;font-weight:900;line-height:1;letter-spacing:-.03em}
+.bcell.before .bn{color:#6b727d}
+.bcell.after .bn{color:var(--green)}
+.bcell .bl{font-size:12px;color:var(--mute-2);margin-top:8px;font-weight:600}
+.bmid{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-width:84px}
+.bmid .ar{font-size:24px;color:var(--accent);font-weight:800;line-height:1}
+.bmid .dl{font-size:13px;font-weight:800;color:var(--accent-ink)}
+.cap{font-size:11.5px;color:var(--mute-2);margin-top:2px;font-style:italic}
+
+/* STAT CARDS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+@media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 12px;text-align:center}
+.stat .v{font-size:26px;font-weight:900;color:var(--accent-ink);line-height:1;letter-spacing:-.02em}
+.stat .l{font-size:11.5px;color:var(--mute-2);margin-top:8px;line-height:1.3}
+
+/* 9-POINT GRID */
+.nine{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+@media(max-width:640px){.nine{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.nine{grid-template-columns:1fr}}
+.ncheck{display:flex;gap:9px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 12px;font-size:12.5px;color:var(--text);line-height:1.35}
+.ncheck .ck{width:18px;height:18px;border-radius:5px;background:var(--green);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none;margin-top:1px}
+.note{font-size:13px;color:var(--mute-2);font-style:italic;margin-top:6px}
+
+.agentgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+@media(max-width:720px){.agentgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:440px){.agentgrid{grid-template-columns:1fr}}
+.agentcard{background:#fff;border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:10px;padding:12px}
+.agentcard .an{font-size:9px;font-family:'JetBrains Mono',monospace;color:var(--mute);font-weight:700;margin-bottom:4px;letter-spacing:.04em}
+.agentcard .at{font-size:12.5px;font-weight:800;color:var(--ink);margin-bottom:4px;line-height:1.2}
+.agentcard .ad{font-size:11px;color:var(--text-soft);line-height:1.4}
+.orbit{margin:14px 0 2px}
+.orbit svg{display:block;width:100%;max-width:460px;height:auto;margin:0 auto}
+.dolist{display:grid;gap:10px;margin:14px 0}
+.doitem{border-left:3px solid var(--accent-soft);padding:2px 0 2px 14px}
+.doitem b{display:block;color:var(--ink);font-size:14.5px;font-weight:800;margin-bottom:3px}
+.doitem span{display:block;font-size:13.5px;color:var(--text-soft);line-height:1.5}
+
+/* CONCEPT / TRUESTAR */
+.cta{display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:#fff;font-weight:700;font-size:14px;text-decoration:none;padding:13px 22px;border-radius:11px;margin-top:14px;transition:.18s}
+.cta:hover{background:var(--accent-ink)}
+.method{margin:10px 0}
+.method .step{display:flex;gap:14px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.method .step:last-child{border:none}
+.method .n{width:28px;height:28px;border-radius:8px;background:var(--accent-soft);color:var(--accent-ink);display:grid;place-items:center;font-weight:800;font-size:13px;font-family:'JetBrains Mono',monospace;flex:none}
+.method .t{font-size:14.5px;font-weight:500;color:var(--text)}
+.concept{background:var(--teal-soft);border:1px solid #bfe6e1;border-radius:var(--r);padding:18px 20px;margin:14px 0}
+.concept p{color:var(--text);margin:0}
+
+.foot{margin-top:48px;border-top:1px solid var(--line);padding-top:20px;font-size:13.5px;color:var(--mute-2)}
+.foot a{color:var(--mute-2);text-decoration:none;font-weight:600}
+.foot a:hover{color:var(--accent-ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="backlink" href="index.html">← Lakshmi Peri</a>
+
+  <div class="kicker">Case Study</div>
+  <h1>AI Transformation in GTM Operations</h1>
+  <div class="sub">Lakshmi Peri · AI Transformation &amp; Enterprise Operating-Model Leader</div>
+
+  <!-- FORMULA -->
+  <div class="formula">
+    <div class="eq">AI Value <span class="x">=</span> <span class="t1">Technology</span> <span class="x">×</span> <span class="t2">Process</span> <span class="x">×</span> <span class="t3">Adoption</span></div>
+    <p>It's a product, not a sum — miss any factor and the value goes to zero. Most AI stalls because it ships <b>technology</b> with no <b>process</b> or <b>adoption</b>. I deliver all three. Below: two production AI use cases at a large fintech organization — built, governed, and measured — plus the framework they generalize into.</p>
+  </div>
+
+  <!-- HIGH FRICTION -->
+  <div class="friction">
+    <div class="fl">Why these workflows</div>
+    <div class="chips">
+      <span class="chip">High friction</span><span class="chip">High frequency</span><span class="chip">Cross-functional</span><span class="chip">Measurable</span>
+    </div>
+    <p>Transformation starts with disciplined selection: pick the workflow where friction is highest, frequency is constant, and slow coordination is most visible — then turn it into a governed operating system. Both use cases below were chosen on exactly these criteria.</p>
+  </div>
+
+  <!-- ============ USE CASE 1 ============ -->
+  <div class="uctag">Agentic AI · 8-Agent System · Program Operations</div>
+  <h2>Multi-Agent Program Operations System</h2>
+  <div><span class="badge green">DEPLOYED · MEASURED</span></div>
+
+  <div class="benefit">What the PMO got: <b>leadership-update readiness dropped from ~10 hrs/week to under 30 minutes</b> — freeing the team for decisions, with always-current, risk-flagged status.</div>
+
+  <h3>The high-friction problem</h3>
+  <p>A 12-person GTM PMO across two functional groups spent ~10 hrs/week manually assembling leadership updates from scattered sources — Drive, Slack, email, Zoom — and rebuilding the same reports by hand. Status was stale by the time leadership reviewed it. High friction, every single week.</p>
+
+  <h3>Technology × Process × Adoption</h3>
+  <div class="tpa">
+    <div class="col t1"><div class="h"><span class="dot"></span>Technology</div><p>A multi-agent system — 8 specialized AI agents integrated across Drive, Slack, Zoom, Outlook &amp; GitHub — scans, drafts, and maintains a live status hub on schedule.</p></div>
+    <div class="col t2"><div class="h"><span class="dot"></span>Process</div><p>Governance I designed: human-in-the-loop approvals, commit-gated changes, audited memory — 6 leadership cadences run reliably.</p></div>
+    <div class="col t3"><div class="h"><span class="dot"></span>Adoption</div><p>Rolled out to all 12 users via training, working sessions, and iterative fixes from real-run feedback.</p></div>
+  </div>
+
+  <h3>How it works</h3>
+  <div class="flow">
+    <div class="node">Drive · Slack · Zoom · Outlook · GitHub</div>
+    <div class="arrow">→</div>
+    <div class="node accent">8 AI agents — scan &amp; draft</div>
+    <div class="arrow">→</div>
+    <div class="node gov">Human approval</div>
+    <div class="arrow">→</div>
+    <div class="node">6 cadences + live status hub</div>
+  </div>
+
+  <h3>The 8 specialized agents</h3>
+  <div class="orbit">
+  <svg viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif" role="img" aria-label="Eight specialized agents orbiting a central program-operations orchestrator">
+    <!-- spokes -->
+    <g stroke="#cbd5e8" stroke-width="2">
+      <line x1="260" y1="205" x2="260" y2="55"/>
+      <line x1="260" y1="205" x2="366" y2="99"/>
+      <line x1="260" y1="205" x2="410" y2="205"/>
+      <line x1="260" y1="205" x2="366" y2="311"/>
+      <line x1="260" y1="205" x2="260" y2="355"/>
+      <line x1="260" y1="205" x2="154" y2="311"/>
+      <line x1="260" y1="205" x2="110" y2="205"/>
+      <line x1="260" y1="205" x2="154" y2="99"/>
+    </g>
+    <!-- center -->
+    <circle cx="260" cy="205" r="56" fill="#1d4ed8"/>
+    <text x="260" y="198" text-anchor="middle" font-size="13" font-weight="800" fill="#ffffff">Program</text>
+    <text x="260" y="214" text-anchor="middle" font-size="13" font-weight="800" fill="#ffffff">Operations</text>
+    <!-- agent nodes -->
+    <g>
+      <circle cx="260" cy="55" r="40" fill="#eef4ff" stroke="#2563eb" stroke-width="1.5"/>
+      <text x="260" y="50" text-anchor="middle" font-size="8" font-weight="700" fill="#8b9099">01</text>
+      <text x="260" y="64" text-anchor="middle" font-size="11.5" font-weight="800" fill="#1d4ed8">Triage</text>
+
+      <circle cx="366" cy="99" r="40" fill="#eef4ff" stroke="#2563eb" stroke-width="1.5"/>
+      <text x="366" y="94" text-anchor="middle" font-size="8" font-weight="700" fill="#8b9099">02</text>
+      <text x="366" y="108" text-anchor="middle" font-size="11.5" font-weight="800" fill="#1d4ed8">Setup</text>
+
+      <circle cx="410" cy="205" r="40" fill="#eef4ff" stroke="#2563eb" stroke-width="1.5"/>
+      <text x="410" y="200" text-anchor="middle" font-size="8" font-weight="700" fill="#8b9099">03</text>
+      <text x="410" y="214" text-anchor="middle" font-size="11.5" font-weight="800" fill="#1d4ed8">Scan</text>
+
+      <circle cx="366" cy="311" r="40" fill="#eef4ff" stroke="#2563eb" stroke-width="1.5"/>
+      <text x="366" y="306" text-anchor="middle" font-size="8" font-weight="700" fill="#8b9099">04</text>
+      <text x="366" y="320" text-anchor="middle" font-size="11.5" font-weight="800" fill="#1d4ed8">Snapshot</text>
+
+      <circle cx="260" cy="355" r="40" fill="#eef4ff" stroke="#2563eb" stroke-width="1.5"/>
+      <text x="260" y="349" text-anchor="middle" font-size="8" font-weight="700" fill="#8b9099">05</text>
+      <text x="260" y="361" text-anchor="middle" font-size="10.5" font-weight="800" fill="#1d4ed8">Meeting</text>
+      <text x="260" y="373" text-anchor="middle" font-size="10.5" font-weight="800" fill="#1d4ed8">Notes</text>
+
+      <circle cx="154" cy="311" r="40" fill="#eef4ff" stroke="#2563eb" stroke-width="1.5"/>
+      <text x="154" y="305" text-anchor="middle" font-size="8" font-weight="700" fill="#8b9099">06</text>
+      <text x="154" y="317" text-anchor="middle" font-size="10.5" font-weight="800" fill="#1d4ed8">Execution</text>
+      <text x="154" y="329" text-anchor="middle" font-size="10.5" font-weight="800" fill="#1d4ed8">Review</text>
+
+      <circle cx="110" cy="205" r="40" fill="#eef4ff" stroke="#2563eb" stroke-width="1.5"/>
+      <text x="110" y="195" text-anchor="middle" font-size="8" font-weight="700" fill="#8b9099">07</text>
+      <text x="110" y="208" text-anchor="middle" font-size="10.5" font-weight="800" fill="#1d4ed8">Exec</text>
+      <text x="110" y="220" text-anchor="middle" font-size="10.5" font-weight="800" fill="#1d4ed8">Cadence</text>
+
+      <circle cx="154" cy="99" r="40" fill="#eef4ff" stroke="#2563eb" stroke-width="1.5"/>
+      <text x="154" y="94" text-anchor="middle" font-size="8" font-weight="700" fill="#8b9099">08</text>
+      <text x="154" y="108" text-anchor="middle" font-size="11" font-weight="800" fill="#1d4ed8">Dashboard</text>
+    </g>
+  </svg>
+  </div>
+  <div class="cap" style="text-align:center">8 specialized agents, one orchestrated operating system — human approval gates every output.</div>
+
+  <h3>The result</h3>
+  <div class="bigba">
+    <div class="bcell before"><div class="bn">~10 hrs</div><div class="bl">per week — before</div></div>
+    <div class="bmid"><div class="ar">→</div><div class="dl">~95% less</div></div>
+    <div class="bcell after"><div class="bn">&lt;30 min</div><div class="bl">per week — after</div></div>
+  </div>
+  <div class="cap">Manual time on leadership-update readiness, before vs. after (measured as a first pass).</div>
+  <div class="stats">
+    <div class="stat"><div class="v">8</div><div class="l">specialized AI agents</div></div>
+    <div class="stat"><div class="v">6</div><div class="l">leadership cadences automated</div></div>
+    <div class="stat"><div class="v">12</div><div class="l">users · 2 functional groups</div></div>
+    <div class="stat"><div class="v">&lt;5 min</div><div class="l">to onboard a new PMO</div></div>
+  </div>
+
+  <!-- ============ USE CASE 2 ============ -->
+  <div class="uctag">AI Governance · Quality at Scale</div>
+  <h2>PMM Reporting Intelligence &amp; Governance</h2>
+  <div><span class="badge green">DEPLOYED · MEASURED</span></div>
+
+  <div class="benefit">What the PMMs got: <b>their time back for actual GTM work</b> — ~2–3 hrs/week each (~16–24 hrs across the team) — instead of hand-producing progress updates for 6–8 operating mechanisms, with every update auto-held to a <b>9-point leadership quality bar</b>.</div>
+
+  <h3>The high-friction problem</h3>
+  <p>Across 8 PMMs and 11 GTM initiatives, the team hand-produced progress updates for 6–8 recurring operating mechanisms every cycle — in inconsistent formats and quality. Leadership sent updates back for the "so what," missing numbers, or unclear risk plans, and PMMs spent hours on reporting instead of actual marketing work.</p>
+
+  <h3>Technology × Process × Adoption</h3>
+  <div class="tpa">
+    <div class="col t1"><div class="h"><span class="dot"></span>Technology</div><p>An AI engine that ingests progress in any format and auto-standardizes it into a leadership-ready update.</p></div>
+    <div class="col t2"><div class="h"><span class="dot"></span>Process</div><p>A 9-point leadership quality rubric, enforced on every update — governance is the product, not an afterthought.</p></div>
+    <div class="col t3"><div class="h"><span class="dot"></span>Adoption</div><p>In live use by 8 PMMs across 11 initiatives — the standard the whole team writes to.</p></div>
+  </div>
+
+  <h3>The 9-point quality bar it enforces</h3>
+  <div class="nine">
+    <div class="ncheck"><span class="ck">✓</span>"So what" stated first</div>
+    <div class="ncheck"><span class="ck">✓</span>Acronyms expanded for non-specialist readers</div>
+    <div class="ncheck"><span class="ck">✓</span>Actionable, results-oriented detail</div>
+    <div class="ncheck"><span class="ck">✓</span>Wins &amp; results with numbers + dates</div>
+    <div class="ncheck"><span class="ck">✓</span>Risks &amp; issues with impact + plan</div>
+    <div class="ncheck"><span class="ck">✓</span>Next steps with clear ETA</div>
+    <div class="ncheck"><span class="ck">✓</span>Blockers called out</div>
+    <div class="ncheck"><span class="ck">✓</span>Path to Green for any Red/Yellow</div>
+    <div class="ncheck"><span class="ck">✓</span>Decisions documented</div>
+  </div>
+
+  <h3>How it works</h3>
+  <div class="flow">
+    <div class="node">Any-format updates · 8 PMMs</div>
+    <div class="arrow">→</div>
+    <div class="node accent">Rubric engine — 9-point check</div>
+    <div class="arrow">→</div>
+    <div class="node">Standardized update</div>
+    <div class="arrow">→</div>
+    <div class="node gov">Leadership</div>
+  </div>
+
+  <h3>The result</h3>
+  <div class="bigba">
+    <div class="bcell before"><div class="bn">~2–3 hrs</div><div class="bl">per PMM/week on reporting — before</div></div>
+    <div class="bmid"><div class="ar">→</div><div class="dl">back to real work</div></div>
+    <div class="bcell after"><div class="bn">minutes</div><div class="bl">to submit — after</div></div>
+  </div>
+  <div class="cap">Time each PMM spent producing updates for 6–8 operating mechanisms, before vs. after.</div>
+  <div class="stats">
+    <div class="stat"><div class="v">6–8</div><div class="l">operating mechanisms fed automatically</div></div>
+    <div class="stat"><div class="v">9-pt</div><div class="l">quality bar on every update</div></div>
+    <div class="stat"><div class="v">8</div><div class="l">PMMs · 11 initiatives</div></div>
+    <div class="stat"><div class="v">2–3×</div><div class="l">fewer leadership review loops</div></div>
+  </div>
+
+  <!-- ============ TRUESTAR ============ -->
+  <div class="uctag" style="color:var(--teal);background:var(--teal-soft)">Concept Framework</div>
+  <h2 class="teal">TrueStar — The Generalized Framework</h2>
+  <div><span class="badge teal">CONCEPT PROTOTYPE — NOT DEPLOYED · ILLUSTRATIVE FIGURES</span></div>
+
+  <p>The two use cases above proved the same method twice. I packaged it into <b>TrueStar</b> — a repeatable workflow-transformation framework that reads source systems, turns raw facts into typed signals, routes them to specialized agents, and funnels every recommendation through human-in-the-loop governance. Same pattern: Technology × Process × Adoption, applied workflow by workflow.</p>
+
+  <h3>The repeatable method</h3>
+  <div class="method">
+    <div class="step"><span class="n">1</span><span class="t">Select the highest-friction, high-frequency workflow</span></div>
+    <div class="step"><span class="n">2</span><span class="t">Map its signals</span></div>
+    <div class="step"><span class="n">3</span><span class="t">Define intelligence capabilities (agents)</span></div>
+    <div class="step"><span class="n">4</span><span class="t">Design decision briefs</span></div>
+    <div class="step"><span class="n">5</span><span class="t">Wire governance and audit</span></div>
+    <div class="step"><span class="n">6</span><span class="t">Measure the outcome</span></div>
+  </div>
+
+  <div class="concept">
+    <p>The prototype demonstrates the method on a realistic "Feature X Launch" scenario — 20 typed signals, 6 agents, threshold escalations, and decision briefs a leader approves in one click. <b>All figures in the prototype are targets and illustrative projections — not delivered results.</b></p>
+  </div>
+
+  <a class="cta" href="truestar.html">View the interactive TrueStar prototype →</a>
+
+  <!-- ============ WHAT I BRING ============ -->
+  <h2>What I Do</h2>
+  <p>I turn high-friction, cross-functional workflows into governed AI operating systems that actually get adopted — across the three factors that make AI pay off: <b>Technology × Process × Adoption</b>.</p>
+  <div class="dolist">
+    <div class="doitem"><b>Discover &amp; prioritize</b><span>Map workflows and where time is lost; target the highest-friction, highest-frequency work and tie each opportunity to measurable impact — owners, baselines, targets.</span></div>
+    <div class="doitem"><b>Vision &amp; roadmap</b><span>Define the vision and roadmap for scaling AI workflows across functions — without rebuilding custom work for every team.</span></div>
+    <div class="doitem"><b>Build, pilot to scale</b><span>Stand up the pilot-to-scale mechanism — scope, build fast, test in real work, iterate, scale what proves value — partnering with IT and engineering to remove blockers.</span></div>
+    <div class="doitem"><b>Data &amp; integration</b><span>Define the enterprise data, integration, access, and quality requirements so workflows have the inputs to run reliably end to end.</span></div>
+    <div class="doitem"><b>Governance &amp; responsible AI</b><span>Build in permissions, controls, auditability, human oversight, privacy, and clear accountability from day one.</span></div>
+    <div class="doitem"><b>Adoption, enablement &amp; measurement</b><span>Drive adoption through comms, training, enablement, and playbooks; own the scorecards and cadence that track time saved, cycle time, quality, and adoption — translated into dollars and capacity.</span></div>
+  </div>
+
+  <div class="foot">
+    Lakshmi Peri · <a href="mailto:lakshmi.pv@gmail.com">lakshmi.pv@gmail.com</a> · <a href="https://linkedin.com/in/lakshmiperi">linkedin.com/in/lakshmiperi</a> · Remote (SF Bay Area)
+  </div>
+
+</div>
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "5aeb4677712d430ea0942d5b23c258f0"}'></script>
+<!-- End Cloudflare Web Analytics -->
+</body>
+</html>
