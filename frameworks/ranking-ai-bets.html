@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You Can't Fund Everything: Ranking AI Bets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f6;
+    --surface: #ffffff;
+    --ink: #161616;
+    --ink-soft: #474743;
+    --ink-mute: #8b8a84;
+    --line: #e7e5df;
+    --line-soft: #f0efe9;
+    --accent: #0e6b5c;
+    --accent-deep: #0a4f44;
+    --accent-soft: #e3efec;
+    --red: #9c4a3c;     --red-bg: #f7ece9;
+    --amber: #a87b2f;   --amber-bg: #f9f2e4;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { -webkit-font-smoothing:antialiased; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--ink); line-height:1.6; font-size:16px; }
+  .rule { position:fixed; top:0; bottom:0; left:max(12px, calc(50% - 470px)); width:2px; background:linear-gradient(var(--accent), rgba(14,107,92,.12)); }
+  .wrap { max-width:840px; margin:0 auto; padding:72px 32px 80px; }
+
+  .eyebrow { font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:500; display:flex; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:14px; }
+  .eyebrow a { color:var(--ink-mute); text-decoration:none; }
+  .eyebrow a:hover { color:var(--accent); }
+  h1 { font-family:'Source Serif 4',serif; font-size:clamp(32px,5vw,46px); line-height:1.12; font-weight:700; margin:34px 0 10px; max-width:22ch; }
+  .thesis { font-family:'Source Serif 4',serif; font-style:italic; font-size:clamp(19px,2.4vw,24px); color:var(--ink); margin:24px 0 0; padding-left:20px; border-left:3px solid var(--accent); max-width:30em; }
+  .thesis strong { font-style:normal; font-weight:700; color:var(--accent-deep); }
+  .sub { color:var(--ink-soft); font-size:15.5px; margin-top:16px; max-width:60ch; }
+
+  h2.sec { font-family:'Source Serif 4',serif; font-size:25px; font-weight:700; border-bottom:2px solid var(--ink); padding-bottom:10px; margin-bottom:6px; margin-top:50px; }
+  .sec-sub { font-size:14px; color:var(--ink-mute); margin-bottom:22px; }
+
+  .trap { margin:46px 0 0; background:var(--surface); border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  .trap-head { background:var(--red-bg); padding:16px 24px; }
+  .trap-head .t { font-family:'Source Serif 4',serif; font-weight:700; font-size:19px; color:var(--red); }
+  .trap-body { padding:20px 24px; }
+  .trap table { width:100%; border-collapse:collapse; font-size:13.5px; }
+  .trap th { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-mute); text-align:left; padding:6px 10px; border-bottom:1px solid var(--line); font-weight:500; }
+  .trap td { padding:8px 10px; border-bottom:1px solid var(--line-soft); color:var(--ink-soft); }
+  .trap td.score { font-family:'IBM Plex Mono',monospace; font-weight:600; color:var(--ink); }
+  .trap-point { font-size:14px; color:var(--ink-soft); margin-top:14px; max-width:62ch; }
+  .trap-point b { color:var(--red); font-weight:600; }
+
+  .jobs { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-bottom:10px; }
+  .job { background:var(--surface); border:1px solid var(--line); border-top:3px solid var(--accent); border-radius:10px; padding:20px 22px 16px; }
+  .job .q { font-family:'Source Serif 4',serif; font-style:italic; font-size:20px; color:var(--accent-deep); margin-bottom:4px; }
+  .job .dims { font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.06em; color:var(--accent); margin-bottom:10px; }
+  .job p { font-size:13.5px; color:var(--ink-soft); }
+  .jobs-note { font-family:'Source Serif 4',serif; font-style:italic; font-size:15px; text-align:center; color:var(--ink-soft); margin:14px 0 0; }
+
+  .map-wrap { margin:24px 0 0; background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:26px; }
+  .map { display:grid; grid-template-columns:34px 1fr 1fr; grid-template-rows:1fr 1fr 34px; gap:10px; aspect-ratio:1.5; min-height:380px; }
+  .axis-y { grid-row:1/3; writing-mode:vertical-rl; transform:rotate(180deg); text-align:center; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-mute); }
+  .axis-x { grid-column:2/4; text-align:center; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-mute); align-self:center; }
+  .quad { border-radius:8px; padding:16px 18px; border:1px solid var(--line); }
+  .quad .lbl { font-family:'Source Serif 4',serif; font-weight:700; font-size:18px; margin-bottom:4px; }
+  .quad .when { font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; margin-bottom:8px; }
+  .quad p { font-size:12.5px; color:var(--ink-soft); line-height:1.5; }
+  .q-prepare { background:var(--amber-bg); } .q-prepare .lbl{color:var(--amber)} .q-prepare .when{color:var(--amber)}
+  .q-now { background:var(--accent-soft); } .q-now .lbl{color:var(--accent-deep)} .q-now .when{color:var(--accent)}
+  .q-no { background:var(--red-bg); } .q-no .lbl{color:var(--red)} .q-no .when{color:var(--red)}
+  .q-opp { background:var(--line-soft); } .q-opp .lbl{color:var(--ink-soft)} .q-opp .when{color:var(--ink-mute)}
+  .risk-note { display:flex; gap:10px; align-items:flex-start; margin-top:16px; padding-top:14px; border-top:1px dashed var(--line); font-size:13.5px; color:var(--ink-soft); }
+  .risk-flag { font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; color:#fff; background:var(--red); border-radius:4px; padding:2px 8px; white-space:nowrap; margin-top:2px; }
+
+  .waves { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:10px; overflow:hidden; margin-bottom:8px; }
+  .wave { background:var(--surface); padding:18px 20px; }
+  .wave .w { font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--accent); font-weight:600; }
+  .wave h3 { font-family:'Source Serif 4',serif; font-size:16.5px; font-weight:700; margin:6px 0; }
+  .wave p { font-size:13px; color:var(--ink-soft); line-height:1.5; }
+  .balance { font-family:'Source Serif 4',serif; font-style:italic; font-size:15px; text-align:center; color:var(--ink-soft); margin:14px 0 0; }
+
+  .steps-head { font-family:'Source Serif 4',serif; font-size:25px; font-weight:700; border-bottom:2px solid var(--ink); padding-bottom:10px; margin-bottom:22px; margin-top:50px; }
+  .steps { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  .step { background:var(--surface); padding:18px 16px; }
+  .step .num { font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--accent); font-weight:600; }
+  .step h3 { font-family:'Source Serif 4',serif; font-size:16px; font-weight:700; margin:6px 0; }
+  .step p { font-size:12.5px; color:var(--ink-mute); line-height:1.5; }
+
+  footer { margin-top:56px; border-top:1px solid var(--line); padding-top:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:13px; color:var(--ink-mute); }
+  footer .next { font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--accent); }
+
+  @media (max-width:640px){
+    .wrap{ padding:52px 22px 60px }
+    .rule{ display:none }
+    .jobs{ grid-template-columns:1fr }
+    .map{ min-height:0; aspect-ratio:auto; grid-template-columns:1fr; grid-template-rows:auto; }
+    .axis-y, .axis-x { display:none }
+    .waves{ grid-template-columns:1fr }
+    .steps{ grid-template-columns:1fr 1fr }
+    .trap { overflow-x:auto }
+  }
+</style>
+</head>
+<body>
+<div class="rule"></div>
+<div class="wrap">
+
+  <div class="eyebrow"><span>AI Transformation Series · 03</span><a href="../index.html">← Lakshmi Peri</a></div>
+
+  <h1>You Can't Fund Everything: Ranking AI Bets</h1>
+
+  <p class="thesis">More AI ideas is not progress. <strong>A ranked portfolio is.</strong> The hard part isn't scoring opportunities. It's refusing to average them.</p>
+
+  <p class="sub">Most organizations rank AI opportunities the same way: score each one on impact, feasibility, risk, adoption, and strategic value, weight the dimensions, sort by the total. It feels rigorous. It quietly destroys the information you needed.</p>
+
+  <div class="trap">
+    <div class="trap-head"><span class="t">The weighted-scorecard trap</span></div>
+    <div class="trap-body">
+      <table>
+        <tr><th>Candidate</th><th>Impact</th><th>Feasibility</th><th>Risk</th><th>Adoption</th><th>Strategic</th><th>Avg</th></tr>
+        <tr><td>A &mdash; Claims triage automation</td><td class="score">9</td><td class="score">3</td><td class="score">4</td><td class="score">3</td><td class="score">9</td><td class="score">5.6</td></tr>
+        <tr><td>B &mdash; Meeting summary assistant</td><td class="score">4</td><td class="score">8</td><td class="score">8</td><td class="score">7</td><td class="score">2</td><td class="score">5.8</td></tr>
+      </table>
+      <p class="trap-point">The scorecard says B beats A. But these are not comparable bets. A is a high-value initiative that needs preparation. B is a convenience tool nobody will fight for in next year's budget. <b>Averaging made them look like the same decision.</b> The five dimensions were never meant to be added together.</p>
+    </div>
+  </div>
+
+  <h2 class="sec">Five Dimensions, Three Jobs</h2>
+  <p class="sec-sub">Each dimension answers a different question. Keep them separate and the portfolio ranks itself.</p>
+
+  <div class="jobs">
+    <div class="job">
+      <p class="q">Worth it?</p>
+      <p class="dims">IMPACT · STRATEGIC VALUE</p>
+      <p>The value side. How much does this move a number leadership tracks, and does it build capability you'll reuse? This decides whether the bet deserves to exist.</p>
+    </div>
+    <div class="job">
+      <p class="q">When?</p>
+      <p class="dims">FEASIBILITY · ADOPTION</p>
+      <p>The deliverability side. Is the workflow ready, the data accessible, the owner willing? This decides sequence, never worth. Low deliverability means later, not lesser.</p>
+    </div>
+    <div class="job">
+      <p class="q">How?</p>
+      <p class="dims">RISK</p>
+      <p>The governance side. Risk doesn't rank bets, it shapes them: where the human checkpoint sits, what gets recommended versus automated, who reviews. A high-risk bet isn't a worse bet. It's a bet with rules.</p>
+    </div>
+  </div>
+  <p class="jobs-note">The averaging mistake is treating "when" and "how" as if they were "whether."</p>
+
+  <h2 class="sec">The Portfolio Map</h2>
+  <p class="sec-sub">Plot every candidate: value on one axis, deliverability on the other. Risk travels as a flag on the bet, not as a position on the map.</p>
+
+  <div class="map-wrap">
+    <div class="map">
+      <div class="axis-y">Value (Impact + Strategic) →</div>
+      <div class="quad q-prepare">
+        <p class="lbl">Prepare</p>
+        <p class="when">High value · low deliverability</p>
+        <p>Your biggest bets, not ready yet. Fund the remediation (Framework 02 names it), then promote to Now. This quadrant is next year's wins.</p>
+      </div>
+      <div class="quad q-now">
+        <p class="lbl">Now</p>
+        <p class="when">High value · high deliverability</p>
+        <p>Fund first. Baseline written, owner named, KPI tracked. These carry the program's credibility.</p>
+      </div>
+      <div class="quad q-no">
+        <p class="lbl">No</p>
+        <p class="when">Low value · low deliverability</p>
+        <p>Decline politely and in writing. Revisit only if the business changes, not because someone re-pitches it.</p>
+      </div>
+      <div class="quad q-opp">
+        <p class="lbl">Opportunistic</p>
+        <p class="when">Low value · high deliverability</p>
+        <p>Easy but small. Take one or two for momentum and training value. A portfolio made only of these is theater.</p>
+      </div>
+      <div class="axis-x">Deliverability (Feasibility + Adoption) →</div>
+    </div>
+    <div class="risk-note">
+      <span class="risk-flag">RISK FLAG</span>
+      <span>A flagged bet stays where its value and deliverability put it, but ships with conditions: human review checkpoint, recommend-only mode, staged rollout, named approver. Risk changes the design, not the ranking.</span>
+    </div>
+  </div>
+
+  <h2 class="sec">Sequencing the Waves</h2>
+  <p class="sec-sub">A ranked portfolio still needs an order. Three waves, each with a job.</p>
+
+  <div class="waves">
+    <div class="wave">
+      <p class="w">WAVE 1 · 0&ndash;90 DAYS</p>
+      <h3>Prove</h3>
+      <p>Two or three Now bets plus one Opportunistic quick win. Early proof buys the patience the bigger bets will need.</p>
+    </div>
+    <div class="wave">
+      <p class="w">WAVE 2 · 3&ndash;9 MONTHS</p>
+      <h3>Scale</h3>
+      <p>Remaining Now bets, plus the first Prepare bets whose remediation finished. Wave 1 baselines become Wave 2 business cases.</p>
+    </div>
+    <div class="wave">
+      <p class="w">WAVE 3 · 9+ MONTHS</p>
+      <h3>Compound</h3>
+      <p>Prepare bets promoted on evidence. By now the portfolio funds itself: measured Wave 1 value pays for Wave 3 ambition.</p>
+    </div>
+  </div>
+  <p class="balance">Balance rule: never a portfolio of only quick wins, and never one of only moonshots. One buys time, the other spends it.</p>
+
+  <h2 class="steps-head">How to Use This</h2>
+  <div class="steps">
+    <div class="step"><div class="num">STEP 1</div><h3>Score separately</h3><p>Rate all five dimensions per candidate. Resist the total column.</p></div>
+    <div class="step"><div class="num">STEP 2</div><h3>Map it</h3><p>Value and deliverability place the bet. Risk gets a flag, not a position.</p></div>
+    <div class="step"><div class="num">STEP 3</div><h3>Assign waves</h3><p>Now funds first, one quick win for momentum, Prepare gets remediation dates.</p></div>
+    <div class="step"><div class="num">STEP 4</div><h3>Decline in writing</h3><p>The No quadrant gets a documented reason. Silence invites re-pitching.</p></div>
+  </div>
+
+  <footer>
+    <span>Lakshmi Peri · AI Transformation · Operating Models · Measurable Outcomes</span>
+    <span class="next">NEXT IN SERIES → The Pilot Graveyard: Why Experiments Don't Scale</span>
+  </footer>
+
+</div>
+</body>
+</html>
