@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Launch Readiness · A GTM Workflow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --bg-2:#f7f8fa; --ink:#101114; --panel:#ffffff; --panel-2:#f5f6f8;
+    --line:#e6e8ec; --line-2:#d4d8de; --mute:#8b9099; --mute-2:#5c626b;
+    --text:#101114; --text-soft:#444a52;
+    --accent:#2563eb; --accent-soft:#dbe7ff; --accent-ink:#1d4ed8;
+    --green:#15a36a; --green-soft:#dcf3e8;
+    --amber:#d08700; --amber-soft:#fbeecb;
+    --red:#dc4b3e; --red-soft:#fbe2de;
+    --teal:#0d9488;
+    --r:14px; --r-sm:10px;
+  }
+  /* ---- live agent demo ---- */
+  .ltab{width:100%;border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:12.5px}
+  .ltab th{text-align:left;padding:8px 10px;color:var(--mute);font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--line)}
+  .ltab td{padding:7px 10px;border-bottom:1px solid var(--panel-2)}
+  .ltab tr:last-child td{border-bottom:0}
+  .cy{color:var(--green)} .cn{color:var(--red)} .creg{color:var(--mute-2)}
+  .think{background:var(--panel-2);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 18px;font-size:12.5px;color:var(--mute-2);line-height:1.9}
+  .think .tl{opacity:0;transition:opacity .3s} .think .tl.in{opacity:1}
+  .think .tk{color:var(--green)} .think .tf{color:var(--red)}
+  .lgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+  @media(max-width:600px){.lgrid{grid-template-columns:1fr}}
+  .lvc{border:1px solid var(--line);border-radius:var(--r-sm);background:var(--panel);padding:16px 18px}
+  .lvc .lvn{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px}
+  .lvc .lvp{font-size:30px;font-weight:700;letter-spacing:-.02em}
+  .lvc .lvs{font-family:'JetBrains Mono',monospace;font-size:11.5px;margin-top:2px}
+  .lvc.ok{border-left:3px solid var(--green)} .lvc.ok .lvp,.lvc.ok .lvs{color:var(--green)}
+  .lvc.bad{border-left:3px solid var(--red)} .lvc.bad .lvp,.lvc.bad .lvs{color:var(--red)}
+  .ebrief{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--panel)}
+  .ebh{padding:11px 18px;background:var(--red-soft);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+  .ebb{padding:18px}
+  .eq{font-size:17px;font-weight:600;margin-bottom:12px}
+  .ep{font-size:14.5px;margin-bottom:8px;color:var(--text-soft)}
+  .ek{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-right:6px}
+  .emeta{font-size:11.5px;color:var(--mute);margin-top:12px;padding-top:12px;border-top:1px solid var(--panel-2)}
+  .efoot{display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap}
+  .lbtn{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;padding:10px 22px;border-radius:9px;cursor:pointer;border:1px solid var(--line-2);transition:.15s}
+  .lbtn.lapp{background:var(--green);color:#ffffff;border-color:var(--green)}
+  .lbtn.lapp:hover{filter:brightness(1.08);transform:translateY(-1px)}
+  .lbtn.lrej{background:var(--panel);color:var(--mute-2)}
+  .lbtn.lrej:hover{background:var(--red-soft);color:var(--red);border-color:var(--red);transform:translateY(-1px)}
+  .lbtn.done{opacity:.45;pointer-events:none}
+  .lconf{font-size:11.5px;opacity:0;transition:.2s;color:var(--green)}
+  .lconf.show{opacity:1} .lconf.rej{color:var(--red)}
+  .lresolved{margin-top:20px;border:1px solid var(--green);border-left:3px solid var(--green);border-radius:var(--r);background:var(--green-soft);padding:18px}
+  .lrtitle{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:10px}
+  .lrline{font-size:14px;margin-bottom:6px}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .mono{font-family:'JetBrains Mono',monospace}
+
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:40;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .brand{display:flex;align-items:center;gap:11px}
+  .star{width:24px;height:24px;flex:none}
+  .star path{fill:var(--accent)}
+  .brand-name{font-weight:700;letter-spacing:.12em;font-size:13px}
+  .brand-name b{color:var(--accent)}
+  .brand-sub{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:1px}
+  .step-count{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mute)}
+
+  .rail{position:fixed;top:58px;left:0;right:0;z-index:39;height:3px;background:var(--line)}
+  .rail-fill{height:100%;background:var(--accent);width:0;transition:width .5s ease}
+
+  .stage{position:relative;z-index:5;max-width:1120px;margin:0 auto;padding:84px 30px 96px}
+  .screen{display:none;animation:in .5s ease both}
+  .screen.active{display:block}
+  @keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+  .kicker{display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;font-weight:600}
+  .kicker .num{font-family:'JetBrains Mono',monospace;color:var(--mute);border:1px solid var(--line-2);border-radius:20px;padding:3px 9px;font-size:10px}
+  h1.title{font-weight:700;font-size:clamp(26px,3.6vw,40px);line-height:1.08;letter-spacing:-.02em;margin-bottom:12px}
+  h1.title em{color:var(--accent);font-style:normal}
+  .lede{font-size:15.5px;line-height:1.6;color:var(--text-soft);max-width:760px}
+
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r)}
+  .pad{padding:26px}
+  .lbl{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-bottom:12px;font-weight:600}
+
+  .nav{display:flex;align-items:center;justify-content:space-between;margin-top:34px;gap:16px}
+  .btn{font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:10px;cursor:pointer;border:none;padding:13px 24px;border-radius:11px;color:#fff;background:var(--accent);transition:.18s}
+  .btn:hover{background:var(--accent-ink)}
+  .btn.ghost{background:transparent;color:var(--text-soft);border:1px solid var(--line-2)}
+  .btn.ghost:hover{background:var(--bg-2);color:var(--text)}
+  .btn svg{width:16px;height:16px}
+
+  .dotnav{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:35;display:flex;flex-direction:column;gap:10px}
+  @media(max-width:1080px){.dotnav{display:none}}
+  .dotnav button{width:9px;height:9px;border-radius:50%;border:1px solid var(--line-2);background:transparent;cursor:pointer;padding:0;transition:.2s;position:relative}
+  .dotnav button.on{background:var(--accent);border-color:var(--accent)}
+  .dotnav button .lbl{position:absolute;right:18px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:10.5px;color:#fff;background:var(--ink);padding:4px 9px;border-radius:6px;opacity:0;pointer-events:none;transition:.2s}
+  .dotnav button:hover .lbl{opacity:1;right:20px}
+
+  /* intro */
+  .def{margin-top:30px;display:grid;grid-template-columns:1fr;gap:16px;max-width:720px}
+  .defline{display:flex;gap:16px;align-items:flex-start;padding:20px 22px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);border-left:3px solid var(--accent)}
+  .defline .dn{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--accent);flex:none;margin-top:1px}
+  .defline p{font-size:15px;line-height:1.55;color:var(--text)}
+  .defline p b{color:var(--accent-ink);font-weight:600}
+  .credit{margin-top:22px;font-size:13px;color:var(--mute);font-style:italic}
+
+  /* operating picture */
+  .meta-strip{display:flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;margin-top:26px}
+  .meta{padding:14px 20px;border-right:1px solid var(--line);flex:1;min-width:130px}
+  .meta:last-child{border-right:none}
+  .meta .ml{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:5px}
+  .meta .mv{font-size:16px;font-weight:600}
+  .meta .mv.warn{color:var(--amber)}
+
+  .phasebar{position:relative;height:58px;margin:22px 0 6px}
+  .phasebar .track{position:absolute;top:22px;height:22px;border-radius:11px}
+  .track.pre{left:0;width:62%;background:linear-gradient(90deg,var(--green-soft),var(--amber-soft))}
+  .track.post{left:62%;right:0;background:var(--panel-2);border:1px solid var(--line)}
+  .track-lbl{position:absolute;top:26px;font-size:10px;font-weight:600;letter-spacing:.04em}
+  .track-lbl.pre{left:12px;color:var(--amber)} .track-lbl.post{right:12px;color:var(--mute-2)}
+  .golive{position:absolute;left:62%;top:8px;height:44px;border-left:2.5px solid var(--green)}
+  .golive .dot{position:absolute;left:-6px;top:15px;width:11px;height:11px;border-radius:50%;background:var(--green)}
+  .golive .cap{position:absolute;top:46px;left:-42px;width:110px;text-align:center;font-size:10px;font-weight:600;color:var(--green)}
+  .nowm{position:absolute;left:14%;top:8px;height:44px;border-left:2px dashed var(--red)}
+  .nowm .cap{position:absolute;top:46px;left:-42px;width:110px;text-align:center;font-size:10px;font-weight:700;color:var(--red)}
+
+  .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:16px}
+  @media(max-width:860px){.metric-grid{grid-template-columns:repeat(2,1fr)}}
+  .metric{padding:20px 18px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r-sm);position:relative;transition:.25s}
+  .metric.flash{box-shadow:0 0 0 3px var(--accent-soft)}
+  .metric .ml{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:12px;font-weight:500}
+  .metric .mv{font-weight:700;font-size:32px;line-height:1;letter-spacing:-.02em}
+  .metric .mbar{height:5px;border-radius:5px;background:var(--line);margin-top:14px;overflow:hidden}
+  .metric .mfill{height:100%;border-radius:5px;transition:width .5s ease}
+  .metric .mstatus{font-size:11px;font-weight:600;margin-top:10px}
+  .metric.ok .mv{color:var(--green)}.metric.ok .mfill{background:var(--green)}.metric.ok .mstatus{color:var(--green)}
+  .metric.warn .mv{color:var(--amber)}.metric.warn .mfill{background:var(--amber)}.metric.warn .mstatus{color:var(--amber)}
+  .metric.bad .mv{color:var(--red)}.metric.bad .mfill{background:var(--red)}.metric.bad .mstatus{color:var(--red)}
+  .metric.locked{background:repeating-linear-gradient(135deg,var(--bg-2),var(--bg-2) 10px,#eef0f3 10px,#eef0f3 12px)}
+  .metric.locked .mv{color:var(--mute)}.metric.locked .mstatus{color:var(--mute)}
+  .lockpill{position:absolute;top:14px;right:14px;font-size:9px;font-weight:700;letter-spacing:.06em;color:#fff;background:var(--mute);border-radius:20px;padding:3px 8px}
+  .phasetag{font-size:9px;font-weight:700;letter-spacing:.06em;margin-top:8px;text-transform:uppercase}
+  .phasetag.pre{color:var(--amber)} .phasetag.post{color:var(--mute-2)}
+
+  /* decisions requiring action */
+  .dra-head{font-size:16px;font-weight:700;margin:34px 0 4px}
+  .dra-sub{font-size:12.5px;color:var(--mute);margin-bottom:16px}
+  .ecards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  @media(max-width:900px){.ecards{grid-template-columns:1fr}}
+  .ecard{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+  .ecard-top{padding:12px 16px;font-size:11px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+  .ecard.pre .ecard-top{background:var(--amber-soft);color:var(--amber)}
+  .ecard.post .ecard-top{background:var(--red-soft);color:var(--red)}
+  .ecard-body{padding:16px}
+  .ecard .eq{font-size:15px;font-weight:700;margin-bottom:10px}
+  .ecard .erow{font-size:12px;color:var(--text-soft);margin-bottom:6px;line-height:1.4}
+  .ecard .erow b{color:var(--text)}
+  .ecard .eown{font-size:11px;color:var(--mute);margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
+  .efoot{padding:12px 16px;border-top:1px solid var(--line);background:var(--bg-2)}
+  .edbs{display:flex;gap:8px}
+  .edb{flex:1;font-size:12px;font-weight:600;padding:9px;border-radius:8px;cursor:pointer;border:1px solid var(--line-2);background:#fff;transition:.15s;text-align:center}
+  .edb.app{color:var(--green)} .edb.app:hover{background:var(--green-soft);border-color:var(--green)}
+  .edb.rej{color:var(--red)} .edb.rej:hover{background:var(--red-soft);border-color:var(--red)}
+  .edb.chosen{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .econf{font-size:11px;font-weight:600;color:var(--green);margin-top:10px;opacity:0;transition:.2s;text-align:center}
+  .econf.show{opacity:1} .econf.rej{color:var(--red)}
+  .lockmsg{padding:16px;font-size:12px;color:var(--mute);text-align:center;font-style:italic}
+
+  /* decisions screen */
+  .decgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}
+  @media(max-width:760px){.decgrid{grid-template-columns:1fr}}
+  .deccard{border:1px solid var(--line);border-radius:var(--r);padding:22px;background:var(--panel)}
+  .deccard.pre{border-left:4px solid var(--amber)} .deccard.post{border-left:4px solid var(--teal)}
+  .dphase{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+  .deccard.pre .dphase{color:var(--amber)} .deccard.post .dphase{color:var(--teal)}
+  .dq{font-size:19px;font-weight:700;margin-bottom:10px}
+  .dbreach{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--red);margin-bottom:8px}
+  .deccard p{font-size:13.5px;color:var(--text-soft);line-height:1.5}
+
+  /* signals & agents visual */
+  .flowmap{margin-top:26px;display:grid;grid-template-columns:180px 1fr;gap:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+  @media(max-width:820px){.flowmap{grid-template-columns:1fr}}
+  .fm-signals{background:var(--bg-2);border-right:1px solid var(--line);padding:18px}
+  @media(max-width:820px){.fm-signals{border-right:none;border-bottom:1px solid var(--line)}}
+  .fm-signals .fh{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:12px;font-weight:600}
+  .sigchip{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--mute-2);background:#fff;border:1px solid var(--line);border-radius:6px;padding:4px 8px;margin:0 4px 6px 0;display:inline-block}
+  .fm-agents{padding:14px}
+  .agentrow{display:grid;grid-template-columns:200px 1fr 190px;gap:12px;align-items:center;padding:12px 10px;border-bottom:1px solid var(--line)}
+  @media(max-width:820px){.agentrow{grid-template-columns:1fr;gap:5px;padding:14px 10px}}
+  .agentrow:last-child{border-bottom:none}
+  .ag-name{display:flex;align-items:center;gap:9px}
+  .ag-num{width:26px;height:26px;border-radius:7px;background:var(--accent-soft);color:var(--accent-ink);display:grid;place-items:center;font-weight:700;font-size:12px;font-family:'JetBrains Mono',monospace;flex:none}
+  .ag-name .nm{font-weight:700;font-size:13.5px}
+  .ag-name .cmd{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);display:block;margin-top:1px}
+  .ag-in{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mute-2);line-height:1.6}
+  .ag-out{font-size:11.5px;color:var(--teal);font-weight:600;text-align:right}
+  @media(max-width:820px){.ag-out{text-align:left}}
+  .ag-out .arr{color:var(--line-2);margin-right:5px}
+  .cond{display:inline-block;font-size:8.5px;font-weight:700;letter-spacing:.05em;color:#fff;background:var(--teal);border-radius:20px;padding:2px 6px;margin-left:5px;vertical-align:middle}
+  .synthrow{background:var(--panel-2)} .govrow{background:var(--red-soft)}
+  .govrow .ag-num{background:var(--red-soft);color:var(--red)} .govrow .ag-out{color:var(--red)}
+
+  /* signal engine */
+  .engine{margin-top:26px;display:flex;flex-direction:column;gap:10px}
+  .elayer{border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;background:var(--panel);position:relative}
+  .elayer .en{position:absolute;left:-1px;top:-1px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:#fff;background:var(--accent);border-radius:var(--r) 0 var(--r-sm) 0;padding:4px 12px}
+  .elayer .et{font-weight:700;font-size:14px;margin:14px 0 4px}
+  .elayer .ed{font-size:12.5px;color:var(--text-soft);line-height:1.5}
+  .elayer.src{background:var(--bg-2)} .elayer.src .en{background:var(--mute-2)}
+  .elayer.gov{background:var(--red-soft);border-color:#f3c9c2} .elayer.gov .en{background:var(--red)}
+  .elayer.exec{background:var(--accent-soft);border-color:#c7dbff} .elayer.exec .en{background:var(--accent-ink)}
+  .srcrow{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+  .srcrow span{font-family:'JetBrains Mono',monospace;font-size:11px;background:#fff;border:1px solid var(--line);border-radius:6px;padding:4px 10px;color:var(--mute-2)}
+  .earrow{text-align:center;color:var(--line-2);font-size:15px;margin:-4px 0}
+  /* compact agents inside intelligence band */
+  .agc{margin-top:12px;display:flex;flex-direction:column;gap:0;border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;background:#fff}
+  .agcrow{display:grid;grid-template-columns:190px 1fr 180px;gap:10px;align-items:center;padding:9px 12px;border-bottom:1px solid var(--line-soft,#eef0f3)}
+  .agcrow:last-child{border-bottom:none}
+  @media(max-width:820px){.agcrow{grid-template-columns:1fr;gap:3px;padding:11px 12px}}
+  .agcrow .an{display:flex;align-items:center;gap:8px}
+  .agcrow .an .anum{width:22px;height:22px;border-radius:6px;background:var(--accent-soft);color:var(--accent-ink);display:grid;place-items:center;font-weight:700;font-size:11px;font-family:'JetBrains Mono',monospace;flex:none}
+  .agcrow .an .anm{font-weight:700;font-size:12.5px}
+  .agcrow .ain{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mute-2);line-height:1.5}
+  .agcrow .aout{font-size:11px;color:var(--teal);font-weight:600;text-align:right}
+  @media(max-width:820px){.agcrow .aout{text-align:left}}
+  .agcrow .aout .ar{color:var(--line-2);margin-right:4px}
+  .agcrow.synth{background:var(--panel-2)}
+  .condp{display:inline-block;font-size:8px;font-weight:700;letter-spacing:.05em;color:#fff;background:var(--teal);border-radius:20px;padding:1px 6px;margin-left:4px;vertical-align:middle}
+
+  /* prompt */
+  .promptbox{margin-top:16px;background:#0f1720;border-radius:var(--r);padding:22px 24px;overflow:auto}
+  .promptbox pre{font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;color:#d6dbe2;white-space:pre-wrap}
+  .c-role{color:#7ea8ff;font-weight:600} .c-key{color:#6ee7b7} .c-comment{color:#6b7686}
+  /* natural-language prompt */
+  .nlbox{margin-top:16px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:26px 28px}
+  .nlbox .nlp{font-size:14.5px;line-height:1.7;color:var(--text);margin-bottom:14px}
+  .nlbox .nlp:last-child{margin-bottom:0}
+  .nlbox .nlp b{color:var(--accent-ink);font-weight:600}
+  .nlbox .nlp.quiet{color:var(--text-soft);font-size:13.5px;font-style:italic;border-top:1px solid var(--line);padding-top:14px;margin-top:16px}
+  .nlbox .nltag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600;display:block;margin-bottom:4px}
+  /* tabs */
+  .ptabs{display:inline-flex;gap:6px;background:var(--bg-2);border:1px solid var(--line);border-radius:10px;padding:4px;margin-bottom:2px}
+  .ptab{font-size:12.5px;font-weight:600;padding:8px 16px;border-radius:7px;cursor:pointer;color:var(--mute-2);border:none;background:transparent;transition:.15s}
+  .ptab.on{background:#fff;color:var(--accent-ink);box-shadow:0 1px 2px rgba(0,0,0,.06)}
+  .pview{display:none} .pview.on{display:block}
+  .anno{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+  @media(max-width:760px){.anno{grid-template-columns:1fr 1fr}}
+  .anno .a{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-sm);padding:14px}
+  .anno .a .n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);font-weight:600;margin-bottom:5px}
+  .anno .a p{font-size:12px;color:var(--text-soft);line-height:1.45}
+
+  /* simple flow */
+  .sflow{margin-top:26px;display:flex;align-items:stretch;gap:0;flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px}
+  .sfnode{flex:1;min-width:130px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 14px;text-align:center}
+  .sfnode.human{border-color:var(--accent);background:var(--accent-soft)}
+  .sfnode .sfl{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:8px}
+  .sfnode .sfv{font-size:12.5px;font-weight:600;line-height:1.35}
+  .sfnode .sfv .mono{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mute-2)}
+  .sfnode.human .sfv{color:var(--accent-ink)}
+  .sfsep{display:flex;align-items:center;color:var(--line-2);font-size:18px;padding:0 4px;flex:none}
+  .flowrules{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+  @media(max-width:760px){.flowrules{grid-template-columns:1fr}}
+  .frule{background:var(--bg-2);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--r-sm);padding:16px 18px}
+  .frule .ft{font-weight:700;font-size:14px;margin-bottom:5px}
+  .frule p{font-size:13px;color:var(--text-soft);line-height:1.5}
+
+  /* economics */
+  .econ{margin-top:26px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+  .econ table{width:100%;border-collapse:collapse}
+  .econ th{background:var(--bg-2);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);text-align:left;padding:13px 18px;font-weight:600;border-bottom:1px solid var(--line)}
+  .econ td{padding:14px 18px;border-bottom:1px solid var(--line);font-size:14px}
+  .econ tr:last-child td{border-bottom:none}
+  .econ .before{color:var(--mute-2)}
+  .econ .arrow{color:var(--accent);font-weight:700;text-align:center}
+  .econ .after{color:var(--green);font-weight:700}
+  .econ .mname{font-weight:600;color:var(--text)}
+  .econ-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+  @media(max-width:760px){.econ-cards{grid-template-columns:1fr}}
+  .ecc{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:20px;text-align:center}
+  .ecc .v{font-size:30px;font-weight:700;color:var(--accent);line-height:1}
+  .ecc .l{font-size:12px;color:var(--mute);margin-top:8px}
+  .econ-note{margin-top:18px;font-size:12.5px;color:var(--mute);font-style:italic}
+
+  .footnote{margin-top:24px;font-size:13.5px;color:var(--text-soft);line-height:1.55;padding:16px 20px;background:var(--green-soft);border-radius:var(--r-sm)}
+  .footnote b{color:#0a7a4f}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.9 6.2 6.8.8-5 4.6 1.3 6.7L12 17.8 5.9 20.3 7.2 13.6l-5-4.6 6.8-.8z"/></svg>
+    <div>
+      <div class="brand-name">LAUNCH <b>READINESS</b></div>
+      <div class="brand-sub">A GTM Workflow · walkthrough</div>
+    </div>
+  </div>
+  <div class="topbar-right"><span class="step-count mono" id="stepCount">01 / 06</span></div>
+</div>
+<div class="rail"><div class="rail-fill" id="railFill"></div></div>
+<nav class="dotnav" id="dotnav"></nav>
+
+<div class="stage">
+
+  <!-- ===== 1 · THE PROBLEM ===== -->
+  <section class="screen active" data-label="The Problem">
+    <div class="kicker"><span class="num">01</span> The Workflow</div>
+    <h1 class="title">Launch readiness, <em>coordinated by agents</em></h1>
+    <p class="lede">A product launch is one of the most scattered workflows in GTM. Readiness lives across eight tools, status goes stale before it's reviewed, and decisions wait for the next meeting. This walkthrough shows how agentic AI runs that daily coordination — so the launch owner is left with only the decisions.</p>
+    <div class="def">
+      <div class="defline"><span class="dn">01</span><p><b>The pain today:</b> information spread across Drive, Slack, Jira, Zoom, email. Readiness hard to assess. Risks surface late. Every status needs a meeting.</p></div>
+      <div class="defline"><span class="dn">02</span><p><b>The move:</b> agents read the tools the team already uses, run the launch cadence, and turn scattered signals into <b>decision-ready briefs.</b></p></div>
+      <div class="defline"><span class="dn">03</span><p><b>The rule:</b> agents propose, a human decides. Nothing material ships without approval — human-in-the-loop at every real call.</p></div>
+    </div>
+    <p class="credit">A clean-room illustration of a pattern I designed and deployed for a real GTM program — no proprietary content, just the mechanics.</p>
+    <div class="nav"><span></span>
+      <button class="btn" onclick="go(1)">The Operating Picture <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </section>
+
+  <!-- ===== 2 · OPERATING PICTURE + DECISIONS ===== -->
+  <section class="screen" data-label="Operating Picture">
+    <div class="kicker"><span class="num">02</span> One Screen</div>
+    <h1 class="title">Feature X Launch</h1>
+    <p class="lede">The single screen the launch owner opens to know exactly where things stand. Today is July 3; go-live is September 15. Readiness signals read live now. Performance signals stay locked until there's traffic — every breach below produces a decision.</p>
+
+    <div class="meta-strip">
+      <div class="meta"><div class="ml">Initiative</div><div class="mv">Feature X Launch</div></div>
+      <div class="meta"><div class="ml">Segment</div><div class="mv">Mid-Market</div></div>
+      <div class="meta"><div class="ml">Launch Date</div><div class="mv">September 15</div></div>
+      <div class="meta"><div class="ml">Health</div><div class="mv warn">● Yellow</div></div>
+      <div class="meta"><div class="ml">Open Decisions</div><div class="mv">2</div></div>
+    </div>
+
+    <div class="phasebar">
+      <div class="track pre"></div><div class="track post"></div>
+      <div class="track-lbl pre">◄ PRE-LAUNCH · readiness</div>
+      <div class="track-lbl post">POST-LAUNCH · performance ►</div>
+      <div class="nowm"><span class="cap">NOW · Jul 3</span></div>
+      <div class="golive"><span class="dot"></span><span class="cap">GO-LIVE · Sep 15</span></div>
+    </div>
+
+    <div class="metric-grid">
+      <div class="metric warn" id="m-readiness">
+        <div class="ml">Launch Readiness</div>
+        <div class="mv">78%</div>
+        <div class="mbar"><div class="mfill" style="width:78%"></div></div>
+        <div class="mstatus">On Track · Watch</div>
+        <div class="phasetag pre">pre-launch</div>
+      </div>
+      <div class="metric warn" id="m-audience">
+        <div class="ml">Audience Quality</div>
+        <div class="mv">72%</div>
+        <div class="mbar"><div class="mfill" style="width:72%"></div></div>
+        <div class="mstatus">Acceptable</div>
+        <div class="phasetag pre">pre-launch</div>
+      </div>
+      <div class="metric bad" id="m-field">
+        <div class="ml">Field / Rep Readiness</div>
+        <div class="mv">43%</div>
+        <div class="mbar"><div class="mfill" style="width:43%"></div></div>
+        <div class="mstatus">Below Threshold</div>
+        <div class="phasetag pre">pre-launch</div>
+      </div>
+      <div class="metric locked" id="m-funnel">
+        <span class="lockpill">🔒 LOCKED</span>
+        <div class="ml">Conversion Health</div>
+        <div class="mv">—</div>
+        <div class="mbar"><div class="mfill" style="width:0%"></div></div>
+        <div class="mstatus">Activates at go-live</div>
+        <div class="phasetag post">post-launch · Sep 15</div>
+      </div>
+    </div>
+
+    <div class="dra-head">Decisions Requiring Action</div>
+    <div class="dra-sub">Each breach above → a prepared brief here. Agents propose; you decide.</div>
+
+    <div class="ecards">
+      <div class="ecard pre">
+        <div class="ecard-top"><span>FIELD · 43%</span><span>PRE-LAUNCH</span></div>
+        <div class="ecard-body">
+          <div class="eq">Are we ready to launch?</div>
+          <div class="erow"><b>Problem:</b> West-region training incomplete — 43% certified.</div>
+          <div class="erow"><b>Recommendation:</b> Launch East only.</div>
+          <div class="eown">Owner A · East go-live Sep 5 · West cert Sep 7</div>
+        </div>
+        <div class="efoot">
+          <div class="edbs">
+            <div class="edb app" onclick="decide(this,'d1')">Approve</div>
+            <div class="edb rej" onclick="decide(this,'d1')">Reject</div>
+          </div>
+          <div class="econf">Human-in-the-loop</div>
+        </div>
+      </div>
+
+      <div class="ecard pre">
+        <div class="ecard-top"><span>AUDIENCE · 72%</span><span>PRE-LAUNCH</span></div>
+        <div class="ecard-body">
+          <div class="eq">Targeting the right audience?</div>
+          <div class="erow"><b>Problem:</b> 340 accounts double-targeted — 22% overlap.</div>
+          <div class="erow"><b>Recommendation:</b> Suppress overlapping accounts.</div>
+          <div class="eown">Owner E · Apply suppression list · Today</div>
+        </div>
+        <div class="efoot">
+          <div class="edbs">
+            <div class="edb app" onclick="decide(this,'d3')">Approve</div>
+            <div class="edb rej" onclick="decide(this,'d3')">Reject</div>
+          </div>
+          <div class="econf">Human-in-the-loop</div>
+        </div>
+      </div>
+
+      <div class="ecard post">
+        <div class="ecard-top"><span>CONVERSION · 🔒</span><span>POST-LAUNCH</span></div>
+        <div class="lockmsg">Performance decisions activate at go-live.<br>No funnel exists until there's traffic — so no decision to make yet.</div>
+      </div>
+    </div>
+
+    <p class="econ-note" style="margin-top:16px">Approve and the metric above re-scores in real time — the loop closes without a meeting.</p>
+
+    <div class="nav">
+      <button class="btn ghost" onclick="go(0)">Back</button>
+      <button class="btn" onclick="go(2)">The Signal Engine <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </section>
+
+  <!-- ===== 3 · SIGNALS & AGENTS ===== -->
+  <!-- ===== 3 · SIGNAL ENGINE (merged) ===== -->
+  <section class="screen" data-label="Signal Engine">
+    <div class="kicker"><span class="num">03</span> The Engine Behind It</div>
+    <h1 class="title">The <em>Signal Engine</em></h1>
+    <p class="lede">Source systems are never replaced. The engine reads them, turns raw facts into ~20 typed signals, routes each to the one agent that owns it, and funnels every verdict through a single human gate. One data shape, all the way through.</p>
+
+    <div class="engine">
+      <div class="elayer src"><span class="en">SOURCES</span>
+        <div class="et">The tools the team already uses</div>
+        <div class="srcrow"><span>Drive</span><span>Slack</span><span>Jira</span><span>Zoom</span><span>Email</span><span>Confluence</span><span>Teams</span></div>
+      </div>
+      <div class="earrow">↓ &nbsp; read &amp; normalize</div>
+      <div class="elayer"><span class="en">SIGNAL LAYER</span>
+        <div class="et">Raw facts → ~20 typed signals</div>
+        <div class="ed">Every source fact is normalized into one shape — a typed signal. This is the move that lets specialized agents work off the same truth without contradicting each other.</div>
+      </div>
+      <div class="earrow">↓ &nbsp; route to the owning agent</div>
+      <div class="elayer"><span class="en">INTELLIGENCE</span>
+        <div class="et">6 agents — each reads only its signals, emits one verdict</div>
+        <div class="ed">Narrow by design: an agent that does one thing is testable and won't drift. The Customer agent is conditional — it wakes only when Funnel raises a drop_flag.</div>
+        <div class="agc">
+          <div class="agcrow"><div class="an"><span class="anum">1</span><span class="anm">Launch Readiness</span></div><div class="ain">launch_readiness · milestones · blockers · days_to_launch</div><div class="aout"><span class="ar">→</span>readiness_verdict</div></div>
+          <div class="agcrow"><div class="an"><span class="anum">2</span><span class="anm">Audience</span></div><div class="ain">audience_overlap · quality · accts_double</div><div class="aout"><span class="ar">→</span>audience_verdict + suppress_rec</div></div>
+          <div class="agcrow"><div class="an"><span class="anum">3</span><span class="anm">Enablement</span></div><div class="ain">field_cert · training · reps_certified</div><div class="aout"><span class="ar">→</span>cert_verdict + gap_list</div></div>
+          <div class="agcrow"><div class="an"><span class="anum">4</span><span class="anm">Funnel</span></div><div class="ain">win_rate · trials · opp_to_close · pipeline</div><div class="aout"><span class="ar">→</span>funnel_verdict + drop_flag</div></div>
+          <div class="agcrow"><div class="an"><span class="anum">5</span><span class="anm">Customer<span class="condp">CONDITIONAL</span></span></div><div class="ain">pricing_obj · churn · sentiment · feature_gaps</div><div class="aout"><span class="ar">→</span>root_cause + evidence</div></div>
+          <div class="agcrow synth"><div class="an"><span class="anum">6</span><span class="anm">Exec Intelligence</span></div><div class="ain">all five verdicts above</div><div class="aout"><span class="ar">→</span>decision_brief</div></div>
+        </div>
+      </div>
+      <div class="earrow">↓ &nbsp; synthesize</div>
+      <div class="elayer exec"><span class="en">EXEC INTELLIGENCE</span>
+        <div class="et">Verdicts → one decision brief</div>
+        <div class="ed">Problem · recommendation · owners · due dates — the operator gets one brief, not five alerts.</div>
+      </div>
+      <div class="earrow">↓ &nbsp; govern</div>
+      <div class="elayer gov"><span class="en">GOVERNANCE</span>
+        <div class="et">The control plane — human approves</div>
+        <div class="ed">Threshold breach fires an escalation → human approve / reject → audit record. Nothing material happens without a human.</div>
+      </div>
+    </div>
+
+    <div class="nav">
+      <button class="btn ghost" onclick="go(1)">Back</button>
+      <button class="btn" onclick="go(3)">Inside an Agent <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </section>
+
+  <!-- ===== 6 · AGENT PROMPT ===== -->
+  <section class="screen" data-label="Inside an Agent">
+    <div class="kicker"><span class="num">04</span> Inside an Agent</div>
+    <h1 class="title">You don't write code. <em>You write what you want.</em></h1>
+    <p class="lede">Here's the thing people miss: you don't write code. You write what you want, in plain English — the way you'd ask a sharp colleague. This is the Enablement agent, exactly as a marketer would type it.</p>
+
+    <div class="nlbox">
+      <p class="nlp">I'm launching a product and I need to know if my sales reps are ready to sell it.</p>
+      <p class="nlp">Check our certification numbers — what % of reps are certified, broken down by region.</p>
+      <p class="nlp">If we're at <b>60% or higher</b>, tell me we're good. If we're below 60%, flag it — but tell me <b>which region</b> is behind, and suggest the least disruptive option, like launching only where reps are ready.</p>
+      <p class="nlp">Don't do anything on your own — just give me your read and a recommendation, and I'll make the call.</p>
+    </div>
+
+    <p class="econ-note" style="margin-top:14px">That's the whole agent. Four plain sentences. Notice what's baked in: one job (sales readiness), the number it checks, the bar (60%), and the rule — it recommends, you decide.</p>
+
+    <div class="anno">
+      <div class="a"><div class="n">One job</div><p>The agent watches a single thing — sales readiness. Nothing else.</p></div>
+      <div class="a"><div class="n">What to check</div><p>You name the numbers it should look at. It reads, it doesn't touch the tools.</p></div>
+      <div class="a"><div class="n">The bar</div><p>You set the line — 60%. Change your mind, change one sentence.</p></div>
+      <div class="a"><div class="n">You decide</div><p>It recommends. You approve. That rule is what makes it safe.</p></div>
+    </div>
+
+    <div class="nav">
+      <button class="btn ghost" onclick="go(2)">Back</button>
+      <button class="btn" onclick="go(4)">See it run <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </section>
+
+  <!-- ===== 5 · THE AGENT, LIVE ===== -->
+  <section class="screen" data-label="See It Run">
+    <div class="kicker"><span class="num">05</span> The Agent, Live</div>
+    <h1 class="title">Now watch it <em>actually run.</em></h1>
+    <p class="lede">Everything before this was the pattern. This is the Enablement agent running for real — it reads the certification data below, applies the 60% bar, and prepares a decision. Nothing is hardcoded: the verdict is computed live. You make the call.</p>
+
+    <div class="panel pad" style="margin-top:22px">
+      <div class="lbl">Source · rep_certification.csv · Feature X Launch</div>
+      <table class="ltab">
+        <thead><tr><th>Rep</th><th>Region</th><th>Certified</th></tr></thead>
+        <tbody id="certBody"></tbody>
+      </table>
+      <div style="text-align:center;margin-top:22px">
+        <button class="btn" id="runAgent">▶ Run the Enablement agent</button>
+      </div>
+    </div>
+
+    <div id="liveOut" style="display:none">
+      <div class="lbl" style="margin-top:28px">Agent · reads the data, applies the rule</div>
+      <div class="think mono" id="thinkBox"></div>
+
+      <div class="lgrid" id="lVerdicts"></div>
+
+      <div class="ebrief" id="lBrief" style="display:none;margin-top:20px">
+        <div class="ebh"><span>Decision required · Field readiness</span><span class="mono" style="font-size:10px">Human-in-the-loop</span></div>
+        <div class="ebb">
+          <div class="eq">Are we ready to launch?</div>
+          <p class="ep"><span class="mono ek">Problem</span> West-region certification at 29% — below the 60% bar. East is ready at 86%.</p>
+          <p class="ep"><span class="mono ek">Recommendation</span> Launch East on schedule. Hold West until certification clears the bar.</p>
+          <div class="emeta mono">Owner: Field Enablement · East go-live Sep 15 · West target cert Sep 22</div>
+          <div class="efoot">
+            <span class="mono" style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)">You decide →</span>
+            <button class="lbtn lapp" onclick="liveDecide(this,true)">Approve</button>
+            <button class="lbtn lrej" onclick="liveDecide(this,false)">Reject</button>
+            <span class="lconf mono" id="lConf"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="lresolved" id="lResolved" style="display:none">
+        <div class="lrtitle mono">✓ Approved · loop closed, no meeting</div>
+        <div class="lrline">Field / Rep Readiness re-scores: <b style="color:var(--green)">57% → East-only 86% ✓ on track</b></div>
+        <div class="lrline">Launch scope updated: <b>East go-live confirmed · West held</b></div>
+        <div class="mono" style="font-size:11px;color:var(--mute);margin-top:10px">audit logged · 2026-07-03 · approved by launch owner</div>
+      </div>
+    </div>
+
+    <p class="econ-note" style="margin-top:18px">Change any row above and the verdict changes — because the agent computes it, it isn't a screenshot. In a real engagement, this same agent reads live Jira or your LMS instead of a sample file.</p>
+
+    <div class="nav">
+      <button class="btn ghost" onclick="go(3)">Back</button>
+      <button class="btn" onclick="go(5)">See the updated picture <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </section>
+
+  <!-- ===== 6 · OPERATING PICTURE, AFTER ===== -->
+  <section class="screen" data-label="Status After">
+    <div class="kicker"><span class="num">06</span> The Loop Closes</div>
+    <h1 class="title">The same picture, <em>moments later.</em></h1>
+    <p class="lede">This is the operating picture right after the approval — no meeting, no status chase. The agent's decision has re-scored Field Readiness, cleared the open field decision, and moved the launch to a confident state. One approval, and the whole picture updates.</p>
+
+    <div class="opic-head" style="display:flex;flex-wrap:wrap;gap:20px;align-items:center;margin:22px 0 6px">
+      <div><span class="mono" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)">Initiative</span><div style="font-weight:600;font-size:15px">Feature X Launch</div></div>
+      <div><span class="mono" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)">Launch Date</span><div style="font-weight:600;font-size:15px">September 15</div></div>
+      <div><span class="mono" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)">Health</span><div style="font-weight:600;font-size:15px;color:var(--green)">● Green · East confirmed</div></div>
+      <div><span class="mono" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)">Open Decisions</span><div style="font-weight:600;font-size:15px" id="opic-open">1</div></div>
+    </div>
+
+    <div class="metric-grid">
+      <div class="metric warn">
+        <div class="ml">Launch Readiness</div>
+        <div class="mv">85%</div>
+        <div class="mbar"><div class="mfill" style="width:85%"></div></div>
+        <div class="mstatus">On Track</div>
+        <div class="phasetag pre">pre-launch</div>
+      </div>
+      <div class="metric warn" id="m-aud-after">
+        <div class="ml">Audience Quality</div>
+        <div class="mv">72%</div>
+        <div class="mbar"><div class="mfill" style="width:72%"></div></div>
+        <div class="mstatus">Acceptable</div>
+        <div class="phasetag pre">pre-launch</div>
+      </div>
+      <div class="metric ok" id="m-field-after">
+        <div class="ml">Field / Rep Readiness</div>
+        <div class="mv">86%</div>
+        <div class="mbar"><div class="mfill" style="width:86%"></div></div>
+        <div class="mstatus">✓ East-only · cleared</div>
+        <div class="phasetag pre">pre-launch</div>
+      </div>
+      <div class="metric locked">
+        <span class="lockpill">🔒 LOCKED</span>
+        <div class="ml">Conversion Health</div>
+        <div class="mv">—</div>
+        <div class="mbar"><div class="mfill" style="width:0%"></div></div>
+        <div class="mstatus">Activates at go-live</div>
+        <div class="phasetag post">post-launch · Sep 15</div>
+      </div>
+    </div>
+
+    <div class="dra-head">What changed</div>
+    <div class="dra-sub">The field decision moved from flagged to resolved — driven by the agent's recommendation and your approval.</div>
+
+    <div class="ecards">
+      <div class="ecard pre" id="ac-field" style="border-left:3px solid var(--green)">
+        <div class="ecard-top"><span style="color:var(--green)">FIELD · 43% → 86%</span><span>RESOLVED</span></div>
+        <div class="ecard-body">
+          <div class="eq">Are we ready to launch?</div>
+          <div class="erow"><b>Decision:</b> Launch East only — approved.</div>
+          <div class="erow"><b>Result:</b> Field readiness re-scores to the East-only path; West held for the next cert cycle.</div>
+          <div class="eown mono" style="color:var(--green)">✓ audit logged · Jul 3 · approved by launch owner</div>
+        </div>
+      </div>
+
+      <div class="ecard pre" id="ac-aud">
+        <div class="ecard-top"><span>AUDIENCE · 72%</span><span>PRE-LAUNCH</span></div>
+        <div class="ecard-body">
+          <div class="eq">Targeting the right audience?</div>
+          <div class="erow"><b>Still open:</b> 340 accounts double-targeted — awaiting your call.</div>
+          <div class="erow"><b>Recommendation:</b> Suppress overlapping accounts.</div>
+          <div class="eown">Owner E · one decision still needs you</div>
+        </div>
+      </div>
+
+      <div class="ecard post">
+        <div class="ecard-top"><span>CONVERSION · 🔒</span><span>POST-LAUNCH</span></div>
+        <div class="lockmsg">Still locked until go-live.<br>Performance decisions activate once there's traffic.</div>
+      </div>
+    </div>
+
+    <p class="econ-note" style="margin-top:16px">This is the whole point: one agent read the data, one human approved, and the operating picture updated — without a status meeting, a rebuilt report, or a wait for the next review. The loop closed in place.</p>
+
+    <div class="nav">
+      <button class="btn ghost" onclick="go(4)">Back</button>
+      <button class="btn" onclick="go(6)">How It Flows <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </section>
+
+  <!-- ===== 7 · FLOW ===== -->
+  <section class="screen" data-label="How It Flows">
+    <div class="kicker"><span class="num">07</span> One Signal, End to End</div>
+    <h1 class="title">The engine <em>in motion</em></h1>
+    <p class="lede">The Signal Engine drawn as one example — field certification's journey from a raw Jira fact to a governed decision. Every path, whichever agent fires, ends at the same human gate.</p>
+
+    <div class="sflow">
+      <div class="sfnode"><div class="sfl">Source</div><div class="sfv">Jira: 43% West reps certified</div></div>
+      <div class="sfsep">→</div>
+      <div class="sfnode"><div class="sfl">Signal</div><div class="sfv"><span class="mono">field_cert = 43%</span></div></div>
+      <div class="sfsep">→</div>
+      <div class="sfnode"><div class="sfl">Agent 3</div><div class="sfv">Enablement: 43% &lt; 60% → breach</div></div>
+      <div class="sfsep">→</div>
+      <div class="sfnode"><div class="sfl">Brief</div><div class="sfv">Exec Intel: launch East only</div></div>
+      <div class="sfsep">→</div>
+      <div class="sfnode human"><div class="sfl">Human</div><div class="sfv">approve / reject</div></div>
+      <div class="sfsep">→</div>
+      <div class="sfnode"><div class="sfl">Record</div><div class="sfv">audit logged · re-scores 43→85%</div></div>
+    </div>
+
+    <div class="flowrules">
+      <div class="frule"><div class="ft">Fan-in, not free-for-all</div><p>Five agents run in parallel, each on its own signals. All verdicts funnel into one synthesis agent — the operator gets one brief, not five alerts.</p></div>
+      <div class="frule"><div class="ft">One human gate</div><p>Every path ends at the same approve / reject checkpoint. Propose → approve → publish, always.</p></div>
+    </div>
+
+    <div class="footnote"><b>The honest boundary:</b> these agents sense and decide — they read, verdict, and escalate. They don't yet plan the fix, assign owners, and chase tasks to closure. That execution half is buildable, but it's where governed write-back gets hard. Reading is easy; writing back safely is the real engineering.</div>
+
+    <div class="nav">
+      <button class="btn ghost" onclick="go(5)">Back</button>
+      <button class="btn" onclick="go(7)">The Economics <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </section>
+
+  <!-- ===== 8 · ECONOMICS ===== -->
+  <section class="screen" data-label="The Economics">
+    <div class="kicker"><span class="num">08</span> Business Impact</div>
+    <h1 class="title">What it <em>changes</em></h1>
+    <p class="lede">For this one launch workflow, the gain isn't headcount — it's the recovery of senior attention. Time moves from status-chasing to judgment. Figures illustrate the pattern's mechanics, not a guaranteed outcome.</p>
+
+    <div class="econ">
+      <table>
+        <tr><th>Metric</th><th>Before</th><th></th><th>After</th></tr>
+        <tr><td class="mname">Readiness assessment</td><td class="before">~5 days</td><td class="arrow">→</td><td class="after">~30 minutes</td></tr>
+        <tr><td class="mname">Decision latency</td><td class="before">~3 weeks</td><td class="arrow">→</td><td class="after">~2 days</td></tr>
+        <tr><td class="mname">Reporting effort</td><td class="before">~4 hours</td><td class="arrow">→</td><td class="after">~15 minutes</td></tr>
+        <tr><td class="mname">Risk detection</td><td class="before">Weekly</td><td class="arrow">→</td><td class="after">Continuous</td></tr>
+      </table>
+    </div>
+
+    <div class="econ-cards">
+      <div class="ecc"><div class="v">80%</div><div class="l">Adoption target</div></div>
+      <div class="ecc"><div class="v">2,000+</div><div class="l">Est. annual hours reclaimed</div></div>
+      <div class="ecc"><div class="v">1+</div><div class="l">Approx. FTE-equivalent capacity</div></div>
+    </div>
+
+    <p class="econ-note">Figures illustrate the pattern's mechanics, not a guaranteed outcome. Real results depend on program size, tool access, and adoption.</p>
+
+    <div class="nav">
+      <button class="btn ghost" onclick="go(6)">Back</button>
+      <button class="btn ghost" onclick="go(0)">↺ Restart</button>
+    </div>
+  </section>
+
+</div>
+
+<script>
+const screens=[...document.querySelectorAll('.screen')];
+const dotnav=document.getElementById('dotnav');
+const railFill=document.getElementById('railFill');
+const stepCount=document.getElementById('stepCount');
+let cur=0;
+screens.forEach((s,i)=>{
+  const b=document.createElement('button');
+  b.innerHTML='<span class="lbl">'+s.dataset.label+'</span>';
+  b.onclick=()=>go(i);
+  dotnav.appendChild(b);
+});
+const dots=[...dotnav.children];
+function go(i){
+  if(i<0||i>=screens.length)return;
+  screens[cur].classList.remove('active');
+  dots[cur].classList.remove('on');
+  cur=i;
+  screens[cur].classList.add('active');
+  dots[cur].classList.add('on');
+  railFill.style.width=((i+1)/screens.length*100)+'%';
+  stepCount.textContent=String(i+1).padStart(2,'0')+' / '+String(screens.length).padStart(2,'0');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(screens[i].dataset.label==='Status After')renderAfter();
+}
+function renderAfter(){
+  // Field decision — reflect what happened on screen 2 (or default to the agent's approve path)
+  const fState=DECISIONS.field; // 'approved' | 'rejected' | null
+  const fCard=document.getElementById('ac-field');
+  const fMetric=document.getElementById('m-field-after');
+  if(fState==='rejected'){
+    fCard.style.borderLeft='3px solid var(--red)';
+    fCard.querySelector('.ecard-top').innerHTML='<span style="color:var(--red)">FIELD · 43%</span><span>HELD</span>';
+    fCard.querySelector('.ecard-body').innerHTML=
+      '<div class="eq">Are we ready to launch?</div>'+
+      '<div class="erow"><b>Decision:</b> Recommendation rejected — launch not cleared.</div>'+
+      '<div class="erow"><b>Result:</b> Field readiness stays flagged at 43%. The agent holds; nothing shipped.</div>'+
+      '<div class="eown mono" style="color:var(--red)">✗ still below threshold · revisit after West cert</div>';
+    fMetric.classList.remove('ok');fMetric.classList.add('bad');
+    fMetric.querySelector('.mv').textContent='43%';
+    fMetric.querySelector('.mfill').style.width='43%';
+    fMetric.querySelector('.mstatus').textContent='Below Threshold';
+  }
+  // Audience decision — reflect screen-2 choice
+  const aState=DECISIONS.audience; // 'approved' | 'rejected' | null
+  const aCard=document.getElementById('ac-aud');
+  const aMetric=document.getElementById('m-aud-after');
+  if(aState==='approved'){
+    aCard.style.borderLeft='3px solid var(--green)';
+    aCard.querySelector('.ecard-top').innerHTML='<span style="color:var(--green)">AUDIENCE · 72% → 90%</span><span>RESOLVED</span>';
+    aCard.querySelector('.ecard-body').innerHTML=
+      '<div class="eq">Targeting the right audience?</div>'+
+      '<div class="erow"><b>Decision:</b> Suppress overlapping accounts — approved.</div>'+
+      '<div class="erow"><b>Result:</b> 340 double-targeted accounts suppressed; audience quality re-scores to 90%.</div>'+
+      '<div class="eown mono" style="color:var(--green)">✓ audit logged · suppression applied</div>';
+    aMetric.classList.remove('warn');aMetric.classList.add('ok');
+    aMetric.querySelector('.mv').textContent='90%';
+    aMetric.querySelector('.mfill').style.width='90%';
+    aMetric.querySelector('.mstatus').textContent='Strong';
+  }else if(aState==='rejected'){
+    aCard.style.borderLeft='3px solid var(--amber)';
+    aCard.querySelector('.ecard-top').innerHTML='<span style="color:var(--amber)">AUDIENCE · 72%</span><span>DECLINED</span>';
+    aCard.querySelector('.ecard-body').innerHTML=
+      '<div class="eq">Targeting the right audience?</div>'+
+      '<div class="erow"><b>Decision:</b> Suppression rejected — proceeding as-is.</div>'+
+      '<div class="erow"><b>Result:</b> Overlap accepted; audience stays at 72%, flagged for monitoring.</div>'+
+      '<div class="eown mono" style="color:var(--amber)">· logged · no change applied</div>';
+  } // null → leave as "still open" default
+  // Open-decisions count
+  let open=0;
+  if(DECISIONS.field===null)open++;
+  if(DECISIONS.audience===null)open++;
+  const oc=document.getElementById('opic-open');
+  if(oc)oc.textContent=String(open);
+}
+const M={
+  d1:{
+    approve:[
+      {id:'m-field',cls:'warn',val:'68%',w:'68%',status:'Recovering'},
+      {id:'m-readiness',cls:'ok',val:'85%',w:'85%',status:'On Track'}
+    ],
+    before:[
+      {id:'m-field',cls:'bad',val:'43%',w:'43%',status:'Below Threshold'},
+      {id:'m-readiness',cls:'warn',val:'78%',w:'78%',status:'On Track · Watch'}
+    ]
+  },
+  d3:{
+    approve:[{id:'m-audience',cls:'ok',val:'90%',w:'90%',status:'Strong'}],
+    before:[{id:'m-audience',cls:'warn',val:'72%',w:'72%',status:'Acceptable'}]
+  }
+};
+function setMetric(u){
+  const el=document.getElementById(u.id);
+  if(!el)return;
+  el.classList.remove('ok','warn','bad');
+  el.classList.add(u.cls);
+  const mv=el.querySelector('.mv');
+  mv.textContent=u.val;
+  el.querySelector('.mfill').style.width=u.w;
+  el.querySelector('.mstatus').textContent=u.status;
+  el.classList.add('flash');
+  setTimeout(()=>el.classList.remove('flash'),700);
+}
+const DECISIONS={field:null,audience:null};
+function decide(btn,key){
+  const foot=btn.closest('.efoot');
+  foot.querySelectorAll('.edb').forEach(b=>b.classList.remove('chosen'));
+  btn.classList.add('chosen');
+  const conf=foot.querySelector('.econf');
+  conf.classList.add('show');
+  const approve=btn.classList.contains('app');
+  if(key==='d1')DECISIONS.field=approve?'approved':'rejected';
+  if(key==='d3')DECISIONS.audience=approve?'approved':'rejected';
+  const map=M[key]||{};
+  if(approve){
+    conf.classList.remove('rej');
+    conf.textContent='Approved · audit logged · picture re-scored ↑';
+    (map.approve||[]).forEach(setMetric);
+  }else{
+    conf.classList.add('rej');
+    conf.textContent='Rejected · metric stays flagged';
+    (map.before||[]).forEach(setMetric);
+  }
+}
+function ptab(btn,which){
+  btn.parentElement.querySelectorAll('.ptab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('pv-nl').classList.toggle('on',which==='nl');
+  document.getElementById('pv-st').classList.toggle('on',which==='st');
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight')go(cur+1);
+  if(e.key==='ArrowLeft')go(cur-1);
+});
+
+/* ---- Live Enablement agent ---- */
+const REPS=[
+  {n:'Rep 01',r:'East',c:true},{n:'Rep 02',r:'East',c:true},{n:'Rep 03',r:'East',c:true},
+  {n:'Rep 04',r:'East',c:true},{n:'Rep 05',r:'East',c:false},{n:'Rep 06',r:'East',c:true},
+  {n:'Rep 07',r:'East',c:true},{n:'Rep 08',r:'West',c:false},{n:'Rep 09',r:'West',c:false},
+  {n:'Rep 10',r:'West',c:true},{n:'Rep 11',r:'West',c:false},{n:'Rep 12',r:'West',c:false},
+  {n:'Rep 13',r:'West',c:true},{n:'Rep 14',r:'West',c:false}
+];
+const BAR=60;
+const cb=document.getElementById('certBody');
+if(cb){
+  REPS.forEach(x=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${x.n}</td><td class="creg">${x.r}</td><td class="${x.c?'cy':'cn'}">${x.c?'✓ Yes':'✗ No'}</td>`;
+    cb.appendChild(tr);
+  });
+}
+function region(r){const a=REPS.filter(x=>x.r===r);const c=a.filter(x=>x.c).length;return{c,t:a.length,p:Math.round(c/a.length*100)};}
+const runBtn=document.getElementById('runAgent');
+if(runBtn){
+  runBtn.addEventListener('click',()=>{
+    runBtn.disabled=true;runBtn.style.opacity=.4;
+    document.getElementById('liveOut').style.display='block';
+    const E=region('East'),W=region('West'),O=Math.round(REPS.filter(x=>x.c).length/REPS.length*100);
+    const lines=[
+      `> reading rep_certification.csv … 14 records, 2 regions`,
+      `> rule: field readiness must be ≥ ${BAR}% certified`,
+      `> East:  ${E.c}/${E.t} = ${E.p}%  <span class="tk">✓ above bar</span>`,
+      `> West:  ${W.c}/${W.t} = ${W.p}%  <span class="tf">✗ breach</span>`,
+      `> overall: ${O}% — below bar, driven by West`,
+      `> verdict: partial readiness → prepare decision brief`,
+      `> recommendation: launch East only, hold West`,
+      `> action: none taken. escalating to human for approval.`
+    ];
+    const tb=document.getElementById('thinkBox');
+    tb.innerHTML=lines.map(l=>`<div class="tl">${l}</div>`).join('');
+    const els=tb.querySelectorAll('.tl');
+    els.forEach((el,i)=>setTimeout(()=>el.classList.add('in'),320*(i+1)));
+    setTimeout(()=>{
+      document.getElementById('lVerdicts').innerHTML=
+        `<div class="lvc ok"><div class="lvn">East Region</div><div class="lvp">${E.p}%</div><div class="lvs">✓ Ready · above ${BAR}%</div></div>`+
+        `<div class="lvc bad"><div class="lvn">West Region</div><div class="lvp">${W.p}%</div><div class="lvs">✗ Below threshold</div></div>`;
+    },320*(lines.length+1));
+    setTimeout(()=>{document.getElementById('lBrief').style.display='block';},320*(lines.length+2.4));
+  });
+}
+function liveDecide(btn,approve){
+  const foot=btn.closest('.efoot');
+  foot.querySelectorAll('.lbtn').forEach(b=>b.classList.add('done'));
+  const conf=document.getElementById('lConf');conf.classList.add('show');
+  if(approve){
+    conf.classList.remove('rej');conf.textContent='approved · audit logged';
+    DECISIONS.field='approved';
+    document.getElementById('lBrief').style.display='none';
+    document.getElementById('lResolved').style.display='block';
+  }else{
+    conf.classList.add('rej');conf.textContent='rejected · agent holds, nothing ships';
+    DECISIONS.field='rejected';
+  }
+}
+
+go(0);
+</script>
+</body>
+</html>
