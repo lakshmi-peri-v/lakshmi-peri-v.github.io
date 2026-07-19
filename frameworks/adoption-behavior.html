@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Adoption Is a Behavior Problem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f6;
+    --surface: #ffffff;
+    --ink: #161616;
+    --ink-soft: #474743;
+    --ink-mute: #8b8a84;
+    --line: #e7e5df;
+    --line-soft: #f0efe9;
+    --accent: #0e6b5c;
+    --accent-deep: #0a4f44;
+    --accent-soft: #e3efec;
+    --red: #9c4a3c;     --red-bg: #f7ece9;
+    --amber: #a87b2f;   --amber-bg: #f9f2e4;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { -webkit-font-smoothing:antialiased; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--ink); line-height:1.6; font-size:16px; }
+  .rule { position:fixed; top:0; bottom:0; left:max(12px, calc(50% - 470px)); width:2px; background:linear-gradient(var(--accent), rgba(14,107,92,.12)); }
+  .wrap { max-width:840px; margin:0 auto; padding:72px 32px 80px; }
+
+  .eyebrow { font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:500; display:flex; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:14px; }
+  .eyebrow a { color:var(--ink-mute); text-decoration:none; }
+  .eyebrow a:hover { color:var(--accent); }
+  h1 { font-family:'Source Serif 4',serif; font-size:clamp(32px,5vw,46px); line-height:1.12; font-weight:700; margin:34px 0 10px; max-width:22ch; }
+  .thesis { font-family:'Source Serif 4',serif; font-style:italic; font-size:clamp(19px,2.4vw,24px); color:var(--ink); margin:24px 0 0; padding-left:20px; border-left:3px solid var(--accent); max-width:30em; }
+  .thesis strong { font-style:normal; font-weight:700; color:var(--accent-deep); }
+  .sub { color:var(--ink-soft); font-size:15.5px; margin-top:16px; max-width:60ch; }
+
+  h2.sec { font-family:'Source Serif 4',serif; font-size:25px; font-weight:700; border-bottom:2px solid var(--ink); padding-bottom:10px; margin-bottom:6px; margin-top:50px; }
+  .sec-sub { font-size:14px; color:var(--ink-mute); margin-bottom:22px; }
+
+  .defaults { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .def { background:var(--surface); border:1px solid var(--line); border-top:3px solid var(--accent); border-radius:10px; padding:20px 22px 16px; }
+  .def-top { display:flex; align-items:baseline; gap:12px; margin-bottom:4px; }
+  .def-num { font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; color:var(--accent); }
+  .def-name { font-family:'Source Serif 4',serif; font-weight:700; font-size:19px; }
+  .def-q { font-family:'Source Serif 4',serif; font-style:italic; font-size:15px; color:var(--accent-deep); margin-bottom:10px; }
+  .def .flips { font-size:13.5px; color:var(--ink-soft); margin-bottom:8px; }
+  .def .flips b { font-weight:600; color:var(--ink); }
+  .def .blocks { font-size:12.5px; color:var(--red); border-top:1px dashed var(--line); padding-top:8px; }
+  .def .blocks b { font-weight:600; }
+
+  .insight { margin:36px 0 0; background:var(--ink); color:#fff; border-radius:10px; padding:26px 30px; }
+  .insight p { font-family:'Source Serif 4',serif; font-size:19px; line-height:1.5; }
+  .insight em { color:#8fd4c6; font-style:italic; }
+
+  .zones { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-bottom:8px; }
+  .zone { border-radius:10px; padding:20px 20px 16px; border:1px solid var(--line); }
+  .zone.green { background:var(--accent-soft); border-top:4px solid var(--accent); }
+  .zone.yellow { background:var(--amber-bg); border-top:4px solid var(--amber); }
+  .zone.red { background:var(--red-bg); border-top:4px solid var(--red); }
+  .zone .lbl { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.13em; text-transform:uppercase; font-weight:600; margin-bottom:6px; }
+  .zone.green .lbl { color:var(--accent-deep); }
+  .zone.yellow .lbl { color:var(--amber); }
+  .zone.red .lbl { color:var(--red); }
+  .zone .crit { font-family:'Source Serif 4',serif; font-size:16.5px; font-weight:700; margin-bottom:8px; }
+  .zone p { font-size:13px; color:var(--ink-soft); margin-bottom:8px; }
+  .zone .ex { font-size:12px; color:var(--ink-mute); border-top:1px dashed rgba(0,0,0,.12); padding-top:8px; font-style:italic; }
+  .zones-note { font-family:'Source Serif 4',serif; font-style:italic; font-size:15px; text-align:center; color:var(--ink-soft); margin:14px 0 0; }
+
+  .steps-head { font-family:'Source Serif 4',serif; font-size:25px; font-weight:700; border-bottom:2px solid var(--ink); padding-bottom:10px; margin-bottom:22px; margin-top:50px; }
+  .steps { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  .step { background:var(--surface); padding:18px 16px; }
+  .step .num { font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--accent); font-weight:600; }
+  .step h3 { font-family:'Source Serif 4',serif; font-size:16px; font-weight:700; margin:6px 0; }
+  .step p { font-size:12.5px; color:var(--ink-mute); line-height:1.5; }
+
+  footer { margin-top:56px; border-top:1px solid var(--line); padding-top:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:13px; color:var(--ink-mute); }
+  footer .next { font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--accent); }
+  footer .next a { color:var(--accent); text-decoration:none; }
+
+  @media (max-width:640px){
+    .wrap{ padding:52px 22px 60px }
+    .rule{ display:none }
+    .defaults{ grid-template-columns:1fr }
+    .zones{ grid-template-columns:1fr }
+    .steps{ grid-template-columns:1fr 1fr }
+  }
+</style>
+</head>
+<body>
+<div class="rule"></div>
+<div class="wrap">
+
+  <div class="eyebrow"><span>AI Transformation Series · 06</span><a href="../index.html">← Lakshmi Peri</a></div>
+
+  <h1>AI Adoption Is a Behavior Problem</h1>
+
+  <p class="thesis">Nobody adopts a tool. They keep a habit, or they replace it. <strong>Transformation is what happens when the default changes</strong> &mdash; what people do without thinking when work arrives.</p>
+
+  <p class="sub">The standard play is a training day. Attendance is good, the demos land, the survey says 4.6 out of 5. Six weeks later, usage has decayed to the same eight believers who would have used it anyway. Leadership concludes the workforce resists change. That's the wrong autopsy. Training teaches people how. It has almost no say in whether.</p>
+
+  <h2 class="sec">The Four Defaults</h2>
+  <p class="sec-sub">A habit survives until something specific displaces it. Adoption sticks when these four defaults flip, and stalls on whichever one didn't.</p>
+
+  <div class="defaults">
+    <div class="def">
+      <div class="def-top"><span class="def-num">DEFAULT 1</span><span class="def-name">Entry</span></div>
+      <p class="def-q">When work arrives, is the AI already there?</p>
+      <p class="flips"><b>Flips when:</b> the AI lives inside the tool where work shows up. The draft is waiting in the ticket. The summary is already in the doc.</p>
+      <p class="blocks"><b>Blocked by:</b> a separate tab. Every copy-paste is a vote for the old habit.</p>
+    </div>
+    <div class="def">
+      <div class="def-top"><span class="def-num">DEFAULT 2</span><span class="def-name">Trust</span></div>
+      <p class="def-q">Do people know when to rely on it, and when not to?</p>
+      <p class="flips"><b>Flips when:</b> people have seen it be wrong, safely, and know the pattern. Calibrated trust beats blind trust and beats fear.</p>
+      <p class="blocks"><b>Blocked by:</b> one ugly public error with no explanation, or marketing that promised magic.</p>
+    </div>
+    <div class="def">
+      <div class="def-top"><span class="def-num">DEFAULT 3</span><span class="def-name">Time</span></div>
+      <p class="def-q">Is the AI path faster for this person, today?</p>
+      <p class="flips"><b>Flips when:</b> the very first use saves the individual time, not the organization in aggregate. People discount org-level benefits to roughly zero.</p>
+      <p class="blocks"><b>Blocked by:</b> a learning curve with the payoff three weeks out. Nobody invests in week three.</p>
+    </div>
+    <div class="def">
+      <div class="def-top"><span class="def-num">DEFAULT 4</span><span class="def-name">Social</span></div>
+      <p class="def-q">Is using it what people like me do here?</p>
+      <p class="flips"><b>Flips when:</b> managers ask "what did the AI suggest," a known skeptic converts in public, and nobody earns hero points for doing it by hand.</p>
+      <p class="blocks"><b>Blocked by:</b> a culture that quietly admires the manual way, or a boss who never uses it.</p>
+    </div>
+  </div>
+
+  <div class="insight">
+    <p>Here's the part most programs get backwards: the fastest adoption accelerant is a <em>clear rule</em>. People don't slow down because rules exist. They slow down because they can't see the edges &mdash; so they either freeze, or freelance. Governance done right isn't the brake. <em>It's the permission slip.</em></p>
+  </div>
+
+  <h2 class="sec">The Three-Zone Rulebook</h2>
+  <p class="sec-sub">One page, written in the language of the work, published where the work happens. Every use case lands in a zone.</p>
+
+  <div class="zones">
+    <div class="zone green">
+      <p class="lbl">Green · Use freely</p>
+      <p class="crit">Low stakes, easy to check</p>
+      <p>Drafts, summaries, research starting points, internal notes. No review required beyond your own eyes.</p>
+      <p class="ex">"Summarize this thread." "Draft the first version."</p>
+    </div>
+    <div class="zone yellow">
+      <p class="lbl">Yellow · Use with review</p>
+      <p class="crit">Real consequences, named checker</p>
+      <p>Anything customer-facing, financially relevant, or feeding a decision. AI drafts, a named human approves, and the approval is the rule, not a suggestion.</p>
+      <p class="ex">"Customer reply: agent drafts, you send."</p>
+    </div>
+    <div class="zone red">
+      <p class="lbl">Red · Don't</p>
+      <p class="crit">Irreversible, regulated, or private</p>
+      <p>Listed explicitly, with the reason. A short, honest red list makes the green zone believable. A vague one poisons all three.</p>
+      <p class="ex">"No client PII in prompts. No final legal language."</p>
+    </div>
+  </div>
+  <p class="zones-note">Responsible and effective are not a tradeoff. The team with the clearest red list adopts fastest, because everyone knows exactly where it's safe to run.</p>
+
+  <h2 class="steps-head">How to Use This</h2>
+  <div class="steps">
+    <div class="step"><div class="num">STEP 1</div><h3>Audit the defaults</h3><p>For one team, score all four. The stalled one is usually obvious within a day.</p></div>
+    <div class="step"><div class="num">STEP 2</div><h3>Publish the rulebook</h3><p>Three zones, one page, in the team's own vocabulary. Ship it before more training.</p></div>
+    <div class="step"><div class="num">STEP 3</div><h3>Flip Entry and Time first</h3><p>Put the AI where work arrives and make the first use pay off the same day.</p></div>
+    <div class="step"><div class="num">STEP 4</div><h3>Work the skeptic</h3><p>One respected doubter, converted honestly, moves more people than any town hall.</p></div>
+  </div>
+
+  <footer>
+    <span>Lakshmi Peri · AI Transformation · Operating Models · Measurable Outcomes</span>
+    <span class="next">END OF SERIES → <a href="../index.html">All six frameworks</a></span>
+  </footer>
+
+</div>
+</body>
+</html>

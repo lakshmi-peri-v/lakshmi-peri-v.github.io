@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Pilot Graveyard: Why Experiments Don't Scale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f6;
+    --surface: #ffffff;
+    --ink: #161616;
+    --ink-soft: #474743;
+    --ink-mute: #8b8a84;
+    --line: #e7e5df;
+    --line-soft: #f0efe9;
+    --accent: #0e6b5c;
+    --accent-deep: #0a4f44;
+    --accent-soft: #e3efec;
+    --red: #9c4a3c;
+    --red-bg: #f7ece9;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { -webkit-font-smoothing:antialiased; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--ink); line-height:1.6; font-size:16px; }
+  .rule { position:fixed; top:0; bottom:0; left:max(12px, calc(50% - 470px)); width:2px; background:linear-gradient(var(--accent), rgba(14,107,92,.12)); }
+  .wrap { max-width:840px; margin:0 auto; padding:72px 32px 80px; }
+
+  .eyebrow { font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:500; display:flex; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:14px; }
+  .eyebrow a { color:var(--ink-mute); text-decoration:none; }
+  .eyebrow a:hover { color:var(--accent); }
+  h1 { font-family:'Source Serif 4',serif; font-size:clamp(32px,5vw,46px); line-height:1.12; font-weight:700; margin:34px 0 10px; max-width:22ch; }
+  .thesis { font-family:'Source Serif 4',serif; font-style:italic; font-size:clamp(19px,2.4vw,24px); color:var(--ink); margin:24px 0 0; padding-left:20px; border-left:3px solid var(--accent); max-width:30em; }
+  .thesis strong { font-style:normal; font-weight:700; color:var(--accent-deep); }
+  .sub { color:var(--ink-soft); font-size:15.5px; margin-top:16px; max-width:60ch; }
+
+  .distinction { margin:46px 0 0; display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--surface); }
+  .distinction > div { padding:24px 26px; }
+  .distinction > div:first-child { border-right:1px solid var(--line); }
+  .distinction .tag { font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-mute); display:block; margin-bottom:8px; }
+  .distinction .big { font-family:'Source Serif 4',serif; font-size:21px; font-weight:700; margin-bottom:6px; }
+  .distinction > div:first-child .big { color:var(--ink-soft); }
+  .distinction > div:last-child .big { color:var(--accent-deep); }
+  .distinction p { font-size:13.5px; color:var(--ink-soft); }
+
+  h2.sec { font-family:'Source Serif 4',serif; font-size:25px; font-weight:700; border-bottom:2px solid var(--ink); padding-bottom:10px; margin-bottom:6px; margin-top:50px; }
+  .sec-sub { font-size:14px; color:var(--ink-mute); margin-bottom:22px; }
+
+  .gap { background:var(--surface); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:0 10px 10px 0; padding:18px 24px; margin-bottom:12px; }
+  .gap-top { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:10px; }
+  .gap-num { font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; background:var(--accent); color:#fff; padding:3px 9px; border-radius:4px; }
+  .gap-name { font-family:'Source Serif 4',serif; font-weight:700; font-size:19px; }
+  .gap-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:10px; }
+  .gap-col .h { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; margin-bottom:3px; }
+  .gap-col.pilot .h { color:var(--ink-mute); }
+  .gap-col.prod .h { color:var(--accent); }
+  .gap-col p { font-size:13.5px; color:var(--ink-soft); line-height:1.5; }
+  .gap-q { font-family:'Source Serif 4',serif; font-style:italic; font-size:14.5px; color:var(--accent-deep); border-top:1px dashed var(--line); padding-top:9px; }
+
+  .insight { margin:36px 0 0; background:var(--ink); color:#fff; border-radius:10px; padding:26px 30px; }
+  .insight p { font-family:'Source Serif 4',serif; font-size:19px; line-height:1.5; }
+  .insight em { color:#8fd4c6; font-style:italic; }
+
+  .steps-head { font-family:'Source Serif 4',serif; font-size:25px; font-weight:700; border-bottom:2px solid var(--ink); padding-bottom:10px; margin-bottom:22px; margin-top:50px; }
+  .steps { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  .step { background:var(--surface); padding:18px 16px; }
+  .step .num { font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--accent); font-weight:600; }
+  .step h3 { font-family:'Source Serif 4',serif; font-size:16px; font-weight:700; margin:6px 0; }
+  .step p { font-size:12.5px; color:var(--ink-mute); line-height:1.5; }
+
+  footer { margin-top:56px; border-top:1px solid var(--line); padding-top:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:13px; color:var(--ink-mute); }
+  footer .next { font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--accent); }
+
+  @media (max-width:640px){
+    .wrap{ padding:52px 22px 60px }
+    .rule{ display:none }
+    .distinction{ grid-template-columns:1fr }
+    .distinction > div:first-child{ border-right:none; border-bottom:1px solid var(--line) }
+    .gap-grid{ grid-template-columns:1fr; gap:10px }
+    .steps{ grid-template-columns:1fr 1fr }
+  }
+</style>
+</head>
+<body>
+<div class="rule"></div>
+<div class="wrap">
+
+  <div class="eyebrow"><span>AI Transformation Series · 04</span><a href="../index.html">← Lakshmi Peri</a></div>
+
+  <h1>The Pilot Graveyard: Why Experiments Don't Scale</h1>
+
+  <p class="thesis">Pilots die in the gap between <strong>"it works" and "it runs."</strong> Scaling was never the problem. The pilot and the production capability are different objects.</p>
+
+  <p class="sub">The pattern repeats everywhere. A pilot succeeds. The demo gets applause, maybe a town-hall mention. Six months later it's gone, and the autopsy never says the model was bad. It says the budget ended, or the champion changed roles, or people drifted back to the old way. Teams conclude they failed at scaling. They didn't. They built a demo and tried to promote it.</p>
+
+  <div class="distinction">
+    <div>
+      <span class="tag">What a pilot proves</span>
+      <p class="big">The model works</p>
+      <p>On selected cases, run by enthusiasts, beside the real workflow, with errors treated as findings and a project budget paying for it.</p>
+    </div>
+    <div>
+      <span class="tag">What production requires</span>
+      <p class="big">The operation works</p>
+      <p>On every case, run by everyone, inside the real workflow, with errors treated as incidents and an operating budget paying for it. Nobody tested any of that.</p>
+    </div>
+  </div>
+
+  <h2 class="sec">The Six Gaps</h2>
+  <p class="sec-sub">Every dead pilot fell into at least one. Most fell into three or four at once.</p>
+
+  <div class="gap">
+    <div class="gap-top"><span class="gap-num">GAP 1</span><span class="gap-name">The Workflow Gap</span></div>
+    <div class="gap-grid">
+      <div class="gap-col pilot"><p class="h">In the pilot</p><p>The AI runs beside the work. People copy things into a separate tool, then copy results back.</p></div>
+      <div class="gap-col prod"><p class="h">In production</p><p>The AI runs inside the tools where work already happens. Nobody leaves their workflow to use it.</p></div>
+    </div>
+    <p class="gap-q">Where does this live when nobody is excited anymore?</p>
+  </div>
+
+  <div class="gap">
+    <div class="gap-top"><span class="gap-num">GAP 2</span><span class="gap-name">The Error Gap</span></div>
+    <div class="gap-grid">
+      <div class="gap-col pilot"><p class="h">In the pilot</p><p>Errors are interesting. Someone screenshots them for the retro.</p></div>
+      <div class="gap-col prod"><p class="h">In production</p><p>Errors are incidents. Someone has to catch them, fix them, and answer for them, at 4pm on a Friday.</p></div>
+    </div>
+    <p class="gap-q">When it's wrong, who notices, who fixes it, and how fast?</p>
+  </div>
+
+  <div class="gap">
+    <div class="gap-top"><span class="gap-num">GAP 3</span><span class="gap-name">The Ownership Gap</span></div>
+    <div class="gap-grid">
+      <div class="gap-col pilot"><p class="h">In the pilot</p><p>A champion drives it on borrowed time and personal credibility.</p></div>
+      <div class="gap-col prod"><p class="h">In production</p><p>An operator runs it as part of their actual job: monitoring, prompts, model updates, user questions.</p></div>
+    </div>
+    <p class="gap-q">Whose name is on this after the champion gets promoted?</p>
+  </div>
+
+  <div class="gap">
+    <div class="gap-top"><span class="gap-num">GAP 4</span><span class="gap-name">The Money Gap</span></div>
+    <div class="gap-grid">
+      <div class="gap-col pilot"><p class="h">In the pilot</p><p>A project budget with an end date pays for everything.</p></div>
+      <div class="gap-col prod"><p class="h">In production</p><p>An operating line pays for inference, maintenance, and the operator's time, every year, defended in every budget cycle.</p></div>
+    </div>
+    <p class="gap-q">Which budget line does this live in two years from now?</p>
+  </div>
+
+  <div class="gap">
+    <div class="gap-top"><span class="gap-num">GAP 5</span><span class="gap-name">The Measurement Gap</span></div>
+    <div class="gap-grid">
+      <div class="gap-col pilot"><p class="h">In the pilot</p><p>Success is a demo and some enthusiastic quotes.</p></div>
+      <div class="gap-col prod"><p class="h">In production</p><p>Success is a KPI moving against a baseline that was written down before the build started.</p></div>
+    </div>
+    <p class="gap-q">What number proves this is still worth running next year?</p>
+  </div>
+
+  <div class="gap">
+    <div class="gap-top"><span class="gap-num">GAP 6</span><span class="gap-name">The People Gap</span></div>
+    <div class="gap-grid">
+      <div class="gap-col pilot"><p class="h">In the pilot</p><p>Volunteers who wanted this to work used it carefully.</p></div>
+      <div class="gap-col prod"><p class="h">In production</p><p>Everyone else uses it, including the skeptics, the rushed, and the people who never read the guide.</p></div>
+    </div>
+    <p class="gap-q">Does it survive contact with someone who doesn't care?</p>
+  </div>
+
+  <div class="insight">
+    <p>The fix is sequencing. Design the production operation <em>before</em> the pilot starts: the owner, the error path, the budget line, the baseline. A pilot without a production design isn't an experiment. <em>It's a demo with a deadline.</em></p>
+  </div>
+
+  <h2 class="steps-head">How to Use This</h2>
+  <div class="steps">
+    <div class="step"><div class="num">STEP 1</div><h3>Audit the living</h3><p>Run every active pilot against the six gaps. Score each gap open or closed.</p></div>
+    <div class="step"><div class="num">STEP 2</div><h3>Close before scale</h3><p>An open gap is a workstream with an owner and a date. Scaling waits.</p></div>
+    <div class="step"><div class="num">STEP 3</div><h3>Change the entry rule</h3><p>No new pilot starts without its production design on one page.</p></div>
+    <div class="step"><div class="num">STEP 4</div><h3>Retire honestly</h3><p>A pilot that can't close its gaps gets a written end, and its lessons get kept.</p></div>
+  </div>
+
+  <footer>
+    <span>Lakshmi Peri · AI Transformation · Operating Models · Measurable Outcomes</span>
+    <span class="next">NEXT IN SERIES → Your AI Demo Is Not a Business Case</span>
+  </footer>
+
+</div>
+</body>
+</html>

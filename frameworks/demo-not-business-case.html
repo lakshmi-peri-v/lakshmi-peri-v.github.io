@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your AI Demo Is Not a Business Case</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f6;
+    --surface: #ffffff;
+    --ink: #161616;
+    --ink-soft: #474743;
+    --ink-mute: #8b8a84;
+    --line: #e7e5df;
+    --line-soft: #f0efe9;
+    --accent: #0e6b5c;
+    --accent-deep: #0a4f44;
+    --accent-soft: #e3efec;
+    --red: #9c4a3c;
+    --red-bg: #f7ece9;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { -webkit-font-smoothing:antialiased; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--ink); line-height:1.6; font-size:16px; }
+  .rule { position:fixed; top:0; bottom:0; left:max(12px, calc(50% - 470px)); width:2px; background:linear-gradient(var(--accent), rgba(14,107,92,.12)); }
+  .wrap { max-width:840px; margin:0 auto; padding:72px 32px 80px; }
+
+  .eyebrow { font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:500; display:flex; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:14px; }
+  .eyebrow a { color:var(--ink-mute); text-decoration:none; }
+  .eyebrow a:hover { color:var(--accent); }
+  h1 { font-family:'Source Serif 4',serif; font-size:clamp(32px,5vw,46px); line-height:1.12; font-weight:700; margin:34px 0 10px; max-width:22ch; }
+  .thesis { font-family:'Source Serif 4',serif; font-style:italic; font-size:clamp(19px,2.4vw,24px); color:var(--ink); margin:24px 0 0; padding-left:20px; border-left:3px solid var(--accent); max-width:30em; }
+  .thesis strong { font-style:normal; font-weight:700; color:var(--accent-deep); }
+  .sub { color:var(--ink-soft); font-size:15.5px; margin-top:16px; max-width:60ch; }
+
+  h2.sec { font-family:'Source Serif 4',serif; font-size:25px; font-weight:700; border-bottom:2px solid var(--ink); padding-bottom:10px; margin-bottom:6px; margin-top:50px; }
+  .sec-sub { font-size:14px; color:var(--ink-mute); margin-bottom:22px; }
+
+  /* Ladder: rungs climb visually via increasing left margin */
+  .rung { background:var(--surface); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:0 10px 10px 0; padding:18px 24px 14px; }
+  .rung[data-l="1"]{ margin-right:24% }
+  .rung[data-l="2"]{ margin-left:8%; margin-right:16% }
+  .rung[data-l="3"]{ margin-left:16%; margin-right:8% }
+  .rung[data-l="4"]{ margin-left:24%; border-left-color:var(--accent-deep); background:var(--accent-soft) }
+  .rung-top { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:6px; }
+  .rung-num { font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; color:var(--accent); letter-spacing:.08em; }
+  .rung-name { font-family:'Source Serif 4',serif; font-weight:700; font-size:19px; }
+  .rung-cur { font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-mute); margin-left:auto; }
+  .rung .metrics { font-size:13px; color:var(--ink-soft); margin-bottom:8px; }
+  .rung .metrics b { font-weight:600; color:var(--ink); }
+  .rung .proves { font-size:13px; border-top:1px dashed var(--line); padding-top:8px; color:var(--ink-soft); }
+  .rung .proves .yes { color:var(--accent-deep); font-weight:600; }
+  .rung .proves .no { color:var(--red); font-weight:600; }
+
+  .convert { display:flex; align-items:center; gap:12px; padding:10px 0 10px 4px; }
+  .convert .arrow { font-family:'IBM Plex Mono',monospace; color:var(--ink-mute); font-size:14px; }
+  .convert p { font-family:'Source Serif 4',serif; font-style:italic; font-size:14.5px; color:var(--accent-deep); }
+  .convert[data-l="2"]{ margin-left:8% }
+  .convert[data-l="3"]{ margin-left:16% }
+  .convert[data-l="4"]{ margin-left:24% }
+
+  .insight { margin:42px 0 0; background:var(--ink); color:#fff; border-radius:10px; padding:26px 30px; }
+  .insight p { font-family:'Source Serif 4',serif; font-size:19px; line-height:1.5; }
+  .insight em { color:#8fd4c6; font-style:italic; }
+
+  .trap { margin:46px 0 0; background:var(--surface); border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  .trap-head { background:var(--red-bg); padding:14px 24px; }
+  .trap-head .t { font-family:'Source Serif 4',serif; font-weight:700; font-size:19px; color:var(--red); }
+  .trap-body { padding:18px 24px; font-size:14.5px; color:var(--ink-soft); }
+  .trap-body p { margin-bottom:10px; max-width:64ch; }
+  .trap-body p:last-child { margin-bottom:0; }
+  .trap-body .math { font-family:'IBM Plex Mono',monospace; font-size:13px; background:var(--line-soft); border-radius:6px; padding:10px 14px; margin:4px 0 12px; color:var(--ink); }
+
+  .steps-head { font-family:'Source Serif 4',serif; font-size:25px; font-weight:700; border-bottom:2px solid var(--ink); padding-bottom:10px; margin-bottom:22px; margin-top:50px; }
+  .steps { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  .step { background:var(--surface); padding:18px 16px; }
+  .step .num { font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--accent); font-weight:600; }
+  .step h3 { font-family:'Source Serif 4',serif; font-size:16px; font-weight:700; margin:6px 0; }
+  .step p { font-size:12.5px; color:var(--ink-mute); line-height:1.5; }
+
+  footer { margin-top:56px; border-top:1px solid var(--line); padding-top:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:13px; color:var(--ink-mute); }
+  footer .next { font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--accent); }
+
+  @media (max-width:640px){
+    .wrap{ padding:52px 22px 60px }
+    .rule{ display:none }
+    .rung{ margin-left:0!important; margin-right:0!important }
+    .convert{ margin-left:0!important }
+    .rung-cur{ margin-left:0; width:100% }
+    .steps{ grid-template-columns:1fr 1fr }
+  }
+</style>
+</head>
+<body>
+<div class="rule"></div>
+<div class="wrap">
+
+  <div class="eyebrow"><span>AI Transformation Series · 05</span><a href="../index.html">← Lakshmi Peri</a></div>
+
+  <h1>Your AI Demo Is Not a Business Case</h1>
+
+  <p class="thesis">Capability, behavior, operations, and money are <strong>four different currencies.</strong> Value only counts at the rung where your CFO lives, and accuracy doesn't convert at par.</p>
+
+  <p class="sub">The scene repeats in every company. The demo dazzles. The deck says 96% accuracy. Someone multiplies hours saved by average salary and announces two million dollars of value. The CFO asks which budget line will shrink, and the room goes quiet. Nothing in that deck was false. It was just denominated in the wrong currency.</p>
+
+  <h2 class="sec">The Value Ladder</h2>
+  <p class="sec-sub">Four rungs. Each one is necessary for the rung above it, and none of them guarantees it.</p>
+
+  <div class="rung" data-l="1">
+    <div class="rung-top"><span class="rung-num">RUNG 1</span><span class="rung-name">Capability</span><span class="rung-cur">Currency: demo metrics</span></div>
+    <p class="metrics"><b>Measures:</b> accuracy, quality scores, eval pass rates, "it got the right answer."</p>
+    <p class="proves"><span class="yes">Proves:</span> the model can do the work. <span class="no">Cannot prove:</span> anyone will let it.</p>
+  </div>
+  <div class="convert" data-l="2"><span class="arrow">↑</span><p>Converts only if people change how they work. Most accuracy never does.</p></div>
+
+  <div class="rung" data-l="2">
+    <div class="rung-top"><span class="rung-num">RUNG 2</span><span class="rung-name">Behavior</span><span class="rung-cur">Currency: adoption metrics</span></div>
+    <p class="metrics"><b>Measures:</b> weekly active users, share of cases routed through the AI, retention after week six, who quietly went back to the old way.</p>
+    <p class="proves"><span class="yes">Proves:</span> people changed how they work. <span class="no">Cannot prove:</span> the work got better.</p>
+  </div>
+  <div class="convert" data-l="3"><span class="arrow">↑</span><p>Converts only if usage moves a workflow number. Busy tools can move nothing.</p></div>
+
+  <div class="rung" data-l="3">
+    <div class="rung-top"><span class="rung-num">RUNG 3</span><span class="rung-name">Operations</span><span class="rung-cur">Currency: workflow metrics</span></div>
+    <p class="metrics"><b>Measures:</b> cycle time, throughput, error rate, rework, SLA performance, against the baseline written before the build.</p>
+    <p class="proves"><span class="yes">Proves:</span> the workflow improved. <span class="no">Cannot prove:</span> the business captured it.</p>
+  </div>
+  <div class="convert" data-l="4"><span class="arrow">↑</span><p>Converts only if someone redeploys the gain. Unclaimed capacity evaporates.</p></div>
+
+  <div class="rung" data-l="4">
+    <div class="rung-top"><span class="rung-num">RUNG 4</span><span class="rung-name">Money</span><span class="rung-cur">Currency: P&amp;L metrics</span></div>
+    <p class="metrics"><b>Measures:</b> cost per transaction, revenue per head, volume absorbed without hiring, a budget line that actually changed.</p>
+    <p class="proves"><span class="yes">Proves:</span> the business changed. This is the only rung a CFO can spend.</p>
+  </div>
+
+  <div class="trap">
+    <div class="trap-head"><span class="t">The hours-saved trap</span></div>
+    <div class="trap-body">
+      <p>The most common business case in AI is also the most fictional:</p>
+      <p class="math">2,000 users × 3 hrs/week × $60/hr = $18.7M of "value"</p>
+      <p>Nobody's cost went down. Nobody's output went up. The three hours dissolved into the workday: a longer lunch, a cleaner inbox, an earlier Friday. Hours saved is not money saved. It is capacity created, and capacity has no value until somebody reassigns it to revenue work, absorbed volume, or a smaller hiring plan.</p>
+      <p>The honest version of that business case names the reassignment: "support absorbed 30% more tickets with the same team." Same AI. Different rung. Only one of them survives a CFO.</p>
+    </div>
+  </div>
+
+  <div class="insight">
+    <p>Measure all four rungs, but report each in its own currency. The fatal move is presenting rung 1 numbers <em>as if</em> they were rung 4 money. That's how AI programs lose the CFO &mdash; not by failing, but by claiming value in a currency the P&amp;L doesn't accept.</p>
+  </div>
+
+  <h2 class="steps-head">How to Use This</h2>
+  <div class="steps">
+    <div class="step"><div class="num">STEP 1</div><h3>Place your metrics</h3><p>Sort every number you report onto its rung. Most decks live entirely on rung 1.</p></div>
+    <div class="step"><div class="num">STEP 2</div><h3>Instrument 2 and 3</h3><p>Adoption and workflow metrics need plumbing. Build it before launch, not after.</p></div>
+    <div class="step"><div class="num">STEP 3</div><h3>Name the conversion</h3><p>For every rung-3 gain, write down who redeploys it and into what.</p></div>
+    <div class="step"><div class="num">STEP 4</div><h3>Report honestly</h3><p>Four currencies, four lines in the readout. Never exchange them silently.</p></div>
+  </div>
+
+  <footer>
+    <span>Lakshmi Peri · AI Transformation · Operating Models · Measurable Outcomes</span>
+    <span class="next">NEXT IN SERIES → AI Adoption Is a Behavior Problem</span>
+  </footer>
+
+</div>
+</body>
+</html>
