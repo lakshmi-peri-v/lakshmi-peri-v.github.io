@@ -541,16 +541,16 @@
   <!-- ===== 3 · SIGNAL ENGINE (merged) ===== -->
 
   <!-- ===== 6 · AGENT PROMPT ===== -->
-  <!-- ===== SIX ASSISTANTS ===== -->
+  <!-- ===== SIX AGENTS ===== -->
   <!-- ===== THE ENGINE ===== -->
   <!-- ===== THE ENGINE ===== -->
   <section class="screen" data-label="The Engine">
     <div class="kicker"><span class="num">03</span> Behind The Screen</div>
     <h1 class="title">Many messy sources in. <em>One answer out.</em></h1>
-    <p class="lede">Nothing you use today gets replaced. The engine reads it, gets everything speaking the same language, hands each slice to the assistant that owns it &mdash; and puts one answer in front of a person.</p>
+    <p class="lede">Nothing you use today gets replaced. The engine reads it, gets everything speaking the same language, hands each slice to the agent that owns it &mdash; and puts one answer in front of a person.</p>
 
     <div class="bowwrap">
-    <svg class="bow" viewBox="0 0 1240 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flow from source tools through one shared language to six assistants and one brief reviewed by a person">
+    <svg class="bow" viewBox="0 0 1240 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flow from source tools through one shared language to six agents and one brief reviewed by a person">
       <path class="flow live" d="M176,85 C 280,85 320,260.0 396,260.0"/>
       <path class="flow live" d="M176,155 C 280,155 320,260.0 396,260.0"/>
       <path class="flow live" d="M176,225 C 280,225 320,260.0 396,260.0"/>
@@ -622,7 +622,7 @@
       <text class="gatet" x="1113" y="419" text-anchor="middle">A person decides</text>
       <text class="colhead" x="98" y="34" text-anchor="middle">WHAT IT READS</text>
       <text class="colhead" x="424" y="34" text-anchor="middle">SAME LANGUAGE</text>
-      <text class="colhead" x="728" y="34" text-anchor="middle">SIX ASSISTANTS</text>
+      <text class="colhead" x="728" y="34" text-anchor="middle">SIX AGENTS</text>
       <text class="colhead" x="1113" y="34" text-anchor="middle">ONE ANSWER</text>
     </svg>
     </div>
@@ -682,7 +682,7 @@
   <section class="screen" data-label="See It Run">
     <div class="kicker"><span class="num">05</span> The Agent, Live</div>
     <h1 class="title">Now watch it <em>actually run.</em></h1>
-    <p class="lede">Everything before this was the pattern. This is the Sales Readiness assistant running for real — it reads the certification data below, applies the 60% bar, and prepares a decision. Nothing is pre-written: the answer is worked out live. You make the call.</p>
+    <p class="lede">Everything before this was the pattern. This is the Sales Readiness agent running for real — it reads the certification data below, applies the 60% bar, and prepares a decision. Nothing is pre-written: the answer is worked out live. You make the call.</p>
 
     <div class="panel pad" style="margin-top:22px">
       <div class="lbl">Source · rep_certification.csv · Feature X Launch</div>
@@ -756,11 +756,11 @@
     </div>
 
     <div class="metric-grid">
-      <div class="metric warn">
+      <div class="metric warn" id="m-launch-after">
         <div class="ml">Launch Readiness</div>
-        <div class="mv">85%</div>
-        <div class="mbar"><div class="mfill" style="width:85%"></div></div>
-        <div class="mstatus">On Track</div>
+        <div class="mv">78%</div>
+        <div class="mbar"><div class="mfill" style="width:78%"></div></div>
+        <div class="mstatus">On Track &middot; Watch</div>
         <div class="phasetag pre">pre-launch</div>
       </div>
       <div class="metric warn" id="m-aud-after">
@@ -788,7 +788,7 @@
     </div>
 
     <div class="dra-head">What changed</div>
-    <div class="dra-sub" id="after-sub">The field decision moved from flagged to resolved — driven by the assistant's recommendation and your approval.</div>
+    <div class="dra-sub" id="after-sub">The field decision moved from flagged to resolved — driven by the agent's recommendation and your approval.</div>
 
     <div class="ecards">
       <div class="ecard pre" id="ac-field" style="border-left:3px solid var(--green)">
@@ -852,7 +852,7 @@
     
     <div style="margin-top:22px;border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:var(--r-sm);padding:16px 18px;background:var(--panel-2)">
       <div style="font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);font-weight:600;margin-bottom:8px">Where it stops</div>
-      <div style="font-size:15px;color:var(--text-soft);line-height:1.7">These assistants <b>read and recommend</b> — they don't go do it. This one will tell you West isn't ready and suggest launching East. It won't update Jira, reassign owners, and chase it closed. Letting AI write back into your systems is the hard part.</div>
+      <div style="font-size:15px;color:var(--text-soft);line-height:1.7">These agents <b>read and recommend</b> — they don't go do it. This one will tell you West isn't ready and suggest launching East. It won't update Jira, reassign owners, and chase it closed. Letting AI write back into your systems is the hard part.</div>
     </div>
 
     <p class="econ-note">Figures illustrate the pattern's mechanics, not a guaranteed outcome. Real results depend on program size, tool access, and adoption.</p>
@@ -898,6 +898,17 @@ function setAfterChrome(color,health,prov,lede,sub){
   const l=document.getElementById('after-lede'); if(l)l.textContent=lede;
   const s2=document.getElementById('after-sub'); if(s2)s2.textContent=sub;
 }
+function open_pending(){
+  return (DECISIONS.field===null?1:0)+(DECISIONS.audience===null?1:0);
+}
+function decideAfterAud(approve){
+  DECISIONS.audience = approve ? 'approved' : 'rejected';
+  renderAfter();
+}
+function decideAfter(approve){
+  DECISIONS.field = approve ? 'approved' : 'rejected';
+  renderAfter();
+}
 function renderAfter(){
   // Field decision — reflect what happened on screen 2 (or default to the agent's approve path)
   const fState=DECISIONS.field; // 'approved' | 'rejected' | null
@@ -909,15 +920,22 @@ function renderAfter(){
     fCard.querySelector('.ecard-top').innerHTML='<span style="color:var(--amber)">FIELD · 57%</span><span>STILL OPEN</span>';
     fCard.querySelector('.ecard-body').innerHTML=
       '<div class="eq">Are we ready to launch?</div>'+
-      '<div class="erow"><b>Status:</b> The assistant made its recommendation — launch East, hold West. Nobody has decided yet.</div>'+
+      '<div class="erow"><b>Status:</b> The agent made its recommendation — launch East, hold West. Nobody has decided yet.</div>'+
       '<div class="erow"><b>Result:</b> Nothing has changed. Field readiness is still 57%, and the launch is still blocked.</div>'+
-      '<div class="eown mono" style="color:var(--amber)">⏳ waiting on a human · go back and approve or reject</div>';
+      '<div class="eown mono" style="color:var(--amber)">&#9203; waiting on a human &middot; decide here or on the previous screen</div>'+
+      '<div class="efoot" style="border:0;background:transparent;padding:0;margin-top:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">'+
+        '<div class="edbs" style="display:flex;gap:10px">'+
+          '<div class="edb app" onclick="decideAfter(true)">Approve</div>'+
+          '<div class="edb rej" onclick="decideAfter(false)">Reject</div>'+
+        '</div>'+
+        '<div class="econf show" style="color:var(--mute-2)">Launch East, hold West</div>'+
+      '</div>';
     fMetric.classList.remove('ok');fMetric.classList.add('bad');
     fMetric.querySelector('.mv').textContent='57%';
     fMetric.querySelector('.mfill').style.width='57%';
     fMetric.querySelector('.mstatus').textContent='Below Threshold';
     setAfterChrome('amber','\u25cf Amber \u00b7 awaiting decision','no change since 8:42 AM',
-      'Nothing has moved. The assistant did its job and stopped \u2014 it will not act on its own. Until a person approves or rejects on the previous screen, this picture stays exactly as it was.',
+      'Nothing has moved. The agent did its job and stopped \u2014 it will not act on its own. Until a person approves or rejects on the previous screen, this picture stays exactly as it was.',
       'Nothing changed \u2014 the decision is still sitting with a human.');
   }
   else if(fState==='approved'){
@@ -934,7 +952,7 @@ function renderAfter(){
     fMetric.querySelector('.mstatus').textContent='\u2713 East-only \u00b7 cleared';
     setAfterChrome('green','\u25cf Green \u00b7 East confirmed','republished 9:15 AM \u00b7 Jul 30',
       'This is the operating picture right after the approval \u2014 no meeting, no status chase. Your decision has re-scored Field Readiness, cleared the open field decision, and moved the launch to a confident state.',
-      'The field decision moved from flagged to resolved \u2014 driven by the assistant\u2019s recommendation and your approval.');
+      'The field decision moved from flagged to resolved \u2014 driven by the agent\u2019s recommendation and your approval.');
   }
   else if(fState==='rejected'){
     fCard.style.borderLeft='3px solid var(--red)';
@@ -949,7 +967,7 @@ function renderAfter(){
     fMetric.querySelector('.mfill').style.width='57%';
     fMetric.querySelector('.mstatus').textContent='Below Threshold';
     setAfterChrome('red','\u25cf Red \u00b7 launch held','republished 9:15 AM \u00b7 Jul 30',
-      'The recommendation was rejected. The assistant holds \u2014 nothing ships, and the picture reflects that immediately.',
+      'The recommendation was rejected. The agent holds \u2014 nothing ships, and the picture reflects that immediately.',
       'The field decision was declined. Readiness stays flagged until West certification clears.');
   }
   // Audience decision — reflect screen-2 choice
@@ -975,8 +993,50 @@ function renderAfter(){
       '<div class="eq">Targeting the right audience?</div>'+
       '<div class="erow"><b>Decision:</b> Suppression rejected — proceeding as-is.</div>'+
       '<div class="erow"><b>Result:</b> Overlap accepted; audience stays at 72%, flagged for monitoring.</div>'+
-      '<div class="eown mono" style="color:var(--amber)">· logged · no change applied</div>';
-  } // null → leave as "still open" default
+      '<div class="eown mono" style="color:var(--amber)">&middot; logged &middot; no change applied</div>';
+    aMetric.classList.remove('ok');aMetric.classList.add('warn');
+    aMetric.querySelector('.mv').textContent='72%';
+    aMetric.querySelector('.mfill').style.width='72%';
+    aMetric.querySelector('.mstatus').textContent='Acceptable';
+  }else{
+    // No decision yet — offer the gate right here.
+    aCard.style.borderLeft='3px solid var(--amber)';
+    aCard.querySelector('.ecard-top').innerHTML='<span style="color:var(--amber)">AUDIENCE &middot; 72%</span><span>STILL OPEN</span>';
+    aCard.querySelector('.ecard-body').innerHTML=
+      '<div class="eq">Targeting the right audience?</div>'+
+      '<div class="erow"><b>Status:</b> 340 accounts double-targeted. The agent flagged it &mdash; nobody has decided yet.</div>'+
+      '<div class="erow"><b>Recommendation:</b> Suppress the overlapping accounts.</div>'+
+      '<div class="eown mono" style="color:var(--amber)">&#9203; waiting on a human</div>'+
+      '<div class="efoot" style="border:0;background:transparent;padding:0;margin-top:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">'+
+        '<div class="edbs" style="display:flex;gap:10px">'+
+          '<div class="edb app" onclick="decideAfterAud(true)">Approve</div>'+
+          '<div class="edb rej" onclick="decideAfterAud(false)">Reject</div>'+
+        '</div>'+
+        '<div class="econf show" style="color:var(--mute-2)">Suppress 340 overlaps</div>'+
+      '</div>';
+    aMetric.classList.remove('ok');aMetric.classList.add('warn');
+    aMetric.querySelector('.mv').textContent='72%';
+    aMetric.querySelector('.mfill').style.width='72%';
+    aMetric.querySelector('.mstatus').textContent='Acceptable';
+  }
+  // Launch Readiness rolls up from the two decisions
+  const lm=document.getElementById('m-launch-after');
+  if(lm){
+    let v=78;
+    if(DECISIONS.field==='approved')v+=4;
+    if(DECISIONS.audience==='approved')v+=3;
+    const cleared = DECISIONS.field!==null && DECISIONS.audience!==null;
+    lm.classList.remove('ok','warn','bad');
+    lm.classList.add(cleared && v>=85 ? 'ok' : 'warn');
+    lm.querySelector('.mv').textContent=v+'%';
+    lm.querySelector('.mfill').style.width=v+'%';
+    let st;
+    if(cleared && v>=85) st='\u2713 All decisions cleared';
+    else if(cleared) st='Decisions made \u00b7 gaps remain';
+    else if(open_pending()===1) st='On Track \u00b7 one still open';
+    else st='On Track \u00b7 Watch';
+    lm.querySelector('.mstatus').textContent=st;
+  }
   // Open-decisions count
   let open=0;
   if(DECISIONS.field===null)open++;
@@ -987,12 +1047,10 @@ function renderAfter(){
 const M={
   d1:{
     approve:[
-      {id:'m-field',cls:'warn',val:'68%',w:'68%',status:'Recovering'},
-      {id:'m-readiness',cls:'ok',val:'85%',w:'85%',status:'On Track'}
+      {id:'m-field',cls:'warn',val:'68%',w:'68%',status:'Recovering'}
     ],
     before:[
-      {id:'m-field',cls:'bad',val:'57%',w:'57%',status:'Below Threshold'},
-      {id:'m-readiness',cls:'warn',val:'78%',w:'78%',status:'On Track · Watch'}
+      {id:'m-field',cls:'bad',val:'57%',w:'57%',status:'Below Threshold'}
     ]
   },
   d3:{
@@ -1013,6 +1071,26 @@ function setMetric(u){
   setTimeout(()=>el.classList.remove('flash'),700);
 }
 const DECISIONS={field:null,audience:null};
+function rollupS2(){
+  const el=document.getElementById('m-readiness');
+  if(!el)return;
+  let v=78;
+  if(DECISIONS.field==='approved')v+=4;
+  if(DECISIONS.audience==='approved')v+=3;
+  const cleared = DECISIONS.field!==null && DECISIONS.audience!==null;
+  el.classList.remove('ok','warn','bad');
+  el.classList.add(cleared && v>=85 ? 'ok' : 'warn');
+  el.querySelector('.mv').textContent=v+'%';
+  el.querySelector('.mfill').style.width=v+'%';
+  let st;
+  if(cleared && v>=85) st='\u2713 All decisions cleared';
+  else if(cleared) st='Decisions made \u00b7 gaps remain';
+  else if(v>78) st='On Track \u00b7 one still open';
+  else st='On Track \u00b7 Watch';
+  el.querySelector('.mstatus').textContent=st;
+  el.classList.add('flash');
+  setTimeout(()=>el.classList.remove('flash'),700);
+}
 function decide(btn,key){
   const foot=btn.closest('.efoot');
   foot.querySelectorAll('.edb').forEach(b=>b.classList.remove('chosen'));
@@ -1032,6 +1110,16 @@ function decide(btn,key){
     conf.textContent='Rejected · metric stays flagged';
     (map.before||[]).forEach(setMetric);
   }
+  if(key==='d3'){
+    const card=btn.closest('.ecard');
+    const top=card&&card.querySelector('.ecard-top span');
+    if(top)top.innerHTML = approve
+      ? 'AUDIENCE &middot; 72% &rarr; <span style="color:var(--green)">90%</span>'
+      : 'AUDIENCE &middot; 72%';
+  }
+  rollupS2();
+  const oc=document.getElementById('s2-open');
+  if(oc){let o=0;if(DECISIONS.field===null)o++;if(DECISIONS.audience===null)o++;oc.textContent=String(o);}
 }
 function ptab(btn,which){
   btn.parentElement.querySelectorAll('.ptab').forEach(b=>b.classList.remove('on'));
