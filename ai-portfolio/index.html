@@ -25,7 +25,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:84px}
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);
-  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
 .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
 
 /* section bands */
@@ -49,9 +49,9 @@ h3{font-family:var(--disp);font-weight:600;font-size:1.15rem;letter-spacing:-.01
 .lede{font-size:clamp(1rem,1.6vw,1.18rem);color:var(--ink2);max-width:48ch;margin-top:20px}
 .note{color:var(--ink2);max-width:58ch;margin-top:16px;font-size:1rem}
 
-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0;
-  position:sticky;top:0;z-index:60;background:rgba(255,255,255,.93);
-  backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.94);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
 .mark{font-family:var(--disp);font-weight:700;letter-spacing:-.03em;font-size:1.1rem;color:var(--brand)}
 .mark span{color:var(--ink3);font-weight:400;font-family:var(--sans);font-size:.85rem}
 .navacts{display:flex;align-items:center;gap:22px}
@@ -90,6 +90,13 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0
   font-weight:600;margin-bottom:11px}
 .pstep .pt{font-family:var(--disp);font-weight:600;font-size:1.02rem;color:#fff;letter-spacing:-.015em}
 .pstep .pd{font-size:.93rem;color:#a8c2c7;margin-top:7px;line-height:1.4}
+.pstep-link{text-decoration:none;display:block;transition:background .18s}
+.pstep-link:hover{background:#12525C}
+.pstep-link .pt{color:#fff}
+.offerbtn{display:inline-block;margin-top:18px;background:#fff;color:var(--deep);
+  font-weight:600;font-size:.9rem;padding:10px 16px;border-radius:6px;text-decoration:none;
+  transition:background .15s,transform .15s;align-self:flex-start}
+.offerbtn:hover{background:var(--tint);transform:translateY(-1px)}
 .askrow{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);
   border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-top:34px}
 .askcell{background:#fff;padding:22px 24px}
@@ -336,16 +343,18 @@ footer{border-top:1px solid var(--line);padding:28px 0 44px;font-family:var(--mo
 </head>
 <body>
 
-<div class="wrap">
-  <nav>
-    <div class="mark">Lakshmi Peri <span>AI portfolio governance &middot; GTM workflows</span></div>
-    <div class="navacts">
-      <a class="navlink" href="#start">How it works</a>
-      <a class="navlink" href="#background">Who I am</a>
-      <a class="btn sm" href="#start">Get started</a>
-    </div>
-  </nav>
-</div>
+<header class="topbar">
+  <div class="wrap">
+    <nav>
+      <div class="mark">Lakshmi Peri <span>AI portfolio governance &middot; GTM workflows</span></div>
+      <div class="navacts">
+        <a class="navlink" href="#start">How it works</a>
+        <a class="navlink" href="#background">Who I am</a>
+        <a class="btn sm" href="#start">Get started</a>
+      </div>
+    </nav>
+  </div>
+</header>
 
 <!-- HERO -->
 <div class="wrap">
@@ -481,8 +490,8 @@ footer{border-top:1px solid var(--line);padding:28px 0 44px;font-family:var(--mo
     <div class="eyebrow">How this goes</div>
     <h2>Start where it costs nothing.</h2>
     <div class="plan">
-      <div class="pstep"><div class="pn">STEP 1</div><div class="pt">Take the check</div>
-        <div class="pd">Twelve questions, five minutes. You get a score and the three gaps costing you most.</div></div>
+      <a class="pstep pstep-link" href="check.html"><div class="pn">STEP 1 &middot; START HERE</div><div class="pt">Take the check &rarr;</div>
+        <div class="pd">Twelve questions, five minutes. You get a score and the three gaps costing you most.</div></a>
       <div class="pstep"><div class="pn">STEP 2</div><div class="pt">Twenty minutes on a call</div>
         <div class="pd">I walk you through your result. You leave with two or three things to do whether or not you hire anyone.</div></div>
       <div class="pstep"><div class="pn">STEP 3</div><div class="pt">A scoped proposal</div>
@@ -491,13 +500,14 @@ footer{border-top:1px solid var(--line);padding:28px 0 44px;font-family:var(--mo
     <div class="offers">
       <div class="offer">
         <div class="step-n">01</div>
-        <h3><a href="check.html" style="color:#fff;text-decoration:none;border-bottom:2px solid #7FB3BA">Portfolio check &rarr;</a></h3>
+        <h3>Portfolio check</h3>
         <div class="price">Free &middot; 5 minutes</div>
         <ul>
           <li>Scored the moment you finish</li>
           <li>Four domains, scored and ranked worst first</li>
           <li>A 20-minute readback call if you want one</li>
         </ul>
+        <a class="offerbtn" href="check.html">Take the check &rarr;</a>
         <div class="solves">No pitch unless you ask</div>
       </div>
       <div class="offer">
