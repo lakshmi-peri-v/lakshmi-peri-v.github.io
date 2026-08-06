@@ -219,6 +219,12 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0
 .about-body strong{color:var(--ink);font-weight:600}
 .speaking{background:var(--cool);border-left:3px solid var(--mid);padding:14px 18px;
   border-radius:0 6px 6px 0;font-size:.94rem}
+.panelshot{margin-top:34px;border:1px solid var(--line);border-radius:10px;overflow:hidden;
+  box-shadow:var(--shadow);background:#fff}
+.panelshot img{display:block;width:100%;height:auto}
+.panelshot figcaption{padding:14px 18px;font-size:.9rem;color:var(--ink2);
+  border-top:1px solid var(--line);background:#fff}
+.panelshot figcaption strong{color:var(--ink);font-weight:600}
 .demobox{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;
   background:var(--tint);border:1px solid #cfe0e2;border-radius:10px;padding:22px 24px;margin-top:30px}
 .demobox .dt{font-family:var(--disp);font-weight:600;font-size:1.08rem;letter-spacing:-.02em;margin-bottom:5px}
@@ -628,11 +634,14 @@ footer{border-top:1px solid var(--line);padding:28px 0 44px;font-family:var(--mo
       <div class="stat"><div class="n">10h &rarr; 30m</div><div class="l">Weekly exec update prep<br>after the agents shipped</div></div>
       <div class="stat"><div class="n">18 yrs</div><div class="l">Enterprise programs<br>14 of them at Intuit</div></div>
     </div>
+    <figure class="panelshot">
+      <img src="panel.jpg" alt="Lakshmi Peri presenting the agentic launch readiness system at EM Marketing's AI in Practice panel, Redwood City, July 2026" loading="lazy">
+      <figcaption><strong>AI in Practice</strong> &middot; EM Marketing panel, Redwood City, July 2026. Demonstrating the agentic system built for go-to-market launch readiness.</figcaption>
+    </figure>
     <div class="about-body">
       <p>Eighteen years running enterprise transformation programs, most of it in go-to-market. Operating cadence, launch readiness, forecasting, and sales reporting taken from 70 percent accurate to 95 in under two months.</p>
       <p>Then I built an AI program operations system in production: <strong>eight specialised agents on LLMs</strong> handling planning, risk, dependency tracking, and executive reporting. Alongside it, a reporting engine holding eight contributors across eleven initiatives to a nine-point quality rubric. Review loops dropped two to three times. <a href="../launch.html" style="color:var(--brand);font-weight:600;text-decoration:none;border-bottom:1px solid var(--tint)">See it running &rarr;</a></p>
       <p>It went into program operations and executive reporting. <strong>Not the easy edges.</strong></p>
-      <p class="speaking"><strong>Recent:</strong> panelist at EM Marketing&rsquo;s <em>AI in Practice: What Smart Marketing Orgs Are Actually Doing</em>, Redwood City, July 2026 &mdash; demonstrating the agentic system built for go-to-market launch readiness.</p>
       <p>One design decision matters more than the rest. I built it as a single orchestrator with scoped skills, not a network of independent agents. Multi-agent demos better. Single orchestrator is far easier to audit, credential-scope, and gate. <strong>If you cannot explain who approved what, you do not have governance. You have a demo.</strong></p>
     </div>
   </div>
