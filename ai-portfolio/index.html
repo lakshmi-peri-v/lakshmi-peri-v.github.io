@@ -217,6 +217,13 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0
   color:var(--ink3);margin-top:10px;line-height:1.6;font-weight:600}
 .about-body{max-width:60ch;margin-top:30px;display:grid;gap:15px;color:var(--ink2)}
 .about-body strong{color:var(--ink);font-weight:600}
+.speaking{background:var(--cool);border-left:3px solid var(--mid);padding:14px 18px;
+  border-radius:0 6px 6px 0;font-size:.94rem}
+.demobox{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;
+  background:var(--tint);border:1px solid #cfe0e2;border-radius:10px;padding:22px 24px;margin-top:30px}
+.demobox .dt{font-family:var(--disp);font-weight:600;font-size:1.08rem;letter-spacing:-.02em;margin-bottom:5px}
+.demobox .dd{font-size:.95rem;color:var(--ink2);max-width:52ch}
+.demobox .btn{flex:none}
 
 /* ============ before / after panels ============ */
 .stage{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:stretch;margin-top:40px}
@@ -431,6 +438,14 @@ footer{border-top:1px solid var(--line);padding:28px 0 44px;font-family:var(--mo
 
     <p class="note">Getting from left to right is mostly program design. The AI is what keeps the screen current without anyone maintaining it.</p>
 
+    <div class="demobox">
+      <div>
+        <div class="dt">See the right-hand panel actually running</div>
+        <div class="dd">A working demo of the launch readiness system I built: eight agents reading the tools a team already uses, turning scattered status into one decision-ready view.</div>
+      </div>
+      <a class="btn" href="../launch.html">Open the demo &rarr;</a>
+    </div>
+
     <div class="tooffers"><a href="#start">What this looks like as an engagement <span class="arr">&darr;</span></a></div>
   </div>
 </div>
@@ -615,8 +630,9 @@ footer{border-top:1px solid var(--line);padding:28px 0 44px;font-family:var(--mo
     </div>
     <div class="about-body">
       <p>Eighteen years running enterprise transformation programs, most of it in go-to-market. Operating cadence, launch readiness, forecasting, and sales reporting taken from 70 percent accurate to 95 in under two months.</p>
-      <p>Then I built an AI program operations system in production: <strong>eight specialised agents on LLMs</strong> handling planning, risk, dependency tracking, and executive reporting. Alongside it, a reporting engine holding eight contributors across eleven initiatives to a nine-point quality rubric. Review loops dropped two to three times.</p>
+      <p>Then I built an AI program operations system in production: <strong>eight specialised agents on LLMs</strong> handling planning, risk, dependency tracking, and executive reporting. Alongside it, a reporting engine holding eight contributors across eleven initiatives to a nine-point quality rubric. Review loops dropped two to three times. <a href="../launch.html" style="color:var(--brand);font-weight:600;text-decoration:none;border-bottom:1px solid var(--tint)">See it running &rarr;</a></p>
       <p>It went into program operations and executive reporting. <strong>Not the easy edges.</strong></p>
+      <p class="speaking"><strong>Recent:</strong> panelist at EM Marketing&rsquo;s <em>AI in Practice: What Smart Marketing Orgs Are Actually Doing</em>, Redwood City, July 2026 &mdash; demonstrating the agentic system built for go-to-market launch readiness.</p>
       <p>One design decision matters more than the rest. I built it as a single orchestrator with scoped skills, not a network of independent agents. Multi-agent demos better. Single orchestrator is far easier to audit, credential-scope, and gate. <strong>If you cannot explain who approved what, you do not have governance. You have a demo.</strong></p>
     </div>
   </div>
