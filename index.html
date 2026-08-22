@@ -217,6 +217,10 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0
   color:var(--ink3);margin-top:10px;line-height:1.6;font-weight:600}
 .about-body{max-width:60ch;margin-top:30px;display:grid;gap:15px;color:var(--ink2)}
 .about-body strong{color:var(--ink);font-weight:600}
+.bglinks{display:flex;gap:28px;flex-wrap:wrap;margin-top:6px}
+.bglinks a{color:var(--brand);font-weight:600;text-decoration:none;
+  border-bottom:2px solid var(--tint);padding-bottom:3px}
+.bglinks a:hover{border-color:var(--brand)}
 .speaking{background:var(--cool);border-left:3px solid var(--mid);padding:14px 18px;
   border-radius:0 6px 6px 0;font-size:.94rem}
 .panelshot{margin-top:34px;border:1px solid var(--line);border-radius:10px;overflow:hidden;
@@ -605,6 +609,25 @@ footer{border-top:1px solid var(--line);padding:28px 0 44px;font-family:var(--mo
   </div>
 </div>
 
+<!-- ENDORSEMENTS -->
+<div class="band cool">
+  <div class="wrap">
+    <div class="eyebrow">In their words</div>
+    <h2>People I did the work for.</h2>
+    <div class="quotes">
+      <div class="q">
+        <blockquote>&ldquo;The price implementation was a tremendous success. $75M in revenue, under 1.2% attrition, no impact on customer acquisition. Lakshmi was the glue that brought it all together.&rdquo;</blockquote>
+        <div class="who"><b>Tony King</b>SVP Pricing &amp; Commercialization, Xero</div>
+      </div>
+      <div class="q">
+        <blockquote>&ldquo;A pivotal leadership role organizing governance, operating models, and readiness frameworks. A major reason we delivered without any customer or business disruption across 5+ product lines and a dozen countries.&rdquo;</blockquote>
+        <div class="who"><b>Joe Wolf</b>Intuit</div>
+      </div>
+    </div>
+    <p class="note"><a href="https://www.linkedin.com/in/lakshmiperi/" style="color:var(--brand);font-weight:600;text-decoration:none">More recommendations on LinkedIn &rarr;</a></p>
+  </div>
+</div>
+
 <!-- SAMPLE -->
 <div class="band">
   <div class="wrap">
@@ -671,21 +694,14 @@ footer{border-top:1px solid var(--line);padding:28px 0 44px;font-family:var(--mo
   <div class="wrap">
     <div class="eyebrow">Background</div>
     <h2>I built it before I advised on it.</h2>
-    <div class="proof">
-      <div class="stat"><div class="n">5M</div><div class="l">Customers migrated<br>12+ countries, zero disruption</div></div>
-      <div class="stat"><div class="n">$75M</div><div class="l">Pricing transformation<br>attrition held under 1.2%</div></div>
-      <div class="stat"><div class="n">10h &rarr; 30m</div><div class="l">Weekly exec update prep<br>after the agents shipped</div></div>
-      <div class="stat"><div class="n">18 yrs</div><div class="l">Enterprise programs<br>14 of them at Intuit</div></div>
-    </div>
-    <figure class="panelshot">
-      <img src="panel.jpg" alt="Lakshmi Peri presenting the agentic launch readiness system at EM Marketing's AI in Practice panel, Redwood City, July 2026" loading="lazy">
-      <figcaption><strong>AI in Practice</strong> &middot; EM Marketing panel, Redwood City, July 2026. Demonstrating the agentic system built for go-to-market launch readiness.</figcaption>
-    </figure>
-    <div class="about-body">
-      <p>Eighteen years running enterprise transformation programs, most of it in go-to-market. Operating cadence, launch readiness, forecasting, and sales reporting taken from 70 percent accurate to 95 in under two months.</p>
-      <p>Then I built an AI program operations system in production: <strong>eight specialised agents on LLMs</strong> handling planning, risk, dependency tracking, and executive reporting. Alongside it, a reporting engine holding eight contributors across eleven initiatives to a nine-point quality rubric. Review loops dropped two to three times. <a href="demo.html" style="color:var(--brand);font-weight:600;text-decoration:none;border-bottom:1px solid var(--tint)">See it running &rarr;</a></p>
-      <p>It went into program operations and executive reporting. <strong>Not the easy edges.</strong></p>
-      <p>One design decision matters more than the rest. I built it as a single orchestrator with scoped skills, not a network of independent agents. Multi-agent demos better. Single orchestrator is far easier to audit, credential-scope, and gate. <strong>If you cannot explain who approved what, you do not have governance. You have a demo.</strong></p>
+    <div class="about-body" style="margin-top:26px">
+      <p>Fourteen years at Intuit running enterprise transformation, most of it in go-to-market. Five million customers migrated across twelve countries without a disruption.</p>
+      <p>Then I built an AI program operations system in production. <strong>Eight specialised agents on LLMs</strong> handling planning, risk, dependency tracking, and executive reporting. Weekly leadership update prep went from about ten hours to under thirty minutes.</p>
+      <p>Single orchestrator, scoped skills, not a network of independent agents. Multi-agent demos better. Single orchestrator is far easier to audit and gate. <strong>If you cannot explain who approved what, you do not have governance. You have a demo.</strong></p>
+      <p class="bglinks">
+        <a href="about.html">The full background &rarr;</a>
+        <a href="demo.html">See the system running &rarr;</a>
+      </p>
     </div>
   </div>
 </div>
@@ -719,25 +735,6 @@ footer{border-top:1px solid var(--line);padding:28px 0 44px;font-family:var(--mo
       <details><summary>What happens when you leave?</summary>
         <div class="fa">A named internal owner, a cadence already running, and documentation written for them rather than for me. If that handover cannot happen, the engagement was not worth doing.</div></details>
     </div>
-  </div>
-</div>
-
-<!-- ENDORSEMENTS -->
-<div class="band cool">
-  <div class="wrap">
-    <div class="eyebrow">In their words</div>
-    <h2>People I did the work for.</h2>
-    <div class="quotes">
-      <div class="q">
-        <blockquote>&ldquo;The price implementation was a tremendous success. $75M in revenue, under 1.2% attrition, no impact on customer acquisition. Lakshmi was the glue that brought it all together.&rdquo;</blockquote>
-        <div class="who"><b>Tony King</b>SVP Pricing &amp; Commercialization, Xero</div>
-      </div>
-      <div class="q">
-        <blockquote>&ldquo;A pivotal leadership role organizing governance, operating models, and readiness frameworks. A major reason we delivered without any customer or business disruption across 5+ product lines and a dozen countries.&rdquo;</blockquote>
-        <div class="who"><b>Joe Wolf</b>Intuit</div>
-      </div>
-    </div>
-    <p class="note"><a href="https://www.linkedin.com/in/lakshmiperi/" style="color:var(--brand);font-weight:600;text-decoration:none">More recommendations on LinkedIn &rarr;</a></p>
   </div>
 </div>
 
