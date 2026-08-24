@@ -25,8 +25,12 @@ body{background:var(--cool);color:var(--ink);font-family:var(--sans);font-size:1
 .wide{max-width:1000px}
 
 .topbar{background:var(--brand)}
-nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+.navbar{position:-webkit-sticky;position:sticky;top:0;z-index:60;background:var(--brand)}
+.navbar.scrolled{box-shadow:0 2px 12px rgba(26,22,20,.22)}
+.navwrap{max-width:1020px;margin:0 auto;padding:0 30px}
+nav{display:flex;justify-content:space-between;align-items:center;height:60px}
 .mark{font-weight:600;font-size:19px;letter-spacing:-.02em;color:#fff;text-decoration:none}
+.mark i{font-style:normal;color:#C9A98C}
 .mark span{color:var(--ink3);font-weight:400;font-family:var(--sans);font-size:.82rem}
 
 h1{font-weight:600;font-size:clamp(30px,4.1vw,44px);line-height:1.12;letter-spacing:-.025em;color:#fff}
@@ -40,8 +44,8 @@ h3{font-weight:600;font-size:17px;letter-spacing:-.015em}
   color:#fff;border:none;border-radius:3px;padding:12px 22px;cursor:pointer;text-decoration:none;
   transition:background .15s,transform .15s}
 .btn:hover:not(:disabled){background:var(--deep);transform:translateY(-1px)}
-.topbar .btn{background:#A8846A;color:#2A1216}
-.topbar .btn:hover:not(:disabled){background:#C9A98C}
+.topbar .btn,.navbar .btn{background:#A8846A;color:#2A1216}
+.topbar .btn:hover:not(:disabled),.navbar .btn:hover:not(:disabled){background:#C9A98C}
 .btn:disabled{background:var(--line2);cursor:not-allowed}
 .btn.ghost{background:transparent;color:#DCC7C4;box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
 .btn.ghost:hover{background:rgba(255,255,255,.1);color:#fff}
@@ -145,8 +149,8 @@ footer{padding:24px 0 30px;margin-top:28px;border-top:1px solid var(--line);font
 </head>
 <body>
 
-<header class="topbar">
-  <div class="wrap wide">
+<header class="navbar">
+  <div class="navwrap">
     <nav>
     <a class="mark" href="index.html">Naanya<i>.</i></a>
     <a class="btn ghost" href="index.html" style="padding:9px 15px;font-size:13.5px">&larr; Back</a>
@@ -392,6 +396,17 @@ document.getElementById('sendBtn').addEventListener('click', async ()=>{
 });
 
 document.getElementById('againBtn').addEventListener('click',()=>location.reload());
+</script>
+<script>
+(function(){
+  var tb=document.querySelector('.navbar');
+  if(!tb) return;
+  var on=false;
+  addEventListener('scroll',function(){
+    var s=scrollY>4;
+    if(s!==on){on=s;tb.classList.toggle('scrolled',s);}
+  },{passive:true});
+})();
 </script>
 </body>
 </html>
