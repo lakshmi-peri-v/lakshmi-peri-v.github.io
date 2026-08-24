@@ -24,6 +24,7 @@ body{background:var(--bone);color:var(--ink);font-family:var(--font);font-size:1
 a{color:inherit;text-decoration:none}
 .wrap{max-width:1020px;margin:0 auto;padding:0 30px}
 .band{background:var(--ox);color:#F0E4E2}
+nav.stick{position:sticky;top:0;z-index:60;background:var(--ox);box-shadow:0 1px 0 rgba(0,0,0,.18)}
 nav{display:flex;align-items:center;gap:28px;height:60px}
 nav .brand{margin-right:auto}
 .brand{font-weight:600;font-size:19px;letter-spacing:-.02em;color:#fff}
@@ -33,11 +34,11 @@ nav .brand{margin-right:auto}
 .btn{display:inline-block;background:var(--tan);color:#2A1216;font-weight:600;font-size:14px;padding:11px 19px;border-radius:3px;border:none;cursor:pointer;font-family:var(--font);transition:background .16s}
 .btn:hover{background:var(--tan-lt)}
 .btn.sm{padding:9px 15px;font-size:13.5px}
-.hero{padding:30px 0 34px}
+.hero{padding:22px 0 26px}
 h1{font-weight:600;font-size:clamp(28px,3.6vw,40px);line-height:1.14;letter-spacing:-.025em;color:#fff;max-width:20ch}
 .sub{font-size:16px;color:#E0C9C6;max-width:58ch;margin-top:13px;line-height:1.5}
 .acts{margin-top:20px}
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:0;padding:22px 0 2px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:0;padding:18px 0 2px}
 .colL{padding-right:42px;border-right:1px solid var(--line)}
 .colR{padding-left:42px}
 .lab{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--tan);font-weight:600;margin-bottom:10px}
@@ -45,7 +46,7 @@ ul{list-style:none}
 li{padding:4px 0 4px 17px;position:relative;font-size:15px;color:var(--ink2)}
 li:before{content:"";position:absolute;left:0;top:12px;width:7px;height:1px;background:var(--tan)}
 .colR li{color:var(--ink)}
-.see{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+.see{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
 .seelab{grid-column:1/-1;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--tan);font-weight:600;margin-bottom:2px}
 .seelab b{color:var(--ox);font-weight:600;animation:blink 1.9s ease-in-out infinite}
 .touchedlab .seelab b{animation:none;color:var(--ink3)}
@@ -58,6 +59,20 @@ li:before{content:"";position:absolute;left:0;top:12px;width:7px;height:1px;back
 @keyframes nudge{0%,70%,100%{transform:translateX(0)}80%{transform:translateX(4px)}90%{transform:translateX(0)}}
 @keyframes breathe{0%,100%{border-color:var(--line)}50%{border-color:var(--tan)}}
 @media(prefers-reduced-motion:reduce){.demo,.demo .go,.seelab b{animation:none!important}}
+.cons{color:#CDAFAC;font-size:15px;margin-top:9px}
+.byline{font-size:13.5px;color:#CDAFAC;margin-top:14px}
+.byline b{color:#F0E4E2;font-weight:600}
+.byline a{color:var(--tan-lt);border-bottom:1px solid rgba(201,169,140,.45)}
+.byline a:hover{color:#fff}
+.plan{padding:18px 0 2px;border-top:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.step .sn{display:inline-block;font-size:11px;font-weight:600;color:var(--tan);letter-spacing:.1em;margin-bottom:5px}
+.step h4{font-size:15.5px;font-weight:600;letter-spacing:-.01em;margin-bottom:4px}
+.step p{font-size:14.5px;color:var(--ink2)}
+.cta{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:20px 0 0;padding:18px 24px;background:var(--tint);border:1px solid var(--line2);border-radius:4px}
+.cta h3{font-size:17px;font-weight:600;letter-spacing:-.015em}
+.cta p{font-size:14.5px;color:var(--ink2);margin-top:3px}
+@media(max-width:700px){.steps{grid-template-columns:1fr;gap:16px}.cta{flex-direction:column;align-items:flex-start}}
 .demo.on .go{color:var(--ox-deep)}
 .demo.on .go:after{content:" (showing)";font-weight:400;color:var(--ink3)}
 .demo{background:#fff;border:1px solid var(--line);border-radius:3px;padding:14px 17px;cursor:pointer;text-align:left;font-family:var(--font);transition:border-color .16s,background .16s}
@@ -71,7 +86,7 @@ li:before{content:"";position:absolute;left:0;top:12px;width:7px;height:1px;back
 .stagearea>div.show{display:block}
 .snote{color:var(--ink2);max-width:66ch;margin-top:18px;font-size:14.5px}
 .snote b{color:var(--ink);font-weight:600}
-footer{padding:24px 0 30px;margin-top:28px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink3);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer{padding:18px 0 24px;margin-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink3);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 footer a:hover{color:var(--ox)}
 .lif{display:inline-flex;align-items:center;gap:6px;color:var(--ink3);transition:color .16s}
 .lif:hover{color:var(--ox,#6E2230)}
@@ -233,7 +248,7 @@ footer a:hover{color:var(--ox)}
  .colL{padding-right:0;border-right:none;border-bottom:1px solid var(--line);padding-bottom:18px}
  .colR{padding-left:0}
  .see{grid-template-columns:1fr}
- .hero{padding:32px 0 36px}
+ .hero{padding:24px 0 28px}
  .tile{width:min(330px,calc(100vw - 76px))}
 }
 </style>
@@ -241,14 +256,16 @@ footer a:hover{color:var(--ox)}
 <body>
 
 <div class="band">
-  <div class="wrap"><nav>
+  <div class="wrap"><nav class="stick">
     <a class="brand" href="index.html">Naanya<i>.</i></a>
-    <div class="navl"><a href="#see">See it working</a><a href="who.html">Who you&rsquo;d work with</a></div>
-    <a class="btn sm" href="check.html">Take the check</a>
+    <div class="navl"><a href="#see">See it working</a><a href="who.html">Who you&rsquo;d work with</a><a href="check.html">Take the check</a></div>
+    <a class="btn sm" href="https://cal.com/lakshmiperi/readback" target="_blank" rel="noopener">Book a 20-min readback</a>
   </nav></div>
   <div class="wrap"><section class="hero">
     <h1>Turn scattered AI initiatives into an accountable operating system.</h1>
     <p class="sub">AI arrived across your departments. Nobody was given the job of running it.</p>
+    <p class="sub cons">Most of it surfaces late &mdash; after a launch slips, or after a customer finds the tool nobody reviewed.</p>
+    <p class="byline"><b>Run by Lakshmi Peri.</b> Eighteen years running cross-functional programs at scale &middot; <a href="who.html">Who you&rsquo;d work with &rarr;</a></p>
     <div class="acts"><a class="btn" href="check.html">Twelve questions in, you&rsquo;ll know &rarr;</a></div>
   </section></div>
 </div>
@@ -273,6 +290,15 @@ footer a:hover{color:var(--ox)}
       <li>Intake and review work for AI-enabled work</li>
       <li>Leadership has evidence, not opinions</li>
     </ul>
+  </div>
+</section></div>
+
+<div class="wrap"><section class="plan">
+  <div class="lab">How it works</div>
+  <div class="steps">
+    <div class="step"><span class="sn">1</span><h4>See what&rsquo;s running</h4><p>Every AI initiative, tool, owner, and data path in one inventory.</p></div>
+    <div class="step"><span class="sn">2</span><h4>Set accountability</h4><p>Intake, risk tiers, decision rights, and a gate between pilot and production.</p></div>
+    <div class="step"><span class="sn">3</span><h4>Focus the portfolio</h4><p>Stop the low-value work. Put capacity behind what&rsquo;s provable.</p></div>
   </div>
 </section></div>
 
@@ -338,6 +364,14 @@ footer a:hover{color:var(--ox)}
     <p class="snote">AI went where one person could adopt it alone. It never reached the work that spans teams and eats the week. Getting from left to right is mostly program design &mdash; the AI is what keeps the screen current without anyone maintaining it.</p>
   </div>
 </div></div>
+
+<div class="wrap"><section class="cta">
+  <div>
+    <h3>Twenty minutes, no deck.</h3>
+    <p>Tell me what&rsquo;s running. I&rsquo;ll tell you what I&rsquo;d tier, gate, or stop first.</p>
+  </div>
+  <a class="btn" href="https://cal.com/lakshmiperi/readback" target="_blank" rel="noopener">Book a readback &rarr;</a>
+</section></div>
 
 <div class="wrap"><footer>
   <span>&copy; 2026 Naanya &middot; Lakshmi Peri</span>
