@@ -18,6 +18,8 @@ body{background:var(--bone);color:var(--ink);font-family:var(--font);font-size:1
 a{color:inherit;text-decoration:none}
 .wrap{max-width:1020px;margin:0 auto;padding:0 30px}
 .band{background:var(--ox);color:#F0E4E2}
+.topbar{position:-webkit-sticky;position:sticky;top:0;z-index:60;background:var(--ox);color:#F0E4E2}
+.topbar.scrolled{box-shadow:0 2px 12px rgba(26,22,20,.22)}
 nav{display:flex;align-items:center;gap:28px;height:60px}
 nav .brand{margin-right:auto}
 .brand{font-weight:600;font-size:19px;letter-spacing:-.02em;color:#fff}
@@ -72,12 +74,15 @@ footer a:hover{color:var(--ox)}
 </style>
 </head>
 <body>
-<div class="band">
+<div class="topbar">
   <div class="wrap"><nav>
     <a class="brand" href="index.html">Naanya<i>.</i></a>
-    <div class="navl"><a href="index.html#see">See it working</a><a href="who.html" class="on">Who you&rsquo;d work with</a></div>
-    <a class="btn sm" href="check.html">Take the check</a>
+    <div class="navl"><a href="index.html#see">See it working</a><a href="who.html" class="on">Who you&rsquo;d work with</a><a href="check.html">Take the check</a></div>
+    <a class="btn sm" href="https://cal.com/lakshmiperi/readback" target="_blank" rel="noopener">Book a 20-min readback</a>
   </nav></div>
+</div>
+
+<div class="band">
   <div class="wrap"><section class="phead">
     <h1>Lakshmi Peri.</h1>
     <p class="sub">You work with me directly. Eighteen years of enterprise transformation, most of it in go-to-market.</p>
@@ -148,5 +153,16 @@ footer a:hover{color:var(--ox)}
   <span>&copy; 2026 Naanya &middot; Lakshmi Peri</span>
   <span>lakshmi.peri@naanya.tech &nbsp;&middot;&nbsp; <a class="lif" href="https://www.linkedin.com/in/lakshmiperi/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn</a></span>
 </footer></div>
+<script>
+(function(){
+  var tb=document.querySelector('.topbar');
+  if(!tb) return;
+  var on=false;
+  addEventListener('scroll',function(){
+    var s=scrollY>4;
+    if(s!==on){on=s;tb.classList.toggle('scrolled',s);}
+  },{passive:true});
+})();
+</script>
 </body>
 </html>
