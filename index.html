@@ -4,7 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Naanya gives leaders one clear view of their AI portfolio.">
-  <title>Naanya — AI portfolio control</title>
+  <title>Naanya · AI portfolio visibility</title>
+  <meta name="theme-color" content="#6E2230">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="favicon-32.png" type="image/png">
+  <link rel="apple-touch-icon" href="favicon-180.png">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -277,6 +281,20 @@
     .fill.naan em{color:#fff}
     .lc-note{margin-top:16px;font-size:13.5px;color:var(--ink2);line-height:1.5}
     .lc-note b{color:var(--brand);font-weight:600}
+
+    /* AI-is-never-done callout band */
+    .band{background:var(--wine);border-radius:16px;padding:26px 30px;color:#F3E7DD;position:relative;overflow:hidden;margin-top:30px;display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center}
+    .band:before{content:"";position:absolute;inset:0;background:radial-gradient(120% 120% at 100% 0%,rgba(139,58,70,.5),transparent 60%);pointer-events:none}
+    .band .eyebrow{color:var(--tan);position:relative}
+    .band h2{color:#FBF5EF;font-size:clamp(20px,2.1vw,25px);line-height:1.18;max-width:32ch;margin:9px 0 0;position:relative}
+    .band .sub{color:#D8C4B8;font-size:14.5px;line-height:1.5;margin-top:12px;position:relative}
+    .band .contrast{display:grid;gap:11px;position:relative}
+    .tc{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:11px;padding:14px 16px}
+    .tc .k{font:700 9.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--tan);margin-bottom:7px}
+    .tc.trad .k{color:#B9A99C}
+    .tc .v{font-size:14px;line-height:1.45;color:#EADFD6}
+    .tc .v b{color:#fff;font-weight:600}
+    @media (max-width:820px){.band{grid-template-columns:1fr;gap:22px}}
     @media (max-width:760px){.costcards{grid-template-columns:1fr}.lc-head,.lc-row{grid-template-columns:74px 1fr;gap:10px}.fill em{font-size:9px}.segs span{font-size:8px;letter-spacing:0}}
 
     /* reveals */
@@ -324,7 +342,7 @@
           <a class="btn primary" href="https://cal.com/lakshmiperi/readback" target="_blank" rel="noopener">Book a readback →</a>
           <a class="btn ghost" href="check.html">Take the 5-minute check</a>
         </div>
-        <div class="micro">We don't build the AI. We make sure the right work moves forward.</div>
+        <div class="micro">Naanya doesn't build the AI. It keeps the right work moving.</div>
       </div>
       <aside class="est" id="estimator" aria-label="Estimate the cost of untracked AI work">
         <div class="est-top"><span class="ttl">Your likely blind spot</span><span class="live">Live estimate</span></div>
@@ -339,7 +357,7 @@
           <div class="crow"><span class="cl">Stuck past a decision <em>≈ 1 in 4</em></span><b id="rStall">8</b></div>
           <div class="crow total"><span class="cl">Spend sitting in stalled work <em id="rFormula">8 stalled × ~$23K/yr</em></span><b id="rCost">$184K</b></div>
         </div>
-        <p class="assume"><b>How this is figured:</b> stalled count × ~$23K a year each (tool licences plus part-time attention on work nobody is deciding). Ratios are conservative industry ballparks. In a 20-minute readback we swap them for your real numbers; the true figure is usually higher.</p>
+        <p class="assume"><b>How this is figured:</b> stalled count × ~$23K a year each (tool licences plus part-time attention on work nobody is deciding). Ratios are conservative industry ballparks. In a 20-minute readback, your real numbers replace these; the true figure is usually higher.</p>
       </aside>
     </div></section>
 
@@ -389,7 +407,7 @@
             <div class="mo kill"><b>5</b><span>POCs killed</span></div>
             <div class="mo roi"><b>Day 90</b><span>value measured</span></div>
           </div>
-          <div class="panel-foot">Owned, tiered, gated, and measured, dead ones cut, value proven at day 90.</div>
+          <div class="panel-foot">Owned, tiered, gated, and measured. Dead ones cut, value proven at day 90.</div>
         </div>
       </div>
     </div></section>
@@ -409,14 +427,26 @@
           <ul><li>Triage intakes, assign lanes</li><li>Enforce owners and baselines</li><li>Gates set before builds start</li></ul></article>
         <article class="svc ru"><div class="num">03 · MONTHLY + QUARTERLY</div><h3>Running the cadences</h3>
           <div class="sd">Visibility turned into decisions.</div>
-          <ul><li>Graduate-or-close reviews</li><li>Exec status and value reporting</li><li>Day-90 value audited, registry refreshed</li></ul></article>
+          <ul><li>Graduate-or-close reviews</li><li>Exec status and value reporting</li><li>Post-launch checks reported by owners, verified in review</li><li>Registry re-reviewed as the stack moves</li></ul></article>
       </div>
+      <div class="band ru">
+        <div>
+          <div class="eyebrow">Why AI is different</div>
+          <h2>Traditional software is largely complete when it ships; AI systems require continuous monitoring, evaluation, and refinement after deployment.</h2>
+          <p class="sub">The hard part starts after launch. Models can drift as your data shifts, answers can degrade, a vendor update can change behavior overnight, costs can creep, adoption can fade. And when any of it happens, nothing throws an error. You find out when it has already stopped earning its cost.</p>
+        </div>
+        <div class="contrast">
+          <div class="tc trad"><div class="k">Traditional launch</div><div class="v">Build → ship → <b>done.</b> Keeps doing what it did on day one.</div></div>
+          <div class="tc"><div class="k">AI launch</div><div class="v">Ship → <b>the work begins.</b> Accuracy can slip, a model update can shift outputs, costs can climb. And when it happens, it's silent until a customer notices.</div></div>
+        </div>
+      </div>
+      <p class="lc-note ru" style="margin-top:24px"><b>Where the line sits:</b> The model monitoring itself is your engineers' job, not Naanya's. Naanya makes sure it happens, that drift, quality, and value get reported, and that the findings are acted on, not filed in a plan and forgotten.</p>
     </div></section>
 
     <!-- PROOF: COST -->
     <section class="proof"><div class="wrap">
       <div class="head-c ru"><div class="eyebrow">The better alternative</div>
-        <h2>Weeks, not months. And we stay past the gate.</h2></div>
+        <h2>Weeks, not months. And Naanya stays past the gate.</h2></div>
       <div class="sub-eyebrow ru" style="margin-top:30px">What it costs to get to control</div>
       <div class="costcards ru">
         <div class="cc"><div class="cn">Build it yourself</div><div class="cfig">~$240K</div><div class="ctime">6 months</div><div class="cdesc">Buried senior time, pulled off the roadmap.</div></div>
@@ -432,7 +462,7 @@
         <div class="lc-row"><span class="rl">Software</span><div class="track"><div class="stopline"></div><div class="fill soft"><em>ships it, then you're on your own</em></div></div></div>
         <div class="lc-row"><span class="rl">Big 4</span><div class="track"><div class="stopline"></div><div class="fill big"><em>hands over the deck, leaves</em></div></div></div>
         <div class="lc-row"><span class="rl">DIY</span><div class="track"><div class="stopline"></div><div class="fill diy"><em>stalls mid-build</em></div></div></div>
-        <div class="lc-row me"><span class="rl">Naanya</span><div class="track"><div class="stopline"></div><div class="fill naan"><em>still here — value measured at day 90 ★</em></div></div></div>
+        <div class="lc-row me"><span class="rl">Naanya</span><div class="track"><div class="stopline"></div><div class="fill naan"><em>still here · value measured at day 90 ★</em></div></div></div>
       </div>
       <p class="lc-note ru"><b>The differentiator, shown not claimed:</b> only Naanya's line crosses the gate into day-90 value. That's the part nobody else stays for.</p>
     </div></section>
