@@ -150,7 +150,7 @@
     <a class="mark" href="index.html">naanya<i>.</i></a>
     <div class="navl">
       <a href="index.html#why">The blind spot</a><a href="index.html#how">How it works</a><a href="who.html">Who you'd work with</a>
-      <a class="btn sm" href="https://cal.com/lakshmiperi/readback" target="_blank" rel="noopener">Book a readback</a>
+      <a class="btn sm" href="https://cal.com/lakshmiperi/readback" target="_blank" rel="noopener">Book a call</a>
     </div>
     </nav>
   </div>
@@ -161,13 +161,13 @@
   <section class="intro">
     <div class="eyebrow">AI portfolio check</div>
     <h1>Twelve questions. Five minutes.</h1>
-    <p class="lede">Scored the moment you finish. You keep the result whether or not we ever speak. Most people find at least one initiative they did not know was running.</p>
+    <p class="lede">Scored the moment you finish. The result is yours whether or not we ever speak. Most people finish it having remembered at least one initiative they had forgotten was running.</p>
     <div class="facts">
       <div class="fact"><div class="fn">12</div><div class="fl">Questions across<br>four domains</div></div>
       <div class="fact"><div class="fn">0</div><div class="fl">Email required<br>to see your score</div></div>
       <div class="fact"><div class="fn">5 min</div><div class="fl">Answer from what<br>you know today</div></div>
     </div>
-    <p class="note">Answer as things actually are, not as they are meant to be. A score that flatters you is not worth having.</p>
+    <p class="note">Answer as things actually are rather than as they are meant to be. A score that flatters you is worth nothing.</p>
   </section>
 </div></div>
 
@@ -193,7 +193,7 @@
   <div class="eyebrow">Your result</div>
   <div class="scorecard">
     <div class="scorehead" id="sHead">
-      <div class="sb" id="sBand">—</div>
+      <div class="sb" id="sBand">&nbsp;</div>
       <div class="sn"><span id="sNum">0</span><small>/36</small></div>
       <div class="sd" id="sDesc"></div>
     </div>
@@ -204,12 +204,12 @@
   <div class="domains" id="domainHost"></div>
 
   <h2 style="margin-top:56px">The three that cost you most</h2>
-  <p class="note">Ranked by how much unmanaged exposure each one carries, not by score alone.</p>
+  <p class="note">Ranked by how much unmanaged exposure each one carries, rather than by score alone.</p>
   <div class="gaps" id="gapHost"></div>
 
   <div class="capture">
-    <h3>Book the readback</h3>
-    <p>A 20-minute call walking through your result, what it means in practice, and the two or three things worth doing first. No pitch unless you ask for one.</p>
+    <h3>Book a 20-minute call</h3>
+    <p>Twenty minutes on your result: what it means in practice, and the two or three things worth doing first. There is no pitch unless you ask for one.</p>
     <div class="fields">
       <input id="fName" placeholder="Name" autocomplete="name">
       <input id="fCompany" placeholder="Company" autocomplete="organization">
@@ -217,7 +217,7 @@
     </div>
     <button class="btn" id="sendBtn">Send my result</button>
     <div class="msg" id="sendMsg"></div>
-    <div id="bookRow" style="display:none;margin-top:18px"><a class="btn" href="https://cal.com/lakshmiperi/readback" style="background:#fff;color:var(--deep)">Book 20 minutes &rarr;</a></div>
+    <div id="bookRow" style="display:none;margin-top:18px"><a class="btn" href="https://cal.com/lakshmiperi/readback" style="background:#fff;color:var(--deep)">Book a 20-minute call &rarr;</a></div>
   </div>
 
   <div class="reprint"><button class="btn ghost" id="againBtn">Take it again</button></div>
@@ -234,7 +234,7 @@ const FORMSPREE = "https://formspree.io/f/xgawwqed";
 const DOMAINS = [
   {id:"own",  name:"Ownership and visibility"},
   {id:"in",   name:"Intake and approval"},
-  {id:"data", name:"Data and control"},
+  {id:"data", name:"Data and cost"},
   {id:"val",  name:"Value and measurement"}
 ];
 
@@ -242,7 +242,7 @@ const DOMAINS = [
 const Q = [
  {d:"own", q:"Who owns AI initiatives across the company?",
   o:["Nobody in particular","Whoever started each one","A leader, informally, alongside their day job","A named owner with the mandate and the time"],
-  cost:"With no owner, nothing gets stopped. Initiatives accumulate and none of them retire."},
+  cost:"With nobody accountable, nothing ever gets stopped. Initiatives accumulate and none of them retire."},
  {d:"own", q:"Is there one list of every AI initiative and tool running?",
   o:["No","Several partial lists in different teams","One list, usually out of date","One current list with owners on it"],
   cost:"You cannot govern, budget for, or defend a portfolio you cannot see."},
@@ -252,10 +252,10 @@ const Q = [
 
  {d:"in", q:"How does someone propose a new AI use case?",
   o:["They just start","They ask their manager","There is a process, but people route around it","One front door, used consistently"],
-  cost:"Without a front door, governance only ever sees what volunteers to be seen."},
+  cost:"Without a front door, you only ever see the initiatives that volunteer themselves."},
  {d:"in", q:"How long from proposal to a yes or no?",
   o:["There is no decision point","Months, or never","Weeks, unpredictably","Days, against a published path"],
-  cost:"A slow gate teaches people to skip the gate. Speed is a control, not a nicety."},
+  cost:"A slow gate teaches people to skip the gate. Speed is a control in its own right."},
  {d:"in", q:"Do approvals route differently depending on risk?",
   o:["There are no approvals","Everything goes the same way","Informally, based on judgement","By tier: pre-cleared, committee, or IT and legal"],
   cost:"One queue for everything makes low-risk work slow and high-risk work rushed."},
@@ -263,28 +263,28 @@ const Q = [
  {d:"data", q:"Do you know which AI tools touch customer data?",
   o:["No","We could work it out with effort","Mostly, for the sanctioned ones","Yes, documented per tool"],
   cost:"This is the question a customer, an auditor, or a regulator asks first."},
- {d:"data", q:"Can employees use personal AI accounts for work data?",
-  o:["Yes, and many do","Discouraged, but it happens","Policy says no, enforcement is unclear","Blocked, with a sanctioned alternative"],
-  cost:"Work in a personal account is outside every control you have, including deletion."},
- {d:"data", q:"If an AI system produced a bad outcome, could you trace who approved it?",
-  o:["No","We could reconstruct some of it","Partly, from email and chat","Yes, there is a decision record"],
-  cost:"If you cannot explain who approved what, you do not have governance. You have a demo."},
+ {d:"data", q:"Do you know what each AI initiative costs to run?",
+  o:["No","Tool licences only","Roughly, for the larger ones","Yes: licences, infrastructure and people time"],
+  cost:"You cannot rank initiatives by value if you only know the price of half of them."},
+ {d:"data", q:"When two initiatives compete for the same budget, how is it decided?",
+  o:["It is not decided, both limp along","Whoever asks loudest","A leader calls it case by case","Both scored against the same criteria"],
+  cost:"Funding by volume rather than value is how the loudest team ends up with the biggest budget."},
 
  {d:"val", q:"Do AI initiatives have a baseline measured before they start?",
   o:["No","Occasionally","For the larger ones","Always, and it is agreed up front"],
-  cost:"Without a before, every after is an anecdote. Finance will not accept it."},
+  cost:"Without a before, every after is an anecdote, and finance will not accept an anecdote."},
  {d:"val", q:"Can you state the value any AI initiative has delivered?",
   o:["No","We have time-saved estimates","One or two, roughly","Yes, converted to capacity or spend, with an owner attesting"],
   cost:"Hours saved that nobody redeployed did not become money. That is the first thing a CFO tests."},
  {d:"val", q:"Once an AI initiative is live, who keeps checking it still works, hasn't drifted, and still earns its cost?",
   o:["No one looks again after launch","Someone notices if users complain","We spot-check the big ones","A named owner reviews drift, adoption, and value on a set cadence"],
-  cost:"AI drifts. An initiative that worked at launch degrades quietly, and with no one watching you hear it from a customer, not a dashboard."}
+  cost:"AI drifts. An initiative that worked at launch degrades quietly, and with nobody watching you hear about it from a customer rather than a dashboard."}
 ];
 
 const BANDS = [
- {min:0, max:12, n:"No control",   d:"AI is running across the business and nothing is holding it. This is not unusual at your stage, but it is the state where a single incident does real damage. The first move is an inventory, not a policy."},
- {min:13,max:21, n:"Ad hoc",       d:"There are pockets of good practice and no system connecting them. What exists depends on individuals rather than process, so it will not survive them leaving. The gap is a front door and a decision path."},
- {min:22,max:29, n:"Emerging",     d:"The structure exists but it is not yet load-bearing. Usually the missing pieces are enforcement and measurement rather than design. Worth fixing before the portfolio grows again."},
+ {min:0, max:12, n:"No control",   d:"AI is running across the business and nothing is holding it. That is common at your stage, and it is also the state where one incident does real damage. Start with an inventory rather than a policy."},
+ {min:13,max:21, n:"Ad hoc",       d:"There are pockets of good practice and no system connecting them. What exists depends on individuals rather than process, so it leaves when they do. What is missing is a front door and a decision path."},
+ {min:22,max:29, n:"Emerging",     d:"The structure exists but it is not yet load-bearing. Usually the missing pieces are enforcement and measurement rather than design. Fix it before the portfolio grows again."},
  {min:30,max:36, n:"Governed",     d:"This is a working operating model. The remaining value is in tightening measurement and making sure it survives the next reorganisation."}
 ];
 

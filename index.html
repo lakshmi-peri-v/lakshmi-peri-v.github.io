@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Naanya gives leaders one clear view of their AI portfolio.">
-  <title>Naanya · AI portfolio visibility</title>
+  <meta name="description" content="AI portfolio management for mid-market companies where AI spread faster than anyone could track it. Naanya prioritizes what is worth funding, builds the mechanism that runs it, and stays to prove the value was realized.">
+  <title>Naanya · AI portfolio management</title>
   <meta name="theme-color" content="#6E2230">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="alternate icon" href="favicon-32.png" type="image/png">
@@ -318,6 +318,98 @@
       .svc .num{margin-bottom:24px}
       section{padding:56px 0}
     }
+  
+    /* ===== v6 additions ===== */
+    .stagestrip{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:26px 0 0}
+    .stage{border:1px solid var(--line2);border-radius:3px;padding:14px 8px;text-align:center}
+    .stage b{display:block;font:600 15px/1.2 var(--sans);color:var(--ink)}
+    .stage span{display:block;font:400 10.5px/1.3 var(--mono);color:var(--ink3);margin-top:4px;letter-spacing:.02em}
+    .strip-note{font:400 11.5px/1.4 var(--mono);color:var(--ink3);text-align:center;margin-top:10px;letter-spacing:.02em}
+    .strip-bridge{font:400 15px/1.55 var(--sans);color:var(--ink2);max-width:56ch;margin:22px 0 30px;padding-top:22px;border-top:1px solid var(--line)}
+    @media(max-width:760px){.stagestrip{grid-template-columns:repeat(2,1fr)}}
+
+    .changes{display:grid;gap:18px;margin:28px 0 24px}
+    .chg{border-left:2px solid var(--brand);padding-left:18px}
+    .chg b{display:block;font:600 17px/1.35 var(--sans);color:var(--ink);margin-bottom:5px}
+    .chg span{font-size:15px;color:var(--ink2);line-height:1.55}
+    .chg-land{font:600 16px/1.5 var(--sans);color:var(--brand);max-width:52ch}
+    .cost-note{font-size:12.5px;color:var(--ink3);margin-top:12px;max-width:60ch;line-height:1.5}
+
+    .segs{grid-template-columns:repeat(5,1fr)}
+    .track{position:relative}
+    .fill{position:absolute;top:0;height:100%}
+    .fill.soft{left:20%;width:80%}
+    .fill.big{left:0;width:55%}
+    .fill.frac{left:0;width:55%;background:linear-gradient(90deg,#c3b4a4,var(--tan))}
+    .fill.frac em{color:#3a3129}
+    .fill.diy{left:20%;width:35%}
+    .fill.naan{left:0;width:100%}
+
+  
+    .costcards .cc .cfig{font-size:28px;margin:14px 0 5px}
+    .costcards .cc{padding:20px}
+    @media(max-width:980px){.costcards{grid-template-columns:repeat(2,1fr)!important}}
+    @media(max-width:640px){.costcards{grid-template-columns:1fr!important}}
+  
+    .lede .lk{color:var(--ink);font-weight:600}
+  
+    .fill.hollow{background:none!important;border:1.5px dashed var(--line2);box-sizing:border-box}
+    .fill.hollow em{color:var(--ink3)!important}
+    .changes{grid-template-columns:repeat(3,1fr);gap:26px}
+    .chg{border-left:none;padding-left:0;border-top:2px solid var(--brand);padding-top:14px}
+    .chg i{display:block;font:700 26px/1 var(--mono);color:var(--brand);font-style:normal;margin-bottom:10px;letter-spacing:-.02em}
+    .chg b{font-size:16px;line-height:1.3}
+    .chg span{font-size:13.5px}
+    @media(max-width:760px){.changes{grid-template-columns:1fr;gap:20px}.costcards{grid-template-columns:repeat(2,1fr)!important}}
+    @media(max-width:520px){.costcards{grid-template-columns:1fr!important}}
+  
+    .lc-head,.lc-row{grid-template-columns:112px 1fr 168px!important}
+    .lc-row .rn{font:400 12.5px/1.35 var(--sans);color:var(--ink2)}
+    .lc-row.me .rn{color:var(--brand);font-weight:600}
+    .stopline{display:none}
+    .track{height:30px}
+    @media(max-width:820px){.lc-head,.lc-row{grid-template-columns:88px 1fr!important}.lc-row .rn{grid-column:2;margin-top:-6px;font-size:11.5px}.lc-head span:last-child{display:none}}
+  
+    .cov-head,.cvr{display:grid;grid-template-columns:130px repeat(5,1fr) 172px;gap:10px;align-items:center}
+    .cov-head{align-items:end;margin-bottom:10px}
+    .cov-head span{font:700 9.5px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);text-align:center}
+    .cov-head span.fin{color:var(--brand)}
+    .cvr{padding:13px 0;border-top:1px solid var(--line)}
+    .cvn{font:500 14px var(--sans);color:var(--ink2)}
+    .cvr i{font-style:normal;text-align:center;font-size:16px;line-height:1}
+    .cvr i.f{color:var(--tan)}
+    .cvr i.h{color:var(--tan);opacity:.85}
+    .cvr i.o{color:var(--line2)}
+    .cvt{font:400 12px/1.35 var(--sans);color:var(--ink3)}
+    .cvr.me{border-top:1px solid var(--brand);border-bottom:1px solid var(--brand);background:rgba(110,34,48,.04);padding:14px 0}
+    .cvr.me .cvn{color:var(--brand);font-weight:600}
+    .cvr.me i{color:var(--brand)!important;font-size:17px;opacity:1}
+    .cvr.me .cvt{color:var(--brand);font-weight:600}
+    .cov-key{font:600 11px var(--mono);color:var(--ink3);margin-top:14px;letter-spacing:.02em}
+    @media(max-width:820px){
+      .cov-head{display:none}
+      .cvr{grid-template-columns:1fr;gap:6px;padding:14px 0}
+      .cvr i{display:inline-block;width:34px;text-align:left}
+      .cvr i:before{font:700 8px var(--mono);letter-spacing:.06em;color:var(--ink3);display:block}
+      .cvr i:nth-of-type(1):before{content:"PRIO"}.cvr i:nth-of-type(2):before{content:"PROVE"}
+      .cvr i:nth-of-type(3):before{content:"IMPL"}.cvr i:nth-of-type(4):before{content:"RUN"}
+      .cvr i:nth-of-type(5):before{content:"MON"}
+    }
+  
+    .ninety{font:400 16px/1.55 var(--sans);color:var(--ink2);max-width:60ch;margin-top:26px;padding-top:20px;border-top:1px solid var(--line)}
+    .ninety b{color:var(--ink)}
+    .illus{display:block;margin-top:6px;font-size:11.5px;color:var(--ink3);font-style:italic}
+    .humble{font:600 16px/1.55 var(--sans);color:var(--brand);border-left:2px solid var(--brand);padding-left:16px;max-width:52ch;margin-top:22px}
+  
+    h2.wide2{max-width:44ch}
+    .mini-out{grid-template-columns:repeat(4,1fr)}
+    @media(max-width:900px){.mini-out{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){h2.wide2 br{display:none}h2.wide2{max-width:26ch}}
+  
+    .axes{font:400 11.5px/1.4 var(--sans);color:var(--ink3);margin:-4px 0 10px;font-style:italic}
+  
+    .whoowns{font:400 15px/1.6 var(--sans);color:var(--ink2);max-width:60ch;margin-top:26px;padding-left:16px;border-left:2px solid var(--brand)}
+    .whoowns b{color:var(--brand)}
   </style>
 </head>
 <body>
@@ -326,184 +418,201 @@
       <a class="logo" href="#top">naanya<i>.</i></a>
       <nav class="nav-links">
         <a href="#why">The blind spot</a><a href="#how">How it works</a><a href="#about">Who you'd work with</a>
-        <a class="btn small" href="https://cal.com/lakshmiperi/readback" target="_blank" rel="noopener">Book a readback</a>
+        <a class="btn small" href="https://cal.com/lakshmiperi/readback" target="_blank" rel="noopener">Book a call</a>
       </nav>
     </div>
   </header>
 
   <main id="top">
-    <!-- HERO -->
+    <!-- 1 · HERO -->
     <section class="hero"><div class="wrap hero-grid">
       <div>
-        <div class="eyebrow">AI portfolio visibility</div>
-        <h1>AI initiatives are proliferating across the organization. Which ones are actually <span class="accent">delivering results?</span></h1>
-        <p class="lede">Naanya gives leaders one clear view of every AI initiative: what's running, what's stuck, what it costs, and what's delivering value.</p>
+        <div class="eyebrow">AI portfolio management</div>
+        <h1>Which of your AI initiatives are <span class="accent">worth the money?</span></h1>
+        <p class="lede"><span class="lk">One standard.</span> Every initiative, the ones running now and the ones that haven't started yet.</p>
         <div class="acts">
-          <a class="btn primary" href="https://cal.com/lakshmiperi/readback" target="_blank" rel="noopener">Book a readback →</a>
+          <a class="btn primary" href="https://cal.com/lakshmiperi/readback" target="_blank" rel="noopener">Book a 20-minute call &rarr;</a>
           <a class="btn ghost" href="check.html">Take the 5-minute check</a>
         </div>
-        <div class="micro">Naanya doesn't build the AI. It keeps the right work moving.</div>
+        <div class="micro">Naanya doesn't build the AI. It decides which of it deserves the budget, and stays long enough to prove the call was right.</div>
       </div>
       <aside class="est" id="estimator" aria-label="Estimate the cost of untracked AI work">
-        <div class="est-top"><span class="ttl">Your likely blind spot</span><span class="live">Live estimate</span></div>
+        <div class="est-top"><span class="ttl">What this usually costs</span><span class="live">Order of magnitude</span></div>
         <label for="initSlider">AI initiatives running across your teams</label>
         <div class="slider-row">
-          <input type="range" id="initSlider" min="6" max="60" value="30" step="1" aria-label="Number of AI initiatives">
-          <output id="initOut">30</output>
+          <input type="range" id="initSlider" min="6" max="60" value="37" step="1" aria-label="Number of AI initiatives">
+          <output id="initOut">37</output>
         </div>
         <div class="scale"><span>6</span><span>60+ initiatives</span></div>
         <div class="calc">
-          <div class="crow"><span class="cl">No named owner <em>≈ 65%</em></span><b id="rOwner">20</b></div>
-          <div class="crow"><span class="cl">Stuck past a decision <em>≈ 1 in 4</em></span><b id="rStall">8</b></div>
-          <div class="crow total"><span class="cl">Spend sitting in stalled work <em id="rFormula">8 stalled × ~$23K/yr</em></span><b id="rCost">$184K</b></div>
+          <div class="crow"><span class="cl">No named owner <em>&asymp; 65%</em></span><b id="rOwner">24</b></div>
+          <div class="crow"><span class="cl">Stuck past a decision <em>&asymp; 1 in 4</em></span><b id="rStall">9</b></div>
+          <div class="crow total"><span class="cl">Spend sitting in stalled work <em id="rFormula">9 stalled &times; ~$23K/yr</em></span><b id="rCost">$207K</b></div>
         </div>
-        <p class="assume"><b>How this is figured:</b> stalled count × ~$23K a year each (tool licences plus part-time attention on work nobody is deciding). Ratios are conservative industry ballparks. In a 20-minute readback, your real numbers replace these; the true figure is usually higher.</p>
+        <p class="assume"><b>How this is figured:</b> stalled count &times; ~$23K a year each, for licences plus the part-time attention nobody bills for. Industry ratios. Your own numbers usually come out higher.</p>
       </aside>
     </div></section>
 
-    <!-- THE BLIND SPOT + VISUAL -->
+    <!-- 2 · BLIND SPOT -->
     <section id="why" style="background:var(--sand2)"><div class="wrap">
-      <div class="head-c ru"><div class="eyebrow">The visibility gap</div>
-        <h2>Your best people are solving real problems. Your process just can't see it.</h2></div>
+      <div class="head-c ru"><div class="eyebrow">Your likely blind spot</div>
+        <h2 class="wide2">Your best people are solving real problems.<br>Your process just can't see it.</h2>
+        <p class="sub" style="margin-top:16px;max-width:56ch">HP, eBay, Scotiabank and U.S. Bank are all hiring for this at $166K to $266K. Mid-market has the same problem and no budget for the hire.</p>
+      </div>
+      <p class="lc-note ru" style="margin:0 0 30px;border-left:2px solid var(--brand);padding-left:18px;max-width:60ch;font-size:16px;line-height:1.6">The spend is the easy part. The hard part is the meeting where the CEO asks which of these is working, and nobody can answer.</p>
       <div class="flow ru">
         <div class="chaos">
-          <div class="panel-lab">Today · unmanaged</div>
+          <div class="panel-lab">Today, unmanaged</div>
           <div class="scatter">
-            <span class="chip" style="--x:0%;--y:3%;--r:-5deg">RTL review assistant <em>no owner</em></span>
-            <span class="chip" style="--x:48%;--y:0%;--r:4deg">Sales-call bot <em>unapproved tool</em></span>
-            <span class="chip" style="--x:20%;--y:15%;--r:3deg">Datasheet drafts <em>pre-release</em></span>
-            <span class="chip" style="--x:3%;--y:26%;--r:-4deg">SoC errata KB <em>no baseline</em></span>
-            <span class="chip" style="--x:52%;--y:23%;--r:-3deg">FAE ticket triage <em>data?</em></span>
-            <span class="chip" style="--x:60%;--y:39%;--r:5deg">Contract extract <em>NDA?</em></span>
+            <span class="chip" style="--x:0%;--y:3%;--r:-5deg">Lead-scoring model <em>no owner</em></span>
+            <span class="chip" style="--x:48%;--y:0%;--r:4deg">Sales-call summariser <em>unapproved tool</em></span>
+            <span class="chip" style="--x:20%;--y:15%;--r:3deg">Pricing-page copy <em>unreviewed</em></span>
+            <span class="chip" style="--x:3%;--y:26%;--r:-4deg">Churn-prediction pilot <em>no baseline</em></span>
+            <span class="chip" style="--x:52%;--y:23%;--r:-3deg">Support macro generator <em>customer data?</em></span>
+            <span class="chip" style="--x:60%;--y:39%;--r:5deg">Contract redline <em>NDA?</em></span>
             <span class="chip" style="--x:1%;--y:47%;--r:-2deg">Cross-repo search <em>source egress</em></span>
-            <span class="chip" style="--x:33%;--y:50%;--r:-5deg">Board-deck drafts <em>financials</em></span>
+            <span class="chip" style="--x:33%;--y:50%;--r:-5deg">QBR deck builder <em>financials</em></span>
             <span class="chip" style="--x:53%;--y:60%;--r:5deg">Resume screening <em>PII risk</em></span>
-            <span class="chip" style="--x:8%;--y:66%;--r:3deg">Meeting-notes bot <em>no owner</em></span>
-            <span class="chip" style="--x:56%;--y:79%;--r:-4deg">Candidate screening <em>bias</em></span>
-            <span class="chip" style="--x:22%;--y:84%;--r:4deg">Legacy bug migration <em>stalled</em></span>
+            <span class="chip" style="--x:8%;--y:66%;--r:3deg">Onboarding email bot <em>no owner</em></span>
+            <span class="chip" style="--x:56%;--y:79%;--r:-4deg">Renewal-risk scoring <em>bias</em></span>
+            <span class="chip" style="--x:22%;--y:84%;--r:4deg">CRM data cleanup <em>stalled</em></span>
           </div>
-          <div class="panel-foot">No one can say which is working, who owns them, or what they cost.</div>
+          <div class="panel-foot">Nobody can say which are working, who owns them, or what they cost.</div>
         </div>
         <div class="flow-arrow" aria-hidden="true">&rarr;</div>
         <div class="order">
-          <div class="panel-lab">With Naanya · one live portfolio</div>
+          <div class="panel-lab">With Naanya, one live portfolio</div>
+          <div class="axes">Data risk and funding are two different questions. Low risk is not a reason to keep something.</div>
           <div class="mini-strip">
             <div class="ms"><b>37</b><span>tracked</span></div>
-            <div class="ms g"><b>20</b><span>Green</span></div>
-            <div class="ms y"><b>11</b><span>Yellow</span></div>
-            <div class="ms r"><b>6</b><span>Red</span></div>
+            <div class="ms g"><b>20</b><span>low risk</span></div>
+            <div class="ms y"><b>11</b><span>medium</span></div>
+            <div class="ms r"><b>6</b><span>high</span></div>
           </div>
           <div class="mtbl">
-            <div class="mthead"><span>ID</span><span>Initiative</span><span>Lane</span><span>Stage</span></div>
-            <div class="mtrow"><span class="mid">A-01</span><span class="mnm">RTL review assistant</span><span class="mchip green">GREEN</span><span class="mst">Deploy</span></div>
-            <div class="mtrow"><span class="mid">A-08</span><span class="mnm">SoC errata KB</span><span class="mchip yellow">YELLOW</span><span class="mst">POC</span></div>
-            <div class="mtrow"><span class="mid">A-05</span><span class="mnm">FAE ticket triage</span><span class="mchip yellow">YELLOW</span><span class="mst">Review</span></div>
-            <div class="mtrow"><span class="mid">A-33</span><span class="mnm">Cross-repo search</span><span class="mchip red">RED</span><span class="mst">Gated</span></div>
-            <div class="mtrow"><span class="mid">A-16</span><span class="mnm">Resume screening</span><span class="mchip red">RED</span><span class="mst">Legal</span></div>
-            <div class="mtrow"><span class="mid">A-40</span><span class="mnm">Legacy bug migration</span><span class="mchip red">RED</span><span class="mst">Stopped</span></div>
+            <div class="mthead"><span>ID</span><span>Initiative</span><span>Data risk</span><span>Decision</span></div>
+            <div class="mtrow"><span class="mid">A-01</span><span class="mnm">Lead-scoring model</span><span class="mchip green">LOW</span><span class="mst">Funded</span></div>
+            <div class="mtrow"><span class="mid">A-08</span><span class="mnm">Churn-prediction pilot</span><span class="mchip yellow">MED</span><span class="mst">Funded &middot; POC</span></div>
+            <div class="mtrow"><span class="mid">A-19</span><span class="mnm">Contract redline assistant</span><span class="mchip red">HIGH</span><span class="mst">Funded &middot; gated</span></div>
+            <div class="mtrow"><span class="mid">A-05</span><span class="mnm">Support macro generator</span><span class="mchip green">LOW</span><span class="mst">Not funded</span></div>
+            <div class="mtrow"><span class="mid">A-22</span><span class="mnm">QBR deck builder</span><span class="mchip yellow">MED</span><span class="mst">Deferred</span></div>
+            <div class="mtrow"><span class="mid">A-40</span><span class="mnm">CRM data cleanup</span><span class="mchip green">LOW</span><span class="mst">Stopped</span></div>
           </div>
           <div class="mini-out">
-            <div class="mo"><b>9</b><span>in production</span></div>
-            <div class="mo kill"><b>5</b><span>POCs killed</span></div>
+            <div class="mo"><b>14</b><span>funded</span></div>
+            <div class="mo kill"><b>18</b><span>not funded, on purpose</span></div>
+            <div class="mo kill"><b>5</b><span>stopped</span></div>
             <div class="mo roi"><b>Day 90</b><span>value measured</span></div>
           </div>
-          <div class="panel-foot">Owned, tiered, gated, and measured. Dead ones cut, value proven at day 90.</div>
+          <div class="panel-foot">Owned, tiered, gated. Dead ones cut. Live ones proven at day 90.<br><span class="illus">An illustrative portfolio, not a past client. Your first readback replaces it with yours.</span></div>
         </div>
       </div>
     </div></section>
 
-    <!-- SERVICES -->
+    <!-- 3 · GUIDE -->
+    <section class="bio" id="about"><div class="wrap bio-inner ru">
+      <div><div class="eyebrow">Who you'd work with</div><h3 style="margin-top:12px">Lakshmi Peri</h3>
+        <p>Eighteen years running enterprise transformation and go-to-market program operations, most recently at Intuit. Portfolios where the decision was expensive and the deadline was real.</p>
+        </div>
+      <a class="arrow" href="who.html">Read the full profile &rarr;</a>
+    </div></section>
+
+    <!-- 4 · THE PLAN -->
     <section id="how"><div class="wrap">
-      <div class="svc-head">
-        <div><div class="eyebrow">The operating model</div><h2>Install the system.<br>Then keep it working.</h2></div>
-        <p class="note">A light operating layer around your AI work. Not another committee, and not another piece of shelfware.</p>
+      <div class="svc-head ru">
+        <div><div class="eyebrow">The operating model</div>
+          <h2>Nothing runs without an owner, a baseline, and a decision date.</h2></div>
+        <p class="note">A light layer around your AI work. Starts before a dollar is spent, stays long after launch. Risk boundaries stay with IT, Legal and Security. Naanya works inside them.</p>
       </div>
-      <div class="svc-grid">
-        <article class="svc ru"><div class="num">01 · ONE-TIME</div><h3>Standing it up</h3>
+
+      <div class="stagestrip ru">
+        <div class="stage"><b>Prioritize</b><span>scored</span></div>
+        <div class="stage"><b>Prove</b><span>time-boxed</span></div>
+        <div class="stage"><b>Implement</b><span>gated</span></div>
+        <div class="stage"><b>Run</b><span>owned</span></div>
+        <div class="stage"><b>Monitor</b><span>value held</span></div>
+      </div>
+      <p class="strip-note ru">&#8635; repeats every quarter, and whenever something new arrives</p>
+      <p class="strip-bridge ru">That is the path every initiative takes. Below is the rhythm that keeps it moving.</p>
+
+      <div class="svc-grid" style="grid-template-columns:repeat(4,1fr)">
+        <article class="svc ru"><div class="num">00 &middot; UP FRONT</div><h3>Prioritize</h3>
+          <div class="sd">Decided with your team, and the same score gates everything new from then on.</div>
+          <ul><li>Scored on cost, risk and expected value</li><li>Today's cost measured, so day 90 has a baseline</li></ul></article>
+        <article class="svc ru"><div class="num">01 &middot; ONE-TIME</div><h3>Implement</h3>
           <div class="sd">Nine core mechanisms, built to your org.</div>
-          <ul><li>Lanes set to your data classes</li><li>Tool registry matched to your stack</li><li>Risk boundaries agreed with IT and Legal</li></ul></article>
-        <article class="svc ru"><div class="num">02 · WEEKLY</div><h3>Running the flow</h3>
-          <div class="sd">Every new initiative, accountable and moving.</div>
-          <ul><li>Triage intakes, assign lanes</li><li>Enforce owners and baselines</li><li>Gates set before builds start</li></ul></article>
-        <article class="svc ru"><div class="num">03 · MONTHLY + QUARTERLY</div><h3>Running the cadences</h3>
-          <div class="sd">Visibility turned into decisions.</div>
-          <ul><li>Graduate-or-close reviews</li><li>Exec status and value reporting</li><li>Post-launch checks reported by owners, verified in review</li><li>Registry re-reviewed as the stack moves</li></ul></article>
+          <ul><li>Intake form, review criteria, risk tiering, POC scorecard</li><li>Tool registry, readiness checklist, review workflow</li><li>Exec reporting cadence, adoption loop</li></ul></article>
+        <article class="svc ru"><div class="num">02 &middot; WEEKLY</div><h3>Running the flow</h3>
+          <div class="sd">Every new initiative scored on entry.</div>
+          <ul><li>Intakes triaged, risk tier set, owners enforced</li><li>No gate, no production</li></ul></article>
+        <article class="svc ru"><div class="num">03 &middot; MONTHLY + QUARTERLY</div><h3>Running the cadences</h3>
+          <div class="sd">Re-prioritized, not just reviewed.</div>
+          <ul><li>Graduate-or-close reviews</li><li>Whole portfolio re-scored, not only the strugglers</li></ul></article>
       </div>
-      <div class="band ru">
-        <div>
-          <div class="eyebrow">Why AI is different</div>
-          <h2>Traditional software is largely complete when it ships; AI systems require continuous monitoring, evaluation, and refinement after deployment.</h2>
-          <p class="sub">The hard part starts after launch. Models can drift as your data shifts, answers can degrade, a vendor update can change behavior overnight, costs can creep, adoption can fade. And when any of it happens, nothing throws an error. You find out when it has already stopped earning its cost.</p>
-        </div>
-        <div class="contrast">
-          <div class="tc trad"><div class="k">Traditional launch</div><div class="v">Build → ship → <b>done.</b> Keeps doing what it did on day one.</div></div>
-          <div class="tc"><div class="k">AI launch</div><div class="v">Ship → <b>the work begins.</b> Accuracy can slip, a model update can shift outputs, costs can climb. And when it happens, it's silent until a customer notices.</div></div>
-        </div>
-      </div>
-      <p class="lc-note ru" style="margin-top:24px"><b>Where the line sits:</b> The model monitoring itself is your engineers' job, not Naanya's. Naanya makes sure it happens, that drift, quality, and value get reported, and that the findings are acted on, not filed in a plan and forgotten.</p>
+      <p class="whoowns ru"><b>If you already have a transformation lead, Naanya works for them.</b> They own the portfolio and the room. I build the mechanism and run the cadence, so they are not doing it at 9pm. The mechanism stays with them.</p>
+      <p class="ninety ru"><b>Ninety days in:</b> every initiative named and owned, the dead ones closed, the live ones measured against what the work cost before.</p>
     </div></section>
 
-    <!-- PROOF: COST -->
+    <!-- 5 · THE BETTER ALTERNATIVE -->
     <section class="proof"><div class="wrap">
       <div class="head-c ru"><div class="eyebrow">The better alternative</div>
-        <h2>Weeks, not months. And Naanya stays past the gate.</h2></div>
-      <div class="sub-eyebrow ru" style="margin-top:30px">What it costs to get to control</div>
-      <div class="costcards ru">
-        <div class="cc"><div class="cn">Build it yourself</div><div class="cfig">~$240K</div><div class="ctime">6 months</div><div class="cdesc">Buried senior time, pulled off the roadmap.</div></div>
-        <div class="cc"><div class="cn">Big 4 engagement</div><div class="cfig">$150–300K</div><div class="ctime">16+ weeks</div><div class="cdesc">Deck-led, plus engagement overhead, then they leave.</div></div>
-        <div class="cc me"><div class="cn">Naanya</div><div class="cfig">Scoped</div><div class="ctime">Live in weeks, then ongoing</div><div class="cdesc">A fraction of a full-time hire. A working portfolio view in a few weeks, then run a day or two a week.</div></div>
-      </div>
+        <h2>Live in weeks. Decided with you. And still here after the gate.</h2></div>
 
-      <div class="sub-eyebrow ru" style="margin-top:52px">Why Naanya, not the category</div>
-      <div class="lc-head ru"><span></span><div class="segs">
-        <span>Intake</span><span>Build</span><span>Approve</span><span>Deploy</span><span class="fin">Day-90 value</span>
-      </div></div>
-      <div class="lifecycle ru">
-        <div class="lc-row"><span class="rl">Software</span><div class="track"><div class="stopline"></div><div class="fill soft"><em>ships it, then you're on your own</em></div></div></div>
-        <div class="lc-row"><span class="rl">Big 4</span><div class="track"><div class="stopline"></div><div class="fill big"><em>hands over the deck, leaves</em></div></div></div>
-        <div class="lc-row"><span class="rl">DIY</span><div class="track"><div class="stopline"></div><div class="fill diy"><em>stalls mid-build</em></div></div></div>
-        <div class="lc-row me"><span class="rl">Naanya</span><div class="track"><div class="stopline"></div><div class="fill naan"><em>still here · value measured at day 90 ★</em></div></div></div>
+      <div class="sub-eyebrow ru" style="margin-top:30px">What it costs to get to control</div>
+      <div class="costcards ru" style="grid-template-columns:repeat(4,1fr)">
+        <div class="cc"><div class="cn">Do it internally</div><div class="cfig">$166&ndash;266K</div><div class="ctime">to hire, plus 3 to 6 months</div><div class="cdesc">Right answer if you can find them. You are bidding against HP and Scotiabank.</div></div>
+        <div class="cc"><div class="cn">Governance software</div><div class="cfig">$30&ndash;90K</div><div class="ctime">per year, plus rollout</div><div class="cdesc">Inventories and flags. Deciding what to fund stays with you.</div></div>
+        <div class="cc"><div class="cn">Fractional CAIO</div><div class="cfig">$2&ndash;8K</div><div class="ctime">per month, ongoing</div><div class="cdesc">Makes the call. Someone else still builds and runs it.</div></div>
+        <div class="cc me"><div class="cn">Naanya</div><div class="cfig">Fixed fee</div><div class="ctime">never hourly &middot; live in weeks</div><div class="cdesc">Priced once scope is clear. Scored with your team, mechanism built, still here at day 90.</div></div>
       </div>
-      <p class="lc-note ru"><b>The differentiator, shown not claimed:</b> only Naanya's line crosses the gate into day-90 value. That's the part nobody else stays for.</p>
+      <p class="cost-note ru">A Big 4 engagement runs $150K to $300K over 16+ weeks and ends with a roadmap. Figures are industry ballparks, not quotes.</p>
+      <p class="humble ru">I may be right about what is worth funding. I may be wrong. Either way I am still watching.</p>
+      <div class="cov-head ru">
+        <span></span>
+        <span>Prioritize</span><span>Prove</span><span>Implement</span><span>Run</span><span class="fin">Monitor</span>
+        <span></span>
+      </div>
+      <div class="cov ru">
+        <div class="cvr"><span class="cvn">Software</span><i class="o">&middot;</i><i class="o">&middot;</i><i class="o">&middot;</i><i class="h">&#9680;</i><i class="f">&#9679;</i><span class="cvt">watches, never decides</span></div>
+        <div class="cvr"><span class="cvn">Big 4</span><i class="f">&#9679;</i><i class="h">&#9680;</i><i class="o">&middot;</i><i class="o">&middot;</i><i class="o">&middot;</i><span class="cvt">decides for you, then leaves</span></div>
+        <div class="cvr"><span class="cvn">Fractional CAIO</span><i class="f">&#9679;</i><i class="h">&#9680;</i><i class="o">&middot;</i><i class="f">&#9679;</i><i class="o">&middot;</i><span class="cvt">decides, hands you the build</span></div>
+        <div class="cvr"><span class="cvn">DIY</span><i class="h">&#9680;</i><i class="f">&#9679;</i><i class="h">&#9680;</i><i class="o">&middot;</i><i class="o">&middot;</i><span class="cvt">stalls mid-build</span></div>
+        <div class="cvr me"><span class="cvn">Naanya</span><i class="f">&#9679;</i><i class="f">&#9679;</i><i class="h">&#9680;</i><i class="f">&#9679;</i><i class="f">&#9679;</i><span class="cvt">gates it, your team builds</span></div>
+      </div>
+      <div class="cov-key ru">&#9679; owns it &nbsp; &#9680; partly &nbsp; &middot; not their job</div>
+      <p class="lc-note ru"><b>Every row here does part of the job.</b> Software watches without ever deciding. Big 4 and a fractional CAIO decide, then hand the build to someone else. Naanya doesn't build either, but it is the only row still there at Run and Monitor.</p>
     </div></section>
 
-    <!-- GUARANTEE -->
+    <!-- 6 · THE STANDARD -->
     <section class="guarantee"><div class="wrap">
       <div class="eyebrow">The standard I'm held to</div>
       <blockquote>If it doesn't return more time than it takes, <span>kill it.</span></blockquote>
-      <p>Judge the program on hours returned to your team. If adding structure doesn't give them back more than it costs, it failed, and I'll hand you the metric to check.</p>
+      <p>Judge it on hours returned to your team. If structure gives back less than it costs, it failed. I will hand you the metric to check.</p>
     </div></section>
 
-    <!-- CHECK TEASER -->
+    <!-- 7 · FREE CHECK -->
     <section id="review"><div class="wrap lead-grid">
-      <div class="ru"><div class="eyebrow">Free · 5 minutes · see your score, no email to view it</div>
+      <div class="ru"><div class="eyebrow">Free &middot; 5 minutes &middot; see your score without giving an email</div>
         <h2>Where does your portfolio stand?</h2>
-        <p class="lc">Twelve questions across ownership, intake, data, and value. Scored the moment you finish, with the three gaps that cost you most ranked for you. A sample of what it asks:</p>
-        <a class="btn primary" href="check.html" style="margin-top:8px">Take the 5-minute check →</a>
+        <p class="lc">Twelve questions, four domains, scored the moment you finish. Your three most expensive gaps, ranked. A sample:</p>
+        <a class="btn primary" href="check.html" style="margin-top:8px">Take the 5-minute check &rarr;</a>
       </div>
       <div>
         <div class="questions ru">
           <div class="q"><span>01</span>When an initiative stalls, who decides whether it continues?</div>
           <div class="q"><span>02</span>Do you know which AI tools touch customer data?</div>
-          <div class="q"><span>03</span>Can you state the value any AI initiative has delivered?</div>
+          <div class="q"><span>03</span>When two initiatives compete for the same budget, how is it decided?</div>
           <div class="q"><span>04</span>Once an initiative is live, who checks it hasn't drifted or lost its value?</div>
         </div>
-        <div class="download ru"><p><b>The full 12-question check</b><br>Scored across four domains, your top three gaps ranked, results yours to keep.</p><a class="btn primary" href="check.html">Take the check →</a></div>
+        <div class="download ru"><p><b>The full 12-question check</b><br>Your top three gaps ranked. Results are yours to keep.</p><a class="btn primary" href="check.html">Take the check &rarr;</a></div>
       </div>
-    </div></section>
-
-    <!-- BIO -->
-    <section class="bio" id="about"><div class="wrap bio-inner ru">
-      <div><div class="eyebrow">Who you'd work with</div><h3 style="margin-top:12px">Lakshmi Peri</h3>
-        <p>Eighteen years running enterprise transformation and go-to-market program operations. Portfolios where the decision was expensive and the deadline was real.</p></div>
-      <a class="arrow" href="who.html">Read the full profile →</a>
     </div></section>
   </main>
 
   <footer class="footer" id="contact"><div class="wrap footer-inner">
     <a class="logo" href="#top">naanya<i>.</i></a>
     <div class="fright">
-      <span>One clear view of every AI initiative.</span>
+      <span>One clear view of every AI initiative, from the first funding call to day 90 and beyond.</span>
       <a class="femail" href="mailto:lakshmi.peri@naanya.tech">lakshmi.peri@naanya.tech</a>
       <a class="flink" href="https://www.linkedin.com/in/lakshmiperi/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn</a>
     </div>
