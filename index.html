@@ -47,12 +47,12 @@
     .nav{height:72px;display:flex;align-items:center;justify-content:space-between}
     .logo{font:600 27px/1 var(--disp);letter-spacing:-.5px}
     .logo i{color:var(--brand);font-style:normal}
-    .nav-links{display:flex;gap:30px;align-items:center;color:var(--ink2);font-size:14px;font-weight:500}
+    .nav-links{display:flex;gap:22px;align-items:center;color:var(--ink2);font-size:13px;font-weight:500}
     .nav-links a:hover{color:var(--brand)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;font-family:var(--sans);font-weight:700;border-radius:9px;transition:transform .18s, background .18s, box-shadow .18s;text-decoration:none}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;font-family:var(--sans);font-weight:700;border-radius:3px;transition:transform .18s, background .18s, box-shadow .18s;text-decoration:none}
     .btn.primary{background:var(--brand);color:#fff;padding:15px 24px;font-size:15px;box-shadow:0 8px 20px rgba(110,34,48,.18)}
     .btn.primary:hover{background:var(--brand2);transform:translateY(-2px)}
-    .btn.small{background:var(--brand);color:#fff;padding:11px 17px;font-size:13.5px}
+    .btn.small{background:var(--brand);color:#fff;padding:9px 17px;font-size:13px;margin-left:8px}
     .btn.small:hover{background:var(--brand2)}
     .btn.ghost{background:transparent;color:var(--ink);padding:15px 22px;font-size:15px;box-shadow:inset 0 0 0 1.5px var(--line2)}
     .btn.ghost:hover{box-shadow:inset 0 0 0 1.5px var(--brand);color:var(--brand)}
@@ -410,6 +410,12 @@
   
     .whoowns{font:400 15px/1.6 var(--sans);color:var(--ink2);max-width:60ch;margin-top:26px;padding-left:16px;border-left:2px solid var(--brand)}
     .whoowns b{color:var(--brand)}
+  
+    h2.qh{font-size:clamp(26px,3.2vw,38px);line-height:1.1;margin:0 0 12px;max-width:22ch}
+    .qsub{font:400 17px/1.5 var(--sans);color:var(--ink2);max-width:52ch;margin:0}
+    .qsub b{color:var(--ink);font-size:19px}
+  
+    .plain{font:500 17px/1.55 var(--sans);color:var(--ink);max-width:50ch;margin:22px 0 0;padding-top:20px;border-top:1px solid var(--line)}
   </style>
 </head>
 <body>
@@ -417,11 +423,11 @@
     <div class="wrap nav">
       <a class="logo" href="#top">naanya<i>.</i></a>
       <nav class="nav-links">
-        <a href="#why">The blind spot</a><a href="#how">How it works</a><a href="#about">Who you'd work with</a>
+        <a href="#why">What's going wrong</a><a href="#how">How it works</a><a href="#about">Who you'd work with</a>
         <a class="btn small" href="https://cal.com/lakshmiperi/readback" target="_blank" rel="noopener">Book a call</a>
       </nav>
     </div>
-  </header>
+      </header>
 
   <main id="top">
     <!-- 1 · HERO -->
@@ -434,7 +440,8 @@
           <a class="btn primary" href="https://cal.com/lakshmiperi/readback" target="_blank" rel="noopener">Book a 20-minute call &rarr;</a>
           <a class="btn ghost" href="check.html">Take the 5-minute check</a>
         </div>
-        <div class="micro">Naanya doesn't build the AI. It decides which of it deserves the budget, and stays long enough to prove the call was right.</div>
+        <p class="plain">I score every AI initiative you have, build the system that keeps scoring the new ones, and stay long enough to check the value showed up.</p>
+        <div class="micro">Naanya doesn't build the AI. It brings one standard to what gets funded, gated, deferred or stopped.</div>
       </div>
       <aside class="est" id="estimator" aria-label="Estimate the cost of untracked AI work">
         <div class="est-top"><span class="ttl">What this usually costs</span></div>
@@ -455,11 +462,11 @@
 
     <!-- 2 · BLIND SPOT -->
     <section id="why" style="background:var(--sand2)"><div class="wrap">
-      <div class="head-c ru"><div class="eyebrow">Your likely blind spot</div>
-        <h2 class="wide2">Your best people are solving real problems.<br>Your process just can't see it.</h2>
-        <p class="sub" style="margin-top:16px;max-width:56ch">HP, eBay, Scotiabank and U.S. Bank are all hiring for this at $166K to $266K. Mid-market has the same problem and no budget for the hire.</p>
+      <div class="head-c ru"><h2 class="qh">What's actually going wrong?</h2>
+        <p class="qsub">Your best people are solving real problems. Your process just can't see it.</p>
+        <p class="sub" style="margin-top:16px;max-width:56ch">Large enterprises are already staffing this role. HP, eBay, Scotiabank and U.S. Bank, at $166K to $266K. Mid-market has the same problem, and it still needs answering.</p>
       </div>
-      <p class="lc-note ru" style="margin:0 0 30px;border-left:2px solid var(--brand);padding-left:18px;max-width:60ch;font-size:16px;line-height:1.6">The spend is the easy part. The hard part is the meeting where the CEO asks which of these is working, and nobody can answer.</p>
+      <p class="lc-note ru" style="margin:0 0 30px;border-left:2px solid var(--brand);padding-left:18px;max-width:60ch;font-size:16px;line-height:1.6">The spend is visible. The hard part is the meeting where the CEO asks which of these is working, and nobody can answer.</p>
       <div class="flow ru">
         <div class="chaos">
           <div class="panel-lab">Today, unmanaged</div>
@@ -511,7 +518,7 @@
 
     <!-- 3 · GUIDE -->
     <section class="bio" id="about"><div class="wrap bio-inner ru">
-      <div><div class="eyebrow">Who you'd work with</div><h3 style="margin-top:12px">Lakshmi Peri</h3>
+      <div><h2 class="qh">Who you'd work with</h2><p class="qsub" style="margin-top:10px"><b>Lakshmi Peri</b></p>
         <p>Eighteen years running enterprise transformation and go-to-market program operations, most recently at Intuit. Portfolios where the decision was expensive and the deadline was real.</p>
         </div>
       <a class="arrow" href="who.html">Read the full profile &rarr;</a>
@@ -520,14 +527,14 @@
     <!-- 4 · THE PLAN -->
     <section id="how"><div class="wrap">
       <div class="svc-head ru">
-        <div><div class="eyebrow">The operating model</div>
-          <h2>Nothing runs without an owner, a baseline, and a decision date.</h2></div>
+        <div><h2 class="qh">How does it work?</h2>
+          <p class="qsub">Nothing runs without an owner, a baseline, and a decision date.</p></div>
         <p class="note">A light layer around your AI work. Starts before a dollar is spent, stays long after launch. Risk boundaries stay with IT, Legal and Security. Naanya works inside them.</p>
       </div>
 
       <div class="stagestrip ru">
         <div class="stage"><b>Prioritize</b><span>scored</span></div>
-        <div class="stage"><b>Prove</b><span>time-boxed</span></div>
+        <div class="stage"><b>Prove value</b><span>time-boxed</span></div>
         <div class="stage"><b>Implement</b><span>gated</span></div>
         <div class="stage"><b>Run</b><span>owned</span></div>
         <div class="stage"><b>Monitor</b><span>value held</span></div>
@@ -554,9 +561,9 @@
     </div></section>
 
     <!-- 5 · THE BETTER ALTERNATIVE -->
-    <section class="proof"><div class="wrap">
-      <div class="head-c ru"><div class="eyebrow">The better alternative</div>
-        <h2>Live in weeks. Decided with you. And still here after the gate.</h2></div>
+    <section class="proof" id="cost"><div class="wrap">
+      <div class="head-c ru"><h2 class="qh">Why not software, or a hire?</h2>
+        <p class="qsub">Live in weeks. Decided with you. And still here after the gate.</p></div>
 
       <div class="sub-eyebrow ru" style="margin-top:30px">What it costs to get to control</div>
       <div class="costcards ru" style="grid-template-columns:repeat(4,1fr)">
@@ -569,7 +576,7 @@
       <p class="humble ru">I may be right about what is worth funding. I may be wrong. Either way I am still watching.</p>
       <div class="cov-head ru">
         <span></span>
-        <span>Prioritize</span><span>Prove</span><span>Implement</span><span>Run</span><span class="fin">Monitor</span>
+        <span>Prioritize</span><span>Prove value</span><span>Implement</span><span>Run</span><span class="fin">Monitor</span>
         <span></span>
       </div>
       <div class="cov ru">
@@ -584,16 +591,16 @@
     </div></section>
 
     <!-- 6 · THE STANDARD -->
-    <section class="guarantee"><div class="wrap">
-      <div class="eyebrow">The standard I'm held to</div>
+    <section class="guarantee" id="standard"><div class="wrap">
+      <h2 class="qh">How do I know it worked?</h2>
       <blockquote>If it doesn't return more time than it takes, <span>kill it.</span></blockquote>
       <p>Judge it on hours returned to your team. If structure gives back less than it costs, it failed. I will hand you the metric to check.</p>
     </div></section>
 
     <!-- 7 · FREE CHECK -->
     <section id="review"><div class="wrap lead-grid">
-      <div class="ru"><div class="eyebrow">Free &middot; 5 minutes &middot; see your score without giving an email</div>
-        <h2>Where does your portfolio stand?</h2>
+      <div class="ru"><h2 class="qh">Where do I start?</h2>
+        <p class="qsub">Where does your portfolio stand? Free, five minutes, and no email needed to see your score.</p>
         <p class="lc">Twelve questions, four domains, scored the moment you finish. Your three most expensive gaps, ranked. A sample:</p>
         <a class="btn primary" href="check.html" style="margin-top:8px">Take the 5-minute check &rarr;</a>
       </div>
@@ -674,5 +681,7 @@
     }
   })();
   </script>
+
+
 </body>
 </html>
