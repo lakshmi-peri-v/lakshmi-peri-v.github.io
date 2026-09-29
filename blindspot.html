@@ -133,6 +133,7 @@ footer{text-align:center;font-size:12px;color:var(--ink3);margin-top:20px}
         <span class="muted"><span id="c2">0</span> of <span id="tot">0</span> named</span>
         <button class="btn" id="b2">Show my blind spots →</button>
       </div>
+      <p class="err" id="e2" role="alert"></p>
     </section>
 
     <!-- Step 4: result -->
@@ -211,7 +212,7 @@ function nudge(){
       const k=b.dataset.k;
       if(!st[k]){b.className='dot idle';return}
       b.setAttribute('role','button');b.tabIndex=0;
-      const tog=()=>{nm.has(k)?nm.delete(k):nm.add(k);paintC()};
+      const tog=()=>{nm.has(k)?nm.delete(k):nm.add(k);$('e2').textContent='';paintC()};
       b.onclick=tog;b.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tog()}};
     });
     paintC();show(2);return;
@@ -245,13 +246,17 @@ function readMap(){
   if(un.length&&out.length<2){let m=-1,md=0;D.forEach((_,i)=>{if(unD(i)>m){m=unD(i);md=i}});out.push(`${D[md]} has the most untracked AI (${m}). One conversation with that team lead closes the biggest gap.`);}
   return out.slice(0,2);
 }
+let warned=false;
 $('b2').onclick=()=>{
+  if(nm.size===0&&!warned){warned=true;$('e2').textContent="You haven't tapped any. If you can't name any of them, tap the button again.";return}
   const keys=Object.keys(st),t=keys.length,named=nm.size,late=keys.filter(k=>st[k]==='late').length,knew=t-late,blind=t-named;
   $('r1').textContent=t;$('r1s').textContent=`${knew} you knew + ${late} you remembered`;
   $('r2').textContent=named;$('r3').textContent=blind;
-  $('rh').textContent=blind>0
-    ?`AI is running in ${t} places. You can name ${named}. Nobody's tracking the other ${blind}.`
-    :`You can name all ${t}. Rare. The next question is whether each one has an owner.`;
+  const pl=n=>n===1?'place':'places';
+  $('rh').textContent=
+    named===0?`AI is running in ${t} ${pl(t)}, and you couldn't name the tool and owner for any of them.`
+    :blind===0?`AI is running in ${t} ${pl(t)}, and you can name every one. That's rare.`
+    :`AI is running in ${t} ${pl(t)}. You can name ${named}. ${blind===1?"One has":blind+" have"} no one tracking ${blind===1?'it':'them'}.`;
   grid($('rmx'),false);
   $('rmx').querySelectorAll('.dot').forEach(b=>{const k=b.dataset.k;if(st[k])b.className='dot '+(nm.has(k)?'named':'blind')});
   const rd=readMap();$('readList').innerHTML=rd.map(x=>`<li>${x}</li>`).join('');
@@ -310,10 +315,10 @@ $('dl').onclick=async()=>{
   const a=document.createElement('a');a.download='my-ai-blind-spot-map.png';a.href=c.toDataURL('image/png');
   document.body.appendChild(a);a.click();a.remove();track('downloaded');
 };
-$('rs').onclick=()=>{st={};nm=new Set();ni=0;paint();show(0)};
+$('rs').onclick=()=>{st={};nm=new Set();ni=0;warned=false;$('e2').textContent='';paint();show(0)};
 grid($('mx'),true);paint();
 </script>
 <!-- GoatCounter: counts visits only, never answers. Replace YOURCODE with your GoatCounter site code. -->
-<script data-goatcounter="https://naanya.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://YOURCODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
