@@ -66,6 +66,13 @@ input[type=range]{flex:1;accent-color:var(--ox)}
 .next p{font-size:14px}
 .cta{margin-top:18px;background:var(--ox-tint);border-radius:10px;padding:14px 16px;font-size:14px}
 .cta a{font-weight:600}
+.send{margin-top:18px;border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.send p{font-size:14px;margin-bottom:10px}
+.send form{display:flex;gap:8px;flex-wrap:wrap}
+.send input[type=email]{flex:1;min-width:200px;font-family:inherit;font-size:15px;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px}
+.send input[type=email]:focus{outline:none;border-color:var(--ox)}
+.send small{display:block;font-size:12px;color:var(--ink3);margin-top:8px}
+.ok{font-size:14px;color:var(--green-d);font-weight:600}
 footer{text-align:center;font-size:12px;color:var(--ink3);margin-top:20px}
 @media(max-width:420px){.by,.top,.step{padding-left:16px;padding-right:16px}.stat .n{font-size:24px}.ch{font-size:10px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -147,12 +154,21 @@ footer{text-align:center;font-size:12px;color:var(--ink3);margin-top:20px}
         <p class="k">Your Monday move</p>
         <p>Send each department head one line: <em>"List every AI tool your team used this month, and who set it up."</em> Compare the replies to this map.</p>
       </div>
+      <div class="send" id="sendBox">
+        <p><b>Want Lakshmi to walk you through your map?</b> Leave your email and she'll reply personally.</p>
+        <form id="sendForm">
+          <input type="email" id="em" required placeholder="you@company.com" aria-label="Work email">
+          <button class="btn" type="submit">Send to Lakshmi</button>
+        </form>
+        <small>Sends only your email and the three numbers above. No mailing list.</small>
+        <p class="err" id="se" role="alert"></p>
+      </div>
       <div class="cta">Want the full picture? Take the free 12-question <a href="https://naanya.tech/check.html">AI portfolio check</a>.</div>
       <div class="row"><span class="muted">Diagnostic No. 2 (ownership) is coming soon.</span><button class="ghost" id="rs">Try again</button></div>
     </section>
   </div>
 
-  <footer>© Naanya · <a href="https://naanya.tech">naanya.tech</a> · Your answers stay in your browser.</footer>
+  <footer>© Naanya · <a href="https://naanya.tech">naanya.tech</a> · Your answers stay in your browser unless you choose to send them.</footer>
 </div>
 
 <script>
@@ -165,7 +181,13 @@ const N=[
  ['Is Marketing using an AI writing or image tool?',[[1,0]]],
  ['Is any engineer using a coding assistant on a personal account?',[[3,2]]]
 ];
-let st={},ni=0;
+let st={},ni=0,last=null;
+const REF=((new URLSearchParams(location.search).get('r')||'direct').toLowerCase().replace(/[^a-z0-9-]/g,'').slice(0,60))||'direct';
+function track(name){
+  const send=()=>{try{window.goatcounter.count({path:'blindspot/'+name+'/'+REF,title:'Blind Spot: '+name,event:true})}catch(e){}};
+  if(window.goatcounter&&window.goatcounter.count)send();else setTimeout(send,1500);
+}
+track('opened');
 const $=i=>document.getElementById(i),key=(d,t)=>d+'-'+t;
 
 function grid(el,click){
@@ -199,7 +221,7 @@ function ans(yes){
 }
 $('b0').onclick=()=>{
   if(!Object.keys(st).length){$('e0').textContent='Tap at least one dot first.';return}
-  ni=0;nudge();show(1);
+  ni=0;nudge();show(1);track('started');
 };
 $('ny').onclick=()=>ans(true);$('nno').onclick=()=>ans(false);$('nd').onclick=()=>ans(false);
 $('sl').oninput=e=>$('slo').textContent=e.target.value;
@@ -214,10 +236,23 @@ $('b2').onclick=()=>{
     :`You can name all ${t}. Rare. The next question is whether each one has an owner.`;
   grid($('rmx'),false);
   $('rmx').querySelectorAll('.dot').forEach(b=>{const i=keys.indexOf(b.dataset.k);if(i>-1)b.className='dot '+(i<named?'named':'blind')});
-  show(3);window.scrollTo({top:0,behavior:'smooth'});
+  last={running:t,named:named,untracked:blind};
+  show(3);window.scrollTo({top:0,behavior:'smooth'});track('finished');
+};
+$('sendForm').onsubmit=async e=>{
+  e.preventDefault();$('se').textContent='';
+  const body={email:$('em').value,diagnostic:'Blind Spot (No. 1)',ai_running:last.running,can_name:last.named,untracked:last.untracked,ref:REF,_subject:'Blind Spot result: '+REF};
+  try{
+    const r=await fetch('https://formspree.io/f/xgawwqed',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(body)});
+    if(!r.ok)throw 0;
+    $('sendBox').innerHTML='<p class="ok">Sent. Lakshmi will reply to '+$('em').value.replace(/[<>&]/g,'')+' personally.</p>';
+    track('sent');
+  }catch(_){ $('se').textContent='That didn\'t send. Please try again, or just reply to the email you received.'; }
 };
 $('rs').onclick=()=>{st={};ni=0;paint();show(0)};
 grid($('mx'),true);paint();
 </script>
+<!-- GoatCounter: counts visits only, never answers. Replace YOURCODE with your GoatCounter site code. -->
+<script data-goatcounter="https://YOURCODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
