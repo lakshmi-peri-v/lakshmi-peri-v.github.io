@@ -29,14 +29,15 @@
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
-    body{background:#FCFBF7;color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+    section[id],#about{scroll-margin-top:72px}
+    body{background:#FCFBF7;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
     a{color:inherit;text-decoration:none}
-    .wrap{width:min(1180px, calc(100% - 48px));margin:auto}
-    section{padding:78px 0}
+    .wrap{width:min(1040px, calc(100% - 64px));margin:auto}
+    section{padding:56px 0}
     .eyebrow{color:var(--brand);text-transform:uppercase;letter-spacing:2px;font-size:11px;font-weight:800}
     h1,h2,h3{font-family:var(--disp);font-weight:500;letter-spacing:-.01em;color:var(--ink);text-wrap:balance}
-    h1{font-size:clamp(34px,4.3vw,52px);line-height:1.05}
-    h2{font-size:clamp(30px,3.8vw,46px);line-height:1.06}
+    h1{font-size:clamp(28px,3.2vw,38px);line-height:1.1}
+    h2{font-size:clamp(26px,3vw,34px);line-height:1.1}
     h3{font-size:22px;line-height:1.2}
     .accent{color:var(--brand);font-style:italic}
     p{color:var(--ink2)}
@@ -50,20 +51,20 @@
     .nav-links{display:flex;gap:22px;align-items:center;color:var(--ink2);font-size:13px;font-weight:500}
     .nav-links a:hover{color:var(--brand)}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;font-family:var(--sans);font-weight:700;border-radius:3px;transition:transform .18s, background .18s, box-shadow .18s;text-decoration:none}
-    .btn.primary{background:var(--brand);color:#fff;padding:15px 24px;font-size:15px;box-shadow:0 8px 20px rgba(110,34,48,.18)}
+    .btn.primary{background:var(--brand);color:#fff;padding:13px 22px;font-size:14px;box-shadow:0 8px 20px rgba(110,34,48,.18)}
     .btn.primary:hover{background:var(--brand2);transform:translateY(-2px)}
     .btn.small{background:var(--brand);color:#fff;padding:9px 17px;font-size:13px;margin-left:8px}
     .btn.small:hover{background:var(--brand2)}
-    .btn.ghost{background:transparent;color:var(--ink);padding:15px 22px;font-size:15px;box-shadow:inset 0 0 0 1.5px var(--line2)}
+    .btn.ghost{background:transparent;color:var(--ink);padding:13px 20px;font-size:14px;box-shadow:inset 0 0 0 1.5px var(--line2)}
     .btn.ghost:hover{box-shadow:inset 0 0 0 1.5px var(--brand);color:var(--brand)}
     .arrow{color:var(--brand);font-weight:700;font-size:14px;display:inline-flex;gap:7px;align-items:center}
     .arrow:hover{gap:11px}
 
     /* hero */
-    .hero{padding:34px 0 76px}
-    .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:60px;align-items:center}
+    .hero{padding:28px 0 56px}
+    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
     .hero h1{margin:16px 0 22px;max-width:19ch}
-    .hero .lede{font-size:18px;line-height:1.55;color:var(--ink2);max-width:46ch;margin-bottom:28px}
+    .hero .lede{font-size:15.5px;line-height:1.55;color:var(--ink2);max-width:46ch;margin-bottom:28px}
     .hero .acts{display:flex;gap:12px;flex-wrap:wrap}
     .hero .micro{margin-top:22px;color:var(--ink3);font-size:13.5px;display:flex;align-items:center;gap:9px}
     .hero .micro:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--tan)}
@@ -76,7 +77,7 @@
     .est-top .live:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--brand)}
     .est label{display:block;font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:12px}
     .slider-row{display:flex;align-items:center;gap:16px;margin-bottom:8px}
-    .slider-row output{font:600 30px/1 var(--disp);color:var(--ink);min-width:52px;text-align:right}
+    .slider-row output{font:600 30px/1 var(--disp);color:var(--ink);min-width:72px;text-align:right}
     input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:6px;background:linear-gradient(90deg,var(--brand) 0 var(--fill,40%), var(--sand) var(--fill,40%) 100%);outline:none}
     input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--brand);border:3px solid #fff;box-shadow:0 2px 6px rgba(110,34,48,.35);cursor:pointer}
     input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--brand);border:3px solid #fff;box-shadow:0 2px 6px rgba(110,34,48,.35);cursor:pointer}
@@ -90,6 +91,62 @@
     .crow.total .cl{font-weight:600;color:var(--ink)}
     .crow.total b{font-size:30px;color:var(--brand)}
     .assume{font-size:11.5px;color:var(--ink3);line-height:1.45;margin-top:14px;padding-top:14px;border-top:1px dashed var(--line2)}
+
+    .facts .crow{gap:18px;align-items:center;justify-content:flex-start}
+    .facts .crow .cl{font-size:14px;line-height:1.45;color:var(--ink)}
+    .facts .crow .cl em{display:block;margin:5px 0 0;font-size:11.5px}
+    .facts .crow .cl em a{color:var(--ink3);text-decoration:underline;text-underline-offset:2px}
+    .facts .crow .cl em a:hover{color:var(--brand)}
+    .facts .crow b{font:600 26px/1 var(--disp);min-width:70px;color:var(--brand);order:-1;min-width:78px}
+    .facts .crow:last-child{border-bottom:0}
+    .facts-line{margin-top:6px;padding-top:14px;border-top:1px dashed var(--line2);font:500 15.5px/1.4 var(--disp);color:var(--ink)}
+
+    .trust{display:flex;align-items:center;gap:10px 18px;flex-wrap:wrap;margin-top:44px;padding-top:20px;border-top:1px solid var(--line)}
+    .trust .tn{font:600 16px/1.2 var(--disp);color:var(--ink)}
+    .trust .tt{font-size:14px;color:var(--ink2);flex:1;min-width:240px}
+
+    /* options comparison */
+    .optwrap{margin-top:28px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:6px 22px}
+    .opt{display:grid;grid-template-columns:150px 170px 1fr 230px;gap:22px;align-items:center;padding:16px 0;border-top:1px solid var(--line)}
+    .opt.hd{border-top:0;padding:12px 0 8px;font:700 9.5px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+    .seg-h{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;text-align:center}
+    .seg-h span:last-child{color:var(--brand)}
+    .on{font:600 15px/1.25 var(--disp);color:var(--ink)}
+    .oc b{display:block;font:600 18px/1.1 var(--disp);color:var(--ink)}
+    .oc span{display:block;font-size:11.5px;color:var(--ink3);margin-top:3px;line-height:1.35}
+    .seg{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+    .seg i{display:block;height:12px;border-radius:3px;background:var(--sand);border:1px solid var(--line)}
+    .seg i.f{background:var(--tan);border-color:var(--tan)}
+    .seg i.h{background:linear-gradient(90deg,var(--tan) 50%,var(--sand) 50%);border-color:var(--tan)}
+    .seg i em{display:none}
+    .ov{font-size:13px;line-height:1.45;color:var(--ink2)}
+    .opt:not(.me):not(.hd) .on,.opt:not(.me):not(.hd) .oc b{color:var(--ink3)}
+    .opt:not(.me):not(.hd) .oc span,.opt:not(.me):not(.hd) .ov{color:#A39A92}
+    .opt:not(.me):not(.hd) .seg i.f{background:#CDBBAA;border-color:#CDBBAA}
+    .opt:not(.me):not(.hd) .seg i.h{background:linear-gradient(90deg,#CDBBAA 50%,var(--sand) 50%);border-color:#CDBBAA}
+    .opt.me{margin:0 -22px;padding:18px 22px;background:#F6E9EA;border-top:2px solid var(--brand);border-radius:0 0 13px 13px}
+    .opt.me .on,.opt.me .oc b{color:var(--brand)}
+    .opt.me .seg i{background:#fff;border-color:#D9B9BD}
+    .opt.me .seg i.f{background:var(--brand2);border-color:var(--brand2)}
+    .opt.me .seg i.h{background:linear-gradient(90deg,var(--brand2) 50%,#fff 50%);border-color:var(--brand2)}
+    .opt.me .ov{color:var(--ink);font-weight:600}
+    .opt.me .seg i em{color:var(--brand2)}
+    .okey{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin-top:12px;font:600 11px/1 var(--mono);color:var(--ink3)}
+    .okey span{display:inline-flex;align-items:center;gap:6px}
+    .okey i{display:inline-block;width:18px;height:9px;border-radius:2px;border:1px solid var(--tan);background:var(--sand)}
+    .okey i.f{background:var(--tan)}.okey i.h{background:linear-gradient(90deg,var(--tan) 50%,var(--sand) 50%)}
+    .okey i.o{border-color:var(--line)}
+    .okey .ok-note{font:italic 400 12px/1.3 var(--sans)}
+    @media(max-width:860px){
+      .opt{grid-template-columns:1fr 1fr;gap:8px 14px}
+      .opt.hd{display:none}
+      .opt.hd + .opt{border-top:0}
+      .seg{grid-column:1/-1;margin-top:4px}
+      .seg i{height:auto;padding:16px 0 0;position:relative}
+      .seg i em{display:block;position:absolute;left:0;right:0;top:calc(100% + 4px);font:700 8px/1 var(--mono);letter-spacing:.02em;color:var(--ink3);text-align:center;text-transform:uppercase;font-style:normal}
+      .ov{grid-column:1/-1;margin-top:16px}
+      .oc{text-align:right}
+    }
 
     /* two-column comparison */
     .head-c{max-width:56rem}
@@ -147,18 +204,19 @@
     .point.naanya{top:11%;left:70%}.point.big4{top:72%;left:65%}.point.diy{top:77%;left:11%}.point.software{top:24%;left:12%}
 
     /* guarantee — the one dark band */
-    .guarantee{background:var(--wine);color:#F3E7E4;text-align:center;padding:96px 0}
+    .guarantee{background:var(--wine);color:#F3E7E4;text-align:center;padding:64px 0}
     .guarantee .eyebrow{color:var(--gold)}
-    .guarantee blockquote{max-width:20ch;margin:18px auto 0;font:500 clamp(30px,4.4vw,50px)/1.1 var(--disp);color:#fff;letter-spacing:-.01em}
+    .guarantee h2.qh{color:var(--gold);margin:0 auto 4px;max-width:none;font-size:clamp(18px,1.8vw,22px)}
+    .guarantee blockquote{max-width:20ch;margin:18px auto 0;font:500 clamp(22px,2.6vw,32px)/1.15 var(--disp);color:#fff;letter-spacing:-.01em}
     .guarantee blockquote span{color:var(--gold);font-style:italic}
-    .guarantee p{max-width:52ch;margin:24px auto 0;color:#E3CFCB;font-size:16.5px;line-height:1.6}
+    .guarantee p{max-width:52ch;margin:18px auto 0;color:#E3CFCB;font-size:15.5px;line-height:1.6}
 
     /* lead magnet */
     .lead-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:70px;align-items:start}
     .lead h2{margin:14px 0}
     .lead .lc{font-size:16px;color:var(--ink2);line-height:1.6}
     .questions{border-top:1px solid var(--line)}
-    .q{display:flex;gap:16px;align-items:baseline;padding:15px 0;border-bottom:1px solid var(--line);font:500 17.5px/1.3 var(--disp);color:var(--ink)}
+    .q{display:flex;gap:16px;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--line);font:500 16px/1.35 var(--disp);color:var(--ink)}
     .q span{color:var(--brand);font:800 12px var(--sans);flex:none}
     .download{margin-top:26px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px 24px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;box-shadow:var(--shadow)}
     .download p{font-size:13.5px;color:var(--ink2);margin:0;max-width:38ch}
@@ -180,12 +238,13 @@
     .footer .logo{font-size:20px}
 
     /* problem -> solution flow */
-    .flow{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:stretch;margin-top:34px}
-    .chaos,.order{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;box-shadow:var(--shadow)}
-    .panel-lab{font:800 11px/1 var(--sans);letter-spacing:1.2px;text-transform:uppercase;color:var(--ink3);margin-bottom:16px}
+    .flow{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:stretch;margin-top:26px}
+    .chaos,.order{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;box-shadow:var(--shadow)}
+    .panel-lab{font:800 10.5px/1 var(--sans);letter-spacing:1.2px;text-transform:uppercase;color:var(--ink3);margin-bottom:12px}
     .order .panel-lab{color:var(--brand)}
-    .scatter{position:relative;flex:1;min-height:330px}
-    .chip{position:absolute;left:var(--x);top:var(--y);transform:rotate(var(--r));background:var(--cream);border:1px solid var(--line2);border-radius:9px;padding:8px 11px;font-size:12.5px;color:var(--ink3);white-space:nowrap;box-shadow:0 2px 7px rgba(34,26,23,.06)}
+    .scatter{position:relative;flex:1;min-height:210px;overflow:hidden}
+    @media(max-width:900px){.scatter{display:flex;flex-wrap:wrap;gap:10px 8px;min-height:0;padding:4px 2px}.scatter .chip{position:static;white-space:nowrap;font-size:10.5px;padding:5px 8px}.scatter .chip em{margin-left:4px;font-size:9.5px}}
+    .chip{position:absolute;left:calc(var(--x) * .78);top:var(--y);transform:rotate(var(--r));background:var(--cream);border:1px solid var(--line2);border-radius:9px;padding:7px 10px;font-size:11.5px;color:var(--ink3);white-space:nowrap;box-shadow:0 2px 7px rgba(34,26,23,.06)}
     .chip em{font-style:normal;color:var(--red);font-size:10.5px;margin-left:7px;font-weight:600}
     .flow-arrow{display:flex;align-items:center;color:var(--tan);font:400 28px/1 var(--sans)}
     .lanes{flex:1;display:flex;flex-direction:column;gap:10px;justify-content:center}
@@ -196,7 +255,7 @@
     .lane.stop{background:var(--redbg)}.lane.stop .lane-h{background:var(--red);color:#fff}
     .ci{font-size:12px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:7px;padding:5px 9px}
     .ci em{font-style:normal;color:var(--ink3);font-size:10.5px;margin-left:4px}
-    .panel-foot{margin-top:16px;padding-top:13px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink2);line-height:1.45}
+    .panel-foot{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink2);line-height:1.45}
     /* mini portfolio dashboard (after state) */
     .mini-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
     .ms{background:var(--cream);border:1px solid var(--line);border-radius:8px;padding:9px 11px;border-top:3px solid var(--line2)}
@@ -206,7 +265,7 @@
     .ms.y{border-top-color:var(--amber)}.ms.y b{color:var(--amber)}
     .ms.r{border-top-color:var(--red)}.ms.r b{color:var(--red)}
     .mtbl{flex:1}
-    .mthead,.mtrow{display:grid;grid-template-columns:42px 1.7fr .95fr .7fr;gap:8px;align-items:center;padding:8px 2px}
+    .mthead,.mtrow{display:grid;grid-template-columns:42px 1.6fr .7fr 1fr;gap:8px;align-items:center;padding:7px 2px}
     .mthead{font:700 9px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);border-bottom:1px solid var(--line2)}
     .mtrow{border-bottom:1px solid var(--line)}
     .mtrow:last-child{border-bottom:none}
@@ -217,7 +276,7 @@
     .mchip.yellow{background:var(--amberbg);color:var(--amber)}
     .mchip.red{background:var(--redbg);color:var(--red)}
     .mst{font:600 10px/1 var(--mono);color:var(--ink3);text-transform:uppercase}
-    .mini-out{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+    .mini-out{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
     .mo{background:var(--cream);border:1px solid var(--line);border-radius:8px;padding:9px 11px}
     .mo b{font:700 18px/1 var(--mono);color:var(--ink);display:block;letter-spacing:-.02em}
     .mo span{font:600 9px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:5px;display:block}
@@ -321,12 +380,13 @@
   
     /* ===== v6 additions ===== */
     .stagestrip{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:26px 0 0}
-    .stage{border:1px solid var(--line2);border-radius:3px;padding:14px 8px;text-align:center}
+    .stage{border:1px solid var(--line2);border-radius:3px;padding:16px 14px;text-align:left;background:var(--paper)}
     .stage b{display:block;font:600 15px/1.2 var(--sans);color:var(--ink)}
-    .stage span{display:block;font:400 10.5px/1.3 var(--mono);color:var(--ink3);margin-top:4px;letter-spacing:.02em}
+    .stage span{display:block;font:400 13px/1.45 var(--sans);color:var(--ink2);margin-top:6px}
+    .stage i{display:block;font:700 10.5px/1 var(--mono);color:var(--brand);font-style:normal;letter-spacing:.08em;margin-bottom:8px}
     .strip-note{font:400 11.5px/1.4 var(--mono);color:var(--ink3);text-align:center;margin-top:10px;letter-spacing:.02em}
     .strip-bridge{font:400 15px/1.55 var(--sans);color:var(--ink2);max-width:56ch;margin:22px 0 30px;padding-top:22px;border-top:1px solid var(--line)}
-    @media(max-width:760px){.stagestrip{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:860px){.stagestrip{grid-template-columns:1fr 1fr}}@media(max-width:520px){.stagestrip{grid-template-columns:1fr}}
 
     .changes{display:grid;gap:18px;margin:28px 0 24px}
     .chg{border-left:2px solid var(--brand);padding-left:18px}
@@ -346,7 +406,7 @@
     .fill.naan{left:0;width:100%}
 
   
-    .costcards .cc .cfig{font-size:28px;margin:14px 0 5px}
+    .costcards .cc .cfig{font-size:22px;margin:12px 0 5px}
     .costcards .cc{padding:20px}
     @media(max-width:980px){.costcards{grid-template-columns:repeat(2,1fr)!important}}
     @media(max-width:640px){.costcards{grid-template-columns:1fr!important}}
@@ -411,9 +471,9 @@
     .whoowns{font:400 15px/1.6 var(--sans);color:var(--ink2);max-width:60ch;margin-top:26px;padding-left:16px;border-left:2px solid var(--brand)}
     .whoowns b{color:var(--brand)}
   
-    h2.qh{font-size:clamp(26px,3.2vw,38px);line-height:1.1;margin:0 0 12px;max-width:22ch}
-    .qsub{font:400 17px/1.5 var(--sans);color:var(--ink2);max-width:52ch;margin:0}
-    .qsub b{color:var(--ink);font-size:19px}
+    h2.qh{font-size:clamp(22px,2.4vw,27px);line-height:1.15;margin:0 0 10px;max-width:24ch}
+    .qsub{font:400 15px/1.5 var(--sans);color:var(--ink2);max-width:52ch;margin:0}
+    .qsub b{color:var(--ink);font-size:16px}
   
     .plain{font:500 17px/1.55 var(--sans);color:var(--ink);max-width:50ch;margin:22px 0 0;padding-top:20px;border-top:1px solid var(--line)}
   </style>
@@ -423,7 +483,7 @@
     <div class="wrap nav">
       <a class="logo" href="#top">naanya<i>.</i></a>
       <nav class="nav-links">
-        <a href="#why">What's going wrong</a><a href="#how">How it works</a><a href="#about">Who you'd work with</a>
+        <a href="#why">What's going wrong</a><a href="#how">How it works</a><a href="who.html">Who you'd work with</a>
         <a class="btn small" href="https://cal.com/lakshmiperi/readback" target="_blank" rel="noopener">Book a call</a>
       </nav>
     </div>
@@ -435,75 +495,61 @@
       <div>
         <div class="eyebrow">AI portfolio management</div>
         <h1>Which of your AI initiatives are <span class="accent">worth the money?</span></h1>
-        <p class="lede"><span class="lk">One standard.</span> Every initiative, the ones running now and the ones that haven't started yet.</p>
+        <p class="lede"><span class="lk">One scorecard for every AI project, live or planned.</span> You'll know what to fund, fix or stop.</p>
         <div class="acts">
           <a class="btn primary" href="https://cal.com/lakshmiperi/readback" target="_blank" rel="noopener">Book a 20-minute call &rarr;</a>
           <a class="btn ghost" href="check.html">Take the 5-minute check</a>
         </div>
-        <p class="plain">I score every AI initiative you have, build the system that keeps scoring the new ones, and stay long enough to check the value showed up.</p>
-        <div class="micro">Naanya doesn't build the AI. It brings one standard to what gets funded, gated, deferred or stopped.</div>
+                <div class="micro">Naanya doesn't build the AI. It brings one standard to what gets funded, gated, deferred or stopped.</div>
       </div>
-      <aside class="est" id="estimator" aria-label="Estimate the cost of untracked AI work">
-        <div class="est-top"><span class="ttl">What this usually costs</span></div>
-        <label for="initSlider">AI initiatives running across your teams</label>
-        <div class="slider-row">
-          <input type="range" id="initSlider" min="6" max="60" value="37" step="1" aria-label="Number of AI initiatives">
-          <output id="initOut">37</output>
-        </div>
-        <div class="scale"><span>6</span><span>60+ initiatives</span></div>
+      <aside class="est facts" aria-label="What the research says">
+        <div class="est-top"><span class="ttl">What the research says</span></div>
         <div class="calc">
-          <div class="crow"><span class="cl">No named owner <em>&asymp; 65%</em></span><b id="rOwner">24</b></div>
-          <div class="crow"><span class="cl">Stuck past a decision <em>&asymp; 1 in 4</em></span><b id="rStall">9</b></div>
-          <div class="crow total"><span class="cl">Spend sitting in stalled work <em id="rFormula">9 stalled &times; ~$23K/yr</em></span><b id="rCost">$207K</b></div>
+          <div class="crow"><span class="cl">of companies abandoned most of their AI initiatives in 2025, up from 17% the year before<em><a href="https://www.ciodive.com/news/ai-project-fail-data-spglobal/742590/" target="_blank" rel="noopener">S&amp;P Global, via CIO Dive</a></em></span><b>42%</b></div>
+          <div class="crow"><span class="cl">of organizations see any profit impact from AI, though 88% use it<em><a href="https://siliconcanals.com/m-mckinseys-2025-global-ai-survey-88-of-organizations-now-use-ai-in-at-least-one-function-up-from-78-but-most-are-still-stuck-in-pilot-mode-and-only-a-minority-can-point-to-any-real-impact/" target="_blank" rel="noopener">McKinsey State of AI 2025, via Silicon Canals</a></em></span><b>39%</b></div>
+          <div class="crow"><span class="cl">of organizations monitor their AI after it goes live, though 97% run AI in production<em><a href="https://barc.com/news/ai-is-in-production-at-97-of-organizations-but-no-control/" target="_blank" rel="noopener">BARC, 2026</a></em></span><b>26%</b></div>
         </div>
-        <p class="assume"><b>How this is figured:</b> stalled count &times; ~$23K a year each, for licences plus the part-time attention nobody bills for. Industry ratios. Your own numbers usually come out higher.</p>
+        <p class="facts-line">Most companies can't say which AI work is paying off. Naanya fixes that.</p>
       </aside>
+    </div>
+    <div class="wrap trust" id="about">
+      <span class="tn">Lakshmi Peri</span>
+      <span class="tt">18 years running enterprise transformation and go-to-market programs, most recently at Intuit.</span>
+      <a class="arrow" href="who.html">Read the full profile &rarr;</a>
     </div></section>
 
     <!-- 2 · BLIND SPOT -->
     <section id="why" style="background:var(--sand2)"><div class="wrap">
       <div class="head-c ru"><h2 class="qh">What's actually going wrong?</h2>
-        <p class="qsub">Your best people are solving real problems. Your process just can't see it.</p>
-        <p class="sub" style="margin-top:16px;max-width:56ch">Large enterprises are already staffing this role. HP, eBay, Scotiabank and U.S. Bank, at $166K to $266K. Mid-market has the same problem, and it still needs answering.</p>
+        <p class="qsub">Your teams are running AI projects. Nobody can say which ones are working.</p>
       </div>
-      <p class="lc-note ru" style="margin:0 0 30px;border-left:2px solid var(--brand);padding-left:18px;max-width:60ch;font-size:16px;line-height:1.6">The spend is visible. The hard part is the meeting where the CEO asks which of these is working, and nobody can answer.</p>
       <div class="flow ru">
         <div class="chaos">
           <div class="panel-lab">Today, unmanaged</div>
           <div class="scatter">
-            <span class="chip" style="--x:0%;--y:3%;--r:-5deg">Lead-scoring model <em>no owner</em></span>
-            <span class="chip" style="--x:48%;--y:0%;--r:4deg">Sales-call summariser <em>unapproved tool</em></span>
-            <span class="chip" style="--x:20%;--y:15%;--r:3deg">Pricing-page copy <em>unreviewed</em></span>
-            <span class="chip" style="--x:3%;--y:26%;--r:-4deg">Churn-prediction pilot <em>no baseline</em></span>
-            <span class="chip" style="--x:52%;--y:23%;--r:-3deg">Support macro generator <em>customer data?</em></span>
-            <span class="chip" style="--x:60%;--y:39%;--r:5deg">Contract redline <em>NDA?</em></span>
-            <span class="chip" style="--x:1%;--y:47%;--r:-2deg">Cross-repo search <em>source egress</em></span>
-            <span class="chip" style="--x:33%;--y:50%;--r:-5deg">QBR deck builder <em>financials</em></span>
-            <span class="chip" style="--x:53%;--y:60%;--r:5deg">Resume screening <em>PII risk</em></span>
-            <span class="chip" style="--x:8%;--y:66%;--r:3deg">Onboarding email bot <em>no owner</em></span>
-            <span class="chip" style="--x:56%;--y:79%;--r:-4deg">Renewal-risk scoring <em>bias</em></span>
-            <span class="chip" style="--x:22%;--y:84%;--r:4deg">CRM data cleanup <em>stalled</em></span>
+            <span class="chip" style="--x:0%;--y:3%;--r:-4deg">Lead scoring <em>no owner</em></span>
+            <span class="chip" style="--x:66%;--y:0%;--r:4deg">Call summaries <em>unapproved tool</em></span>
+            <span class="chip" style="--x:6%;--y:27%;--r:3deg">Churn pilot <em>no baseline</em></span>
+            <span class="chip" style="--x:70%;--y:30%;--r:-3deg">Support macros <em>customer data?</em></span>
+            <span class="chip" style="--x:1%;--y:53%;--r:-2deg">QBR deck builder <em>duplicate</em></span>
+            <span class="chip" style="--x:64%;--y:57%;--r:5deg">Contract redline <em>unreviewed</em></span>
+            <span class="chip" style="--x:10%;--y:80%;--r:4deg">CRM cleanup <em>stalled</em></span>
+            <span class="chip" style="--x:68%;--y:84%;--r:-4deg">Onboarding bot <em>no owner</em></span>
           </div>
           <div class="panel-foot">Nobody can say which are working, who owns them, or what they cost.</div>
         </div>
         <div class="flow-arrow" aria-hidden="true">&rarr;</div>
         <div class="order">
           <div class="panel-lab">With Naanya, one live portfolio</div>
-          <div class="axes">Data risk and funding are two different questions. Low risk is not a reason to keep something.</div>
-          <div class="mini-strip">
-            <div class="ms"><b>37</b><span>tracked</span></div>
-            <div class="ms g"><b>20</b><span>low risk</span></div>
-            <div class="ms y"><b>11</b><span>medium</span></div>
-            <div class="ms r"><b>6</b><span>high</span></div>
-          </div>
           <div class="mtbl">
             <div class="mthead"><span>ID</span><span>Initiative</span><span>Data risk</span><span>Decision</span></div>
-            <div class="mtrow"><span class="mid">A-01</span><span class="mnm">Lead-scoring model</span><span class="mchip green">LOW</span><span class="mst">Funded</span></div>
-            <div class="mtrow"><span class="mid">A-08</span><span class="mnm">Churn-prediction pilot</span><span class="mchip yellow">MED</span><span class="mst">Funded &middot; POC</span></div>
-            <div class="mtrow"><span class="mid">A-19</span><span class="mnm">Contract redline assistant</span><span class="mchip red">HIGH</span><span class="mst">Funded &middot; gated</span></div>
-            <div class="mtrow"><span class="mid">A-05</span><span class="mnm">Support macro generator</span><span class="mchip green">LOW</span><span class="mst">Not funded</span></div>
-            <div class="mtrow"><span class="mid">A-22</span><span class="mnm">QBR deck builder</span><span class="mchip yellow">MED</span><span class="mst">Deferred</span></div>
-            <div class="mtrow"><span class="mid">A-40</span><span class="mnm">CRM data cleanup</span><span class="mchip green">LOW</span><span class="mst">Stopped</span></div>
+            <div class="mtrow"><span class="mid">A-01</span><span class="mnm">Lead scoring</span><span class="mchip green">LOW</span><span class="mst">Funded</span></div>
+            <div class="mtrow"><span class="mid">A-08</span><span class="mnm">Churn pilot</span><span class="mchip yellow">MED</span><span class="mst">Funded &middot; POC</span></div>
+            
+            
+            
+            <div class="mtrow"><span class="mid">A-22</span><span class="mnm">QBR deck builder</span><span class="mchip yellow">MED</span><span class="mst">Merged &middot; duplicate</span></div>
+            <div class="mtrow"><span class="mid">A-40</span><span class="mnm">CRM cleanup</span><span class="mchip green">LOW</span><span class="mst">Stopped</span></div>
           </div>
           <div class="mini-out">
             <div class="mo"><b>14</b><span>funded</span></div>
@@ -516,48 +562,18 @@
       </div>
     </div></section>
 
-    <!-- 3 · GUIDE -->
-    <section class="bio" id="about"><div class="wrap bio-inner ru">
-      <div><h2 class="qh">Who you'd work with</h2><p class="qsub" style="margin-top:10px"><b>Lakshmi Peri</b></p>
-        <p>Eighteen years running enterprise transformation and go-to-market program operations, most recently at Intuit. Portfolios where the decision was expensive and the deadline was real.</p>
-        </div>
-      <a class="arrow" href="who.html">Read the full profile &rarr;</a>
-    </div></section>
-
     <!-- 4 · THE PLAN -->
     <section id="how"><div class="wrap">
-      <div class="svc-head ru">
-        <div><h2 class="qh">How does it work?</h2>
-          <p class="qsub">Nothing runs without an owner, a baseline, and a decision date.</p></div>
-        <p class="note">A light layer around your AI work. Starts before a dollar is spent, stays long after launch. Risk boundaries stay with IT, Legal and Security. Naanya works inside them.</p>
-      </div>
-
+      <div class="head-c ru"><h2 class="qh">How does it work?</h2>
+        <p class="qsub">Nothing runs without an owner, a baseline and a decision date.</p></div>
       <div class="stagestrip ru">
-        <div class="stage"><b>Prioritize</b><span>scored</span></div>
-        <div class="stage"><b>Prove value</b><span>time-boxed</span></div>
-        <div class="stage"><b>Implement</b><span>gated</span></div>
-        <div class="stage"><b>Run</b><span>owned</span></div>
-        <div class="stage"><b>Monitor</b><span>value held</span></div>
+        <div class="stage"><i>01</i><b>Prioritize</b><span>Score what's worth funding.</span></div>
+        <div class="stage"><i>02</i><b>Prove value</b><span>Short trial, measured against how the work runs today.</span></div>
+        <div class="stage"><i>03</i><b>Implement</b><span>Your team builds, with checks before launch.</span></div>
+        <div class="stage"><i>04</i><b>Run</b><span>Every project has a named owner.</span></div>
+        <div class="stage"><i>05</i><b>Monitor</b><span>Value checked at day 90, then every quarter.</span></div>
       </div>
-      <p class="strip-note ru">&#8635; repeats every quarter, and whenever something new arrives</p>
-      <p class="strip-bridge ru">That is the path every initiative takes. Below is the rhythm that keeps it moving.</p>
-
-      <div class="svc-grid" style="grid-template-columns:repeat(4,1fr)">
-        <article class="svc ru"><div class="num">00 &middot; UP FRONT</div><h3>Prioritize</h3>
-          <div class="sd">Decided with your team, then applied to everything new.</div>
-          <ul><li>Scored on cost, risk and expected value</li><li>Today's cost measured, so day 90 has a baseline</li></ul></article>
-        <article class="svc ru"><div class="num">01 &middot; ONE-TIME</div><h3>Implement</h3>
-          <div class="sd">Nine core mechanisms, built to your org.</div>
-          <ul><li>Intake form, review criteria, risk tiering, POC scorecard</li><li>Tool registry, readiness checklist, review workflow</li><li>Exec reporting cadence, adoption loop</li></ul></article>
-        <article class="svc ru"><div class="num">02 &middot; WEEKLY</div><h3>Running the flow</h3>
-          <div class="sd">Every new initiative scored on entry.</div>
-          <ul><li>Intakes triaged, risk tier set, owners enforced</li><li>No gate, no production</li></ul></article>
-        <article class="svc ru"><div class="num">03 &middot; MONTHLY + QUARTERLY</div><h3>Running the cadences</h3>
-          <div class="sd">Re-prioritized, not just reviewed.</div>
-          <ul><li>Graduate-or-close reviews</li><li>Whole portfolio re-scored, not only the strugglers</li></ul></article>
-      </div>
-      <p class="whoowns ru"><b>If you already have a transformation lead, Naanya works for them.</b> They own the portfolio and the room. I build the mechanism and run the cadence, so they are not doing it at 9pm. The mechanism stays with them.</p>
-      <p class="ninety ru"><b>Ninety days in:</b> every initiative named and owned, the dead ones closed, the live ones measured against what the work cost before.</p>
+      <p class="ninety ru"><b>Day 90:</b> every project owned, the dead ones closed, the live ones measured against what the work cost before.</p>
     </div></section>
 
     <!-- 5 · THE BETTER ALTERNATIVE -->
@@ -565,36 +581,24 @@
       <div class="head-c ru"><h2 class="qh">Why not software, or a hire?</h2>
         <p class="qsub">Live in weeks. Decided with you. And still here after the gate.</p></div>
 
-      <div class="sub-eyebrow ru" style="margin-top:30px">What it costs to get to control</div>
-      <div class="costcards ru" style="grid-template-columns:repeat(4,1fr)">
-        <div class="cc"><div class="cn">Do it internally</div><div class="cfig">$166&ndash;266K</div><div class="ctime">to hire, plus 3 to 6 months</div><div class="cdesc">Right answer if you can find them. You are bidding against HP and Scotiabank.</div></div>
-        <div class="cc"><div class="cn">Governance software</div><div class="cfig">$30&ndash;90K</div><div class="ctime">per year, plus rollout</div><div class="cdesc">Inventories and flags. Deciding what to fund stays with you.</div></div>
-        <div class="cc"><div class="cn">Fractional CAIO</div><div class="cfig">$2&ndash;8K</div><div class="ctime">per month, ongoing</div><div class="cdesc">Makes the call. Someone else still builds and runs it.</div></div>
-        <div class="cc me"><div class="cn">Naanya</div><div class="cfig">Fixed fee</div><div class="ctime">never hourly</div><div class="cdesc">Priced once scope is clear. Scored with your team, mechanism built, still here at day 90.</div></div>
+      <div class="optwrap ru">
+        <div class="opt hd"><div></div><div>Cost</div><div class="seg-h"><span>Prioritize</span><span>Prove value</span><span>Implement</span><span>Run</span><span>Monitor</span></div><div></div></div>
+        <div class="opt"><div class="on">Hire internally</div><div class="oc"><b>$155–275K</b><span>a year, plus 3–6 months to hire</span></div><div class="seg" aria-label="Stages covered"><i class="h"><em>Prioritize</em></i><i class="f"><em>Prove value</em></i><i class="h"><em>Implement</em></i><i class="o"><em>Run</em></i><i class="o"><em>Monitor</em></i></div><div class="ov">Strong if you can find them. Often stalls mid-build.</div></div>
+        <div class="opt"><div class="on">Governance software</div><div class="oc"><b>$42–77K</b><span>a year, plus rollout</span></div><div class="seg" aria-label="Stages covered"><i class="o"><em>Prioritize</em></i><i class="o"><em>Prove value</em></i><i class="o"><em>Implement</em></i><i class="h"><em>Run</em></i><i class="f"><em>Monitor</em></i></div><div class="ov">Watches and flags. Never decides what to fund.</div></div>
+        <div class="opt"><div class="on">Big 4 firm</div><div class="oc"><b>$150–500K+</b><span>over 2–4 months</span></div><div class="seg" aria-label="Stages covered"><i class="f"><em>Prioritize</em></i><i class="h"><em>Prove value</em></i><i class="o"><em>Implement</em></i><i class="o"><em>Run</em></i><i class="o"><em>Monitor</em></i></div><div class="ov">Decides, hands you a roadmap, then leaves.</div></div>
+        <div class="opt"><div class="on">Fractional CAIO</div><div class="oc"><b>$5–30K</b><span>a month, ongoing</span></div><div class="seg" aria-label="Stages covered"><i class="f"><em>Prioritize</em></i><i class="h"><em>Prove value</em></i><i class="o"><em>Implement</em></i><i class="f"><em>Run</em></i><i class="o"><em>Monitor</em></i></div><div class="ov">Makes the call. Someone else builds and runs it.</div></div>
+        <div class="opt me"><div class="on">Naanya</div><div class="oc"><b>Fixed fee</b><span>never hourly</span></div><div class="seg" aria-label="Stages covered"><i class="f"><em>Prioritize</em></i><i class="f"><em>Prove value</em></i><i class="h"><em>Implement</em></i><i class="f"><em>Run</em></i><i class="f"><em>Monitor</em></i></div><div class="ov">Scores it, gates it, your team builds. Still here at day 90.</div></div>
       </div>
-      <p class="cost-note ru">A Big 4 engagement runs $150K to $300K over 16+ weeks and ends with a roadmap. Figures are industry ballparks, not quotes.</p>
-      <p class="humble ru">I may be right about what is worth funding. I may be wrong. Either way I am still watching.</p>
-      <div class="cov-head ru">
-        <span></span>
-        <span>Prioritize</span><span>Prove value</span><span>Implement</span><span>Run</span><span class="fin">Monitor</span>
-        <span></span>
-      </div>
-      <div class="cov ru">
-        <div class="cvr"><span class="cvn">Software</span><i class="o">&middot;</i><i class="o">&middot;</i><i class="o">&middot;</i><i class="h">&#9680;</i><i class="f">&#9679;</i><span class="cvt">watches, never decides</span></div>
-        <div class="cvr"><span class="cvn">Big 4</span><i class="f">&#9679;</i><i class="h">&#9680;</i><i class="o">&middot;</i><i class="o">&middot;</i><i class="o">&middot;</i><span class="cvt">decides for you, then leaves</span></div>
-        <div class="cvr"><span class="cvn">Fractional CAIO</span><i class="f">&#9679;</i><i class="h">&#9680;</i><i class="o">&middot;</i><i class="f">&#9679;</i><i class="o">&middot;</i><span class="cvt">decides, hands you the build</span></div>
-        <div class="cvr"><span class="cvn">DIY</span><i class="h">&#9680;</i><i class="f">&#9679;</i><i class="h">&#9680;</i><i class="o">&middot;</i><i class="o">&middot;</i><span class="cvt">stalls mid-build</span></div>
-        <div class="cvr me"><span class="cvn">Naanya</span><i class="f">&#9679;</i><i class="f">&#9679;</i><i class="h">&#9680;</i><i class="f">&#9679;</i><i class="f">&#9679;</i><span class="cvt">gates it, your team builds</span></div>
-      </div>
-      <div class="cov-key ru">&#9679; owns it &nbsp; &#9680; partly &nbsp; &middot; not their job</div>
-      <p class="lc-note ru"><b>Every row here does part of the job.</b> Software watches without ever deciding. Big 4 and a fractional CAIO decide, then hand the build to someone else. Naanya doesn't build either, but it is the only row still there at Run and Monitor.</p>
+      <div class="okey ru"><span><i class="f"></i>covers it</span><span><i class="h"></i>partly</span><span><i class="o"></i>not their job</span><span class="ok-note">Our view of where each option usually stops.</span></div>
+      <p class="lc-note ru">Already have a transformation lead? They keep the decisions. Naanya runs the system for them.</p>
+      <p class="cost-note ru" style="font-size:12px;line-height:1.5;margin-top:12px">Costs are typical published ranges, not quotes. Sources: <a href="https://www.glassdoor.com/Salaries/ai-transformation-manager-salary-SRCH_KO0,25.htm" target="_blank" rel="noopener" style="text-decoration:underline">Glassdoor 2026</a> · <a href="https://www.ibm.com/products/watsonx-governance/pricing" target="_blank" rel="noopener" style="text-decoration:underline">IBM watsonx.governance 2026</a> · <a href="https://iternal.ai/insights/4-ways-to-build-ai-strategy" target="_blank" rel="noopener" style="text-decoration:underline">Iternal 2026</a> · <a href="https://dancumberlandlabs.com/blog/top-ai-consulting-firms/" target="_blank" rel="noopener" style="text-decoration:underline">Dan Cumberland Labs 2026</a> · <a href="https://www.jrgpartners.com/?p=96303" target="_blank" rel="noopener" style="text-decoration:underline">JRG Partners 2026</a>.</p>
     </div></section>
 
     <!-- 6 · THE STANDARD -->
     <section class="guarantee" id="standard"><div class="wrap">
       <h2 class="qh">How do I know it worked?</h2>
       <blockquote>If it doesn't return more time than it takes, <span>kill it.</span></blockquote>
-      <p>Judge it on hours returned to your team. If structure gives back less than it costs, it failed. I will hand you the metric to check.</p>
+      <p>Judge it on hours returned to your team. If structure gives back less than it costs, it failed. Naanya hands you the metric to check.</p>
     </div></section>
 
     <!-- 7 · FREE CHECK -->
@@ -634,38 +638,6 @@
     if (topbar){
       var on=false;
       addEventListener('scroll', function(){ var s=scrollY>6; if(s!==on){on=s;topbar.classList.toggle('scrolled',s);} }, {passive:true});
-    }
-
-    // ---- estimator ----
-    var sl = document.getElementById('initSlider');
-    if (sl){
-      var out=document.getElementById('initOut'), rO=document.getElementById('rOwner'),
-          rS=document.getElementById('rStall'), rC=document.getElementById('rCost'), rF=document.getElementById('rFormula');
-      var OWNER=0.65, STALL=0.25, CARRY=23000;
-      function money(v){ return v>=1e6 ? ('$'+(v/1e6).toFixed(1).replace(/\.0$/,'')+'M') : ('$'+Math.round(v/1000)+'K'); }
-      function calc(animate){
-        var n=+sl.value;
-        var pct=(n-sl.min)/(sl.max-sl.min)*100; sl.style.setProperty('--fill', pct+'%');
-        var owner=Math.round(n*OWNER), stall=Math.round(n*STALL), cost=stall*CARRY;
-        out.textContent=n; rO.textContent=owner; rS.textContent=stall;
-        rF.textContent=stall+' × ~$23K/yr';
-        if(animate && !reduce){ tick(rC, cost); } else { rC.textContent=money(cost); }
-      }
-      function tick(el, target){
-        var from=(parseInt((el.textContent||'').replace(/[^0-9]/g,''),10)||0);
-        if(/M$/.test(el.textContent)) from*=1000; // rough
-        var t0=performance.now(), dur=420;
-        (function f(now){var k=Math.min(1,(now-t0)/dur);var v=Math.round(from+(target-from)*k);
-          el.textContent=money(v); if(k<1) requestAnimationFrame(f);})(t0);
-      }
-      sl.addEventListener('input', function(){ calc(false); });
-      calc(false);
-      // gentle count-up on first view
-      if(!reduce && 'IntersectionObserver' in window){
-        var io1=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){
-          var real=Math.round(+sl.value*STALL)*23000; rC.textContent='$0K'; tick(rC, real); io1.disconnect();
-        }});},{threshold:.4}); io1.observe(document.getElementById('estimator'));
-      }
     }
 
     // ---- scroll reveals (with a safety fallback so nothing can stay hidden) ----

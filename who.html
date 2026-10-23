@@ -24,14 +24,14 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{background:var(--page);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  body{background:var(--page);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
   .wrap{width:min(1020px,calc(100% - 48px));margin:auto}
   section{padding:60px 0}
   .eyebrow{color:var(--brand);text-transform:uppercase;letter-spacing:2px;font-size:11px;font-weight:800;margin-bottom:12px}
   h1,h2,h3{font-family:var(--disp);font-weight:500;letter-spacing:-.02em;color:var(--ink);text-wrap:balance}
-  h1{font-size:clamp(40px,5vw,60px);line-height:1.02}
-  h2{font-size:clamp(26px,3.4vw,38px);line-height:1.08}
+  h1{font-size:clamp(32px,4vw,44px);line-height:1.06}
+  h2{font-size:clamp(23px,2.8vw,30px);line-height:1.12}
   h3{font-size:20px;line-height:1.2}
   p{color:var(--ink2)}
 
@@ -53,9 +53,9 @@
 
   /* hero */
   .hero{padding:44px 0 40px}
-  .hero .sub{font-size:18px;color:var(--ink2);max-width:56ch;margin-top:16px;line-height:1.5}
+  .hero .sub{font-size:16.5px;color:var(--ink2);max-width:56ch;margin-top:16px;line-height:1.5}
 
-  .lead-line{font-size:17px;color:var(--ink2);max-width:64ch;line-height:1.6}
+  .lead-line{font-size:16px;color:var(--ink2);max-width:64ch;line-height:1.6}
 
   /* stat cards */
   .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:22px 0 8px}
@@ -65,7 +65,7 @@
 
   /* built section */
   .built{background:var(--sand)}
-  .built p{font-size:16.5px;line-height:1.65;max-width:66ch;margin-top:14px}
+  .built p{font-size:15.5px;line-height:1.65;max-width:66ch;margin-top:14px}
   figure{margin-top:26px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow)}
   figure img{display:block;width:100%;height:auto}
   figcaption{padding:13px 18px;font-size:12.5px;color:var(--ink3);border-top:1px solid var(--line);font-family:var(--mono);letter-spacing:.02em}
@@ -73,7 +73,7 @@
   /* quotes */
   .quotes{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
   .q{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:26px 28px;box-shadow:var(--shadow);display:flex;flex-direction:column}
-  .q p{font-family:var(--disp);font-weight:400;font-size:1.15rem;line-height:1.4;color:var(--ink);margin-bottom:18px}
+  .q p{font-family:var(--disp);font-weight:400;font-size:1.05rem;line-height:1.4;color:var(--ink);margin-bottom:18px}
   .q small{margin-top:auto;font-size:12.5px;color:var(--ink3);font-family:var(--mono)}
   .q small b{color:var(--ink2);font-weight:600}
 
@@ -118,8 +118,8 @@
 <header class="topbar" id="topbar"><div class="wrap"><nav>
   <a class="logo" href="index.html">naanya<i>.</i></a>
   <div class="navl">
-    <a href="index.html#why">The blind spot</a><a href="index.html#how">How it works</a><a href="who.html">Who you'd work with</a>
-    <a class="btn sm" href="https://cal.com/lakshmiperi/readback" target="_blank" rel="noopener">Book a readback</a>
+    <a href="index.html#why">What's going wrong</a><a href="index.html#how">How it works</a><a href="who.html">Who you'd work with</a>
+    <a class="btn sm" href="https://cal.com/lakshmiperi/readback" target="_blank" rel="noopener">Book a call</a>
   </div>
 </nav></div></header>
 
@@ -148,7 +148,7 @@
   <div class="eyebrow">Then I built one</div>
   <h2>I built an agentic system for go-to-market and program operations.</h2>
   <p>Eight agents handling planning, risk, dependency tracking and executive reporting. Weekly leadership update prep went from about ten hours to under thirty minutes.</p>
-  <p>Single orchestrator, scoped skills. Not a network of independent agents. Multi-agent demos better. Single orchestrator is auditable. If you cannot explain who approved what, you do not have governance. You have a demo.</p>
+  <p>The first version had one agent doing several jobs, and it drifted. Splitting the work so each agent has one job fixed it, with one orchestrator coordinating all eight. Every step is traceable, and a person reviews every update before it reaches leadership.</p>
   <figure>
     <img src="panel.jpg" alt="Lakshmi Peri presenting the agentic launch readiness system at EM Marketing's AI in Practice panel, Redwood City, July 2026" loading="lazy">
     <figcaption>AI in Practice · EM Marketing panel, Redwood City, July 2026.</figcaption>
@@ -160,7 +160,7 @@
   <section>
     <div class="eyebrow">In their words</div>
     <div class="quotes">
-      <div class="q"><p>&ldquo;The price implementation was a tremendous success. $75M in revenue, under 1.2% attrition, no impact on customer acquisition. Lakshmi was the glue that brought it all together.&rdquo;</p><small><b>Tony King</b> · SVP Pricing &amp; Commercialization, Xero</small></div>
+      <div class="q"><p>&ldquo;The price implementation was a tremendous success. $75M in revenue, under 1.2% attrition, no impact on customer acquisition. Lakshmi was the glue that brought it all together.&rdquo;</p><small><b>Tony King</b> · worked together at Intuit · now SVP Pricing &amp; Commercialization, Xero</small></div>
       <div class="q"><p>&ldquo;A pivotal leadership role organizing governance, operating models, and readiness frameworks. A major reason we delivered without any customer or business disruption across 5+ product lines and a dozen countries.&rdquo;</p><small><b>Joe Wolf</b> · Intuit</small></div>
     </div>
   </section>
@@ -174,7 +174,7 @@
           <li>Legal opinions on regulatory exposure</li>
           <li>Independent audits or certification</li>
           <li>Training or fine-tuning models</li>
-          <li>Workflow redesign outside go-to-market</li>
+          <li>Building the AI tools themselves. Your team or vendor builds; Naanya decides what is worth building</li>
           <li>Standing in as your permanent AI owner</li>
         </ul>
       </div>
@@ -182,7 +182,7 @@
         <div class="eyebrow">How I handle your data</div>
         <ul>
           <li>Under your NDA, inside your tenancy wherever possible</li>
-          <li>Transcripts processed on a zero-retention business tier</li>
+          <li>When AI touches your data, it runs in your company's own AI account, or on a business plan that keeps no data. Never on a personal account</li>
           <li>Nothing trains a model</li>
           <li>Everything returned or destroyed at the end</li>
           <li>If a step would put your data somewhere you would not choose, I raise it first</li>
